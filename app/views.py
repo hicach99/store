@@ -39,6 +39,19 @@ def product(request,slug):
             'product':product,
         }
     )
+def products(request):
+    cart = Cart(request)
+    products=Product.get_by_date()
+    return render(
+        request,
+        'shop.html',
+        {
+            'config':config,
+            'cart':cart,
+            'products':products,
+        }
+    )
+
 # api calls
 def api_product_details(request,id):
     try:

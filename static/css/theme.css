@@ -4108,9 +4108,11 @@
 }
 
 .pi02Desc {
+    overflow: hidden;
     font-size: 14px;
     line-height: 24px;
     margin: 0 0 27px;
+    max-height: 175px;
 }
 
 .pi02Details .pi01Price {

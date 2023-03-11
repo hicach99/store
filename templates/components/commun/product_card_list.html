@@ -1,0 +1,59 @@
+{% load functions %}
+<div class="productItem02 clearfix"> 
+  <div class="pi02Thumb">
+    <img src="{{product.get_images.0.image.url}}" alt="{{product.name}}" />
+    <img src="{{product.get_images.1.image.url}}" alt="{{product.name}}" />
+    <div class="productLabels clearfix">
+      <span class="plDis">- {{ product.price|discount:product.old_price }}</span>
+      <span class="plSale {{product.status}}">{{product.status}}</span>
+    </div>
+    <div class="pi01Actions">
+      <a href="javascript:void(0);" class="pi01QuickView" data-id="{{product.id}}"><i class="fa-solid fa-arrows-up-down-left-right"></i></a>
+    </div>
+  </div>
+  <div class="pi02Details">
+    <div class="productRatings">
+      <div class="productRatingWrap">
+        <div class="star-rating">
+          <span class="a{{product.get_statistics.1}}"></span>
+        </div>
+      </div>
+      <div class="ratingCounts">{{product.get_statistics.0}} Review{% if product.get_statistics.0 > 1 %}s{% endif %}</div>
+    </div>
+    <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
+    <div class="pi01Price">
+      <ins>${{product.price}}</ins>
+      <del>${{product.old_price}}</del>
+    </div>
+    <div class="pi02Desc">{{product.description}}</div>
+    <div class="pi01Variations">
+      <div class="pi01VColor">
+        <div class="pi01VColor">
+          {% for property in product.properties.all %}
+            {% if property.type.name == 'color' %}
+              <style>
+                .pi01VCItem label.{{property.name}}::after{
+                  background:{{property.value}};
+                }
+              </style>
+              <div class="pi01VCItem">
+                <input checked="" type="radio" name="color" value="{{property.id}}" id="color_{{product.id}}_{{property.name}}" />
+                <label class="{{property.name}}" for="color_{{product.id}}_{{property.name}}"></label>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="pi01VSize">
+        {% for property in product.properties.all %}
+          {% if property.type.name == 'size' %}
+            <div class="pi01VSItem">
+              <input type="radio" name="size" value="{{property.id}}" id="size_{{product.id}}_{{property.name}}" />
+              <label for="size_{{product.id}}_{{property.name}}">{{property.name}}</label>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

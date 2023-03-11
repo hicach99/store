@@ -6,7 +6,7 @@
           <h2>{{title}}</h2>
           <div class="pageBannerPath">
             {% if 'Product Details' in title %}
-                <a href="{% url 'main' %}">Home</a>&nbsp;&gt;&nbsp;<a href="{% url 'main' %}">Shop</a>&nbsp;&gt;&nbsp;<a href="{% url 'main' %}">{{hint}}</a>
+                <a href="{% url 'main' %}">Home</a>&nbsp;&gt;&nbsp;<a href="{% url 'shop' %}">Shop</a>&nbsp;&gt;&nbsp;<a href="{% url 'main' %}">{{hint}}</a>
             {% else %}
                 <a href="{% url 'main' %}">Home</a>&nbsp;&gt;&nbsp;<a href="{% url 'main' %}">{{hint}}</a>
             {% endif %}

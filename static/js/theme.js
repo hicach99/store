@@ -971,4 +971,20 @@
     /*--------------------------------------------------------
     /  24. Buttons
     /---------------------------------------------------------*/
+    function showElements(){
+        var itemsLength=parseInt($('.itemsLength').text());
+        var visibleItems=parseInt($('.visibleItems').text());
+        if (visibleItems<=itemsLength) {
+            for (let i = visibleItems; i < visibleItems+ElementsStep; i++) {
+                $('.item'+i).attr('style','display: block;');
+            }
+            (visibleItems+ElementsStep>itemsLength)?$('.visibleItems').text(itemsLength):$('.visibleItems').text(visibleItems+ElementsStep);    
+        }
+    }
+    $('.visibleItems').text(1);
+    showElements();
+    $('.shopLoadMore').on('click', function(e){
+        showElements();
+    })
+
 })(jQuery)
