@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Ulina';
+  src:  url('../fonts/Ulina.eot?n8p2yg');
+  src:  url('../fonts/Ulina.eot?n8p2yg#iefix') format('embedded-opentype'),
+    url('../fonts/Ulina.ttf?n8p2yg') format('truetype'),
+    url('../fonts/Ulina.woff?n8p2yg') format('woff'),
+    url('../fonts/Ulina.svg?n8p2yg#Ulina') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ulina-"], [class*=" ulina-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Ulina' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ulina-hours-support:before {
+  content: "\e900";
+}
+.ulina-credit-card:before {
+  content: "\e901";
+}
+.ulina-fast-delivery:before {
+  content: "\e902";
+}
+.ulina-quote:before {
+  content: "\e903";
+}
+.ulina-refund:before {
+  content: "\e904";
+}

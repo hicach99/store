@@ -1,0 +1,59 @@
+{% load static %}
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{config.website_name}}</title>
+  <meta name="description" content="{{config.description}}"/>
+  <meta name="keywords" content="{{config.keywords}}"/>
+  <meta name="author" content="{{config.author}}"/>
+
+  <!-- BEGIN: CSS -->
+  <link rel='stylesheet' href='{% static 'css/bootstrap.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/animate.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/fontawesome-all.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/owl.theme.default.min.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/owl.carousel.min.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/lightcase.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/slick.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/nice-select.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/settings.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/ulina-icons.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/ignore_for_wp.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/preset.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/theme.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/responsive.css' %}'>
+  <link rel='stylesheet' href='{% static 'css/simply-toast.css' %}'>
+  <!-- END: CSS -->
+
+  <!-- BEGIN: Favicon -->
+  <link rel="icon" type="image/png" href="https://uiuxom.com/ulina/html/images/favicon.png" />
+  <!-- END: Favicon -->
+  <!-- BEGIN: style -->
+  <style>
+    a{
+        text-decoration: none;
+    }
+  </style>
+  <!-- END: style -->
+  <script type="text/javascript" charset="UTF-8" src="{% static 'js/common.js' %}"></script>
+  <script type="text/javascript" charset="UTF-8" src="{% static 'js/util.js' %}"></script>
+  {% csrf_token %}
+  <script>
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const toast_options= {
+      ele: "body",
+      offset:
+      {
+        from: "bottom",
+        amount: 20
+      },
+      align: "right",
+      width: 600,
+      delay: 4000,
+      allow_dismiss: true,
+      stackup_spacing: 5
+    }
+  </script>
+
+</head>

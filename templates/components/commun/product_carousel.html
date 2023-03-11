@@ -1,0 +1,43 @@
+{% load static %}
+<script src="{% static 'js/carousel.js' %}" defer=""></script>
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}" />
+<div id="sync1" class="owl-carousel owl-loaded owl-drag">
+  <div class="owl-stage-outer">
+    <div class="owl-stage" style="transition: all 0s ease 0s; width: 457px; transform: translate3d(0px, 0px, 0px);">
+      {% for image in product.get_images %}
+      <div class="owl-item">
+        <div class="item" data-hash="{{image.id}}">
+          <img src="{{image.image.url}}" alt="" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="owl-nav disabled">
+    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+  </div>
+  <div class="owl-dots disabled">
+    <button role="button" class="owl-dot active"><span></span></button>
+  </div>
+</div>
+<div id="sync2" class="owl-carousel owl-loaded owl-drag">
+  <div class="owl-stage-outer">
+    <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 149px;">
+      {% for image in product.get_images %}
+        <div class="owl-item">
+          <a href="#{{image.id}}">
+            <div class="item">
+              <img src="{{image.image.url}}" alt="" />
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="owl-nav disabled">
+    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+  </div>
+  <div class="owl-dots disabled">
+    <button role="button" class="owl-dot active"><span></span></button>
+  </div>
+</div>

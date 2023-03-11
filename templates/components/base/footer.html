@@ -1,0 +1,111 @@
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <aside class="widget aboutWidget">
+          <div class="footerLogo">
+            <a href="index.html"><img src="{% static 'media/logo-w.png' %}" alt="Ulina" /></a>
+          </div>
+          <div class="aboutWidContent">Quis nostrud exercitatin ullamc boris nisi ut aliquip ex ea commodo conse.</div>
+          <div class="subscribForm">
+            <form method="post" action="#">
+              <input type="email" name="subsEmail" placeholder="Your email here" />
+              <button type="submit"><i class="fa-solid fa-envelope"></i></button>
+            </form>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <aside class="widget">
+          <h3 class="widgetTitle">Address</h3>
+          <div class="addressContent">
+            <div class="singleAddress">
+              <i class="fa-solid fa-location-dot"></i>
+              {{config.address}}
+            </div>
+            <div class="singleAddress">
+              <i class="fa-solid fa-phone"></i>
+              {{config.contact_phone}}
+            </div>
+            <div class="singleAddress">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:hello@ulina.com">{{config.contact_email}}</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <aside class="widget">
+          <h3 class="widgetTitle">Useful Links</h3>
+          <ul>
+            <li>
+              <a href="javascript:void(0);">Shop Coupon</a>
+            </li>
+            <li>
+              <a href="about">About us</a>
+            </li>
+
+          </ul>
+        </aside>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <aside class="widget twoColMenu">
+          <h3 class="widgetTitle">Categories</h3>
+          <ul>
+            {% for category in categories  %}
+            <li>
+              <a href="shop">{{category}}</a>
+            </li>
+            {% endfor %}            
+          </ul>
+        </aside>
+      </div>
+    </div>
+    <div class="row footerAccessRow">
+      <div class="col-md-6">
+        <div class="footerSocial">
+          <a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="footerPayments">
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-paypal"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-stripe"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-mastercard"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-visa"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-apple-pay"></i></a>
+          <a href="javascript:void(0);"><i class="fa-brands fa-cc-amazon-pay"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="footerBar"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+<section class="siteInfoSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="siteInfo">
+                    All rights reserved &nbsp;<a href="{% url 'main' %}">{{config.website_name}}</a>&nbsp;&nbsp;©&nbsp;&nbsp;{% now 'Y' %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="javascript:void(0);">Terms &amp; Condition</a></li>
+                        <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0);">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

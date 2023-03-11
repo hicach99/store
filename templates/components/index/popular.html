@@ -1,0 +1,37 @@
+{% load static %}
+<section class="popularProductsSection">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="secTitle">Popular Products</h2>
+        <p class="secDesc">Showing our popular products</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="productTabs">
+          <ul class="nav productTabsNav absolutes" id="productTab" role="tablist">
+            {% for category in categories %}
+            <li role="presentation">
+              <button class="{% if category.id == categories.0.id %}active{% endif %}" id="tab-{{category.id}}" data-bs-toggle="tab" data-bs-target="#tab-{{category.id}}-pane" type="button" role="tab" aria-controls="tab-{{category.id}}-pane" aria-selected="true">{{category.name}}</button>
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="tab-content" id="productTabContent">
+            {% for category in categories %}
+            <div class="tab-pane fade {% if category.id == categories.0.id %}show active{% endif %}" id="tab-{{category.id}}-pane" role="tabpanel" aria-labelledby="tab-{{category.id}}" tabindex="0">
+              <div class="row">
+                {% for product in category.products.all|slice:":8"  %}
+                  <div class="col-sm-6 col-lg-4 col-xl-3">
+                    {% include 'components/commun/product_card.html' %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'components/index/slider.html' %}
+    {% include 'components/index/features.html' %}
+    {% include 'components/commun/products_slider.html' with title='Latest Arrival' hint='Showing our latest arrival' products=latest_products %}
+    {% include 'components/index/categories.html' %}
+    {% include 'components/index/popular.html' %}
+    {% include 'components/commun/product_modal.html' %}
+    {% include 'components/index/instagram.html' %}
+{% endblock content %}

@@ -1,0 +1,92 @@
+{% load static %}
+<header class="header01 isSticky fixedHeader animated slideInDown">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="headerInner01">
+          <div class="logo">
+            <a href="{% url 'main' %}"><img src="{% static 'media/logo.png' %}" alt="Logo" /></a>
+          </div>
+          <div class="mainMenu">
+            <ul>
+              <li>
+                <a href="{% url 'main' %}">Home</a>
+              </li>
+              <li>
+                <a href="shop">Shop</a>
+              </li>
+              <li>
+                <a href="about">About</a>
+              </li>
+              <li>
+                <a href="contacts">Contacts</a>
+              </li>
+            </ul>
+          </div>
+          <div class="accessNav">
+            <a href="javascript:void(0);" class="menuToggler"><i class="fa-solid fa-bars"></i> <span>Menu</span></a>
+            <div class="anSocial">
+              <div class="ansWrap">
+                <a class="fac" href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
+                <a class="twi" href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
+                <a class="lin" href="javascript:void(0);"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a class="ins" href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+              <a class="tog" href="javascript:void(0);"><i class="fa-solid fa-share-alt"></i></a>
+            </div>
+            <div class="anSelects">
+              <div class="anSelect">
+                <select name="languages" style="display: none;">
+                  <option value="ENG">EN</option>
+                  <option value="ARA">AR</option>
+                  <option value="GER">GR</option>
+                  <option value="SPA">SP</option>
+                </select>
+                <div class="nice-select" tabindex="0">
+                  <span class="current">EN</span><ul class="list">
+                    <li data-value="ENG" class="option selected">EN</li>
+                    <li data-value="ARA" class="option">AR</li>
+                    <li data-value="GER" class="option">GR</li>
+                    <li data-value="SPA" class="option">SP</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="anSelect">
+                <select name="currency" style="display: none;">
+                  <option value="USD">USD</option>
+                  <option value="GBP">GBP</option>
+                  <option value="EUR">EUR</option>
+                  <option value="OMR">OMR</option>
+                </select>
+                <div class="nice-select" tabindex="0">
+                  <span class="current">USD</span>
+                  <ul class="list">
+                    <li data-value="USD" class="option selected">USD</li>
+                    <li data-value="GBP" class="option">GBP</li>
+                    <li data-value="EUR" class="option">EUR</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="anItems">
+              <div class="anSearch">
+                <a href="javascript:void(0);"><i class="fa-solid fa-search"></i></a>
+              </div>
+              <div class="anUser">
+                <a href="javascript:void(0);"><i class="fa-solid fa-user"></i></a>
+              </div>
+              <div class="anCart">
+                {% include 'components/base/cart.html' %}
+              </div>
+            </div>
+            <div class="anSupport">
+              <i class="fa-solid fa-headset"></i>
+              <h3>Helpline</h3>
+              <h3>{{config.support_phone}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

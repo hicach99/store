@@ -1,0 +1,116 @@
+<div class="col-lg-12">
+  <ul class="nav productDetailsTab" id="productDetailsTab" role="tablist">
+    {% if product.product_details %}
+      <li role="presentation">
+        <button  id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+      </li>
+    {% endif %}
+    {% if product.informations.all %}
+        <li role="presentation">
+          <button class="active" id="additionalinfo-tab" data-bs-toggle="tab" data-bs-target="#additionalinfo" type="button" role="tab" aria-controls="additionalinfo" aria-selected="false" class="" tabindex="-1">Additional Information</button>
+        </li>
+    {% endif %}
+
+    <li role="presentation">
+      <button {% if not product.informations.all %}class="active"{% endif %} id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false" class="" tabindex="-1">Item Review</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="desInfoRev_content">
+    {% if product.product_details %}
+    <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
+      <div class="productDescContentArea">
+        <div class="row">
+          <div class="col">
+            <div class="descriptionContent">
+              <h3>Product Details</h3>
+              <p>{{product.product_details}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if product.informations.all %}
+    <div class="tab-pane fade active show" id="additionalinfo" role="tabpanel" aria-labelledby="additionalinfo-tab" tabindex="0">
+      <div class="additionalContentArea">
+        <h3>Additional Information</h3>
+        <table>
+          <tbody>
+                {% for info in product.informations.all %}
+                <tr>
+                    <th>{{info.key}}</th>
+                    <td>{{info.value}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    <div class="tab-pane fade {% if not product.informations.all %}active show{% endif %}" id="reviews" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+      <div class="productReviewArea">
+        <div class="row">
+          <div class="col-lg-6">
+            {% with product.reviews.all|length as ln %}
+                <h3>{{ln}} Review{% if ln > 1 %}s{% endif %}</h3>
+            {% endwith %}
+            <div class="reviewList">
+              <ol>
+                {% for review in product.reviews.all %}
+                    <li>
+                        <div class="postReview">
+                        <img src="./product_details_files/7.jpg" alt="Post Review">
+                        <h2 class="text-bold">{{review.title}}</h2>
+                        <div class="postReviewContent">{{review.content}}</div>
+                        <div class="productRatingWrap">
+                            <div class="star-rating">
+                                    <span class="a{{review.rating}}"></span>
+                            </div>
+                        </div>
+                        <div class="reviewMeta">
+                            <h4>{{review.name}}</h4>
+                            <span>on {{review.created_at}}</span>
+                        </div>
+                        </div>
+                    </li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="commentFormArea">
+              <h3>Add A Review</h3>
+              <div class="reviewFrom">
+                <form method="post" action="https://uiuxom.com/ulina/html/shop_details1.html#" class="row">
+                  <div class="col-lg-12">
+                    <div class="reviewStar">
+                      <label>Your Rating</label>
+                      <div class="rsStars">
+                        <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" name="comTitle" placeholder="Review title" />
+                  </div>
+                  <div class="col-lg-12">
+                    <textarea name="comComment" placeholder="Write your review here"></textarea>
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" name="comName" placeholder="Your name" />
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="email" name="comEmail" placeholder="Your email" />
+                  </div>
+                  <div class="col-lg-12">
+                    <button type="submit" name="reviewtSubmit" class="ulinaBTN"><span>Submit Now</span></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{% load static %}
+<div class="modal fade productQuickView" id="productQuickView" tabindex="-1" data-aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="quickViewCloser" data-bs-dismiss="modal" aria-label="Close"><span></span></button>
+      <div class="modal-body">
+        {% include 'components/commun/product_modal_content.html' %}
+      </div>
+    </div>
+  </div>
+</div>

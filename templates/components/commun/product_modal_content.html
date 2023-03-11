@@ -1,0 +1,93 @@
+{% load static %}
+<div class="row">
+    <div class="col-lg-6">
+      <div class="productGalleryWrap">
+        {% include 'components/commun/product_carousel.html' %}
+      </div>
+    </div> 
+    <div class="col-lg-6">
+      <div class="productContent">
+        <div class="pcCategory">
+          <a href="shop_right_sidebar.html">{{product.category.name}}</a>
+        </div>
+        <h2><a href="{% if product %}{% url 'product_details' product.slug %}{% endif %} " id="productName">{{product.name}}</a></h2>
+        <div class="pi01Price">
+          <ins id="productPrice">${{product.price}}</ins>
+          <del id="productOldPrice">${{product.old_price}}</del>
+        </div>
+        <div class="productRadingsStock clearfix">
+          <div class="productRatings float-start">
+            <div class="productRatingWrap">
+              <div class="star-rating">
+                <span></span>
+              </div>
+            </div>
+            <div class="ratingCounts"></div>
+          </div>
+        </div>
+        <div class="pcExcerpt" id="productDesc">{{product.description}}</div>
+        <input type="hidden" id="productId" name="productId" value="{{product.id}}">
+        <div class="pcVariations">
+          <div class="pcVariation">
+            <span>Color</span>
+            <div class="pcvContainer">
+                {% for property in product.properties.all %}
+                {% if property.type.name == 'color' %}
+                  <style>
+                    .pi01VCItem label.{{property.name}}::after{
+                      background:{{property.value}};
+                    }
+                  </style>
+                  <div class="pi01VCItem">
+                    <input checked type="radio" name="color" value="{{property.id}}" id="color_{{property.name}}" />
+                    <label class="{{property.name}}" for="color_{{property.name}}"></label>
+                  </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+          </div>
+          <div class="pcVariation pcv2">
+            <span>Size</span>
+            <div class="pcvContainer">
+                {% for property in product.properties.all %}
+                {% if property.type.name == 'size' %}
+                  <div class="pswItem">
+                    <input checked type="radio" name="size" value="{{property.id}}" id="size_{{property.name}}" />
+                    <label for="size_{{property.name}}">{{property.name}}</label>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="pcBtns">
+          <div class="quantity clearfix">
+            <button type="button" name="btnMinus" id="btnMinus" class="qtyBtn btnMinus">_</button>
+            <input type="number" class="carqty input-text qty text" name="quantity" id="quantity" min="1" value="1" />
+            <button type="button" name="btnPlus" id="btnPlus" class="qtyBtn btnPlus">+</button>
+          </div>
+          <button type="submit" class="ulinaBTN addingBTN"><span>Add to Cart</span></button>
+        </div>
+        <div class="pcMeta">
+          {% comment %} <p>
+            <span>Sku</span>
+            <a href="javascript:void(0);">3489 JE0765</a>
+          </p> {% endcomment %}
+          <p class="pcmTags">
+            <span>Tags&nbsp;</span>
+            {% for tag in product.tags.all %}
+                <a href="{{tag.id}}">{{tag.name}}</a>&nbsp;
+            {% endfor %}
+          </p>
+          <p class="pcmSocial">
+            <span>Share</span>
+            <a class="fac" href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="twi" href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
+            <a class="lin" href="javascript:void(0);"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a class="ins" href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/product_modal.js' %}" defer></script>

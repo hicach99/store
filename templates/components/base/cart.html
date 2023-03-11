@@ -1,0 +1,33 @@
+{% load static %}
+<a href="javascript:void(0);" class="cartIcon"><i class="fa-solid fa-shopping-cart"></i><span>{{ cart|length }}</span></a>
+<div class="cartWidgetArea">
+  {% if cart %}
+    {% if cart|length != 0 %} 
+    {% for item in cart %}
+      <div class="cartWidgetProduct">
+        <img src="{{ item.product.get_images.0.image.url }}" alt="{{ item.product.name }}" />
+        <a href="{% url 'product_details' item.product.slug %}">
+          {{ item.product.name }}
+          {% for property in item.properties %}
+            ,&nbsp;{{ property.name }}
+          {% endfor %}
+        </a>
+        <div class="cartProductPrice clearfix">
+          <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_currency">$</span><span class="cart_price">{{ item.product.price }}</span>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="totalPrice">
+      Subtotal:
+      <span class="price"><span><span class="cart_currency">$</span><span class="cart_total_price">{{ cart.get_total_price }}</span></span></span>
+    </div>
+    <div class="cartWidgetBTN clearfix">
+      <a class="cart" href="cart">View Cart</a>
+      <a class="checkout" href="checkout">Checkout</a>
+    </div>
+    {% endif %}
+  {% else %}
+    <div class="cartWidgetProductEmpty">No products in the cart.</div>
+  {% endif %}
+</div>
+<script src="{% static 'js/cart.js' %}" defer></script>

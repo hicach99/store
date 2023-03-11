@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'components/commun/page_banner.html' with title='Product Details' hint=product.name %}
+    {% include 'components/product/product_details.html' %}
+    {% include 'components/commun/products_slider.html' with title='Suggested Products' hint='' products=related_products %}
+    {% endblock content %}

@@ -1,0 +1,26 @@
+{% load static %}
+<section class="latestArrivalSection">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="secTitle">{{title}}</h2>
+        <p class="secDesc">{{hint}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="productCarousel owl-carousel owl-loaded owl-drag">
+          <div class="owl-stage-outer">
+            <div class="owl-stage" style="transform: translate3d(-266px, 0px, 0px); transition: all 0s ease 0s; width: 798px;">
+              {% for product in products %}
+              <div class="owl-item" style="width: 109px; margin-right: 24px;">
+                {% include 'components/commun/product_card.html' %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
