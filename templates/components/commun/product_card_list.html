@@ -4,7 +4,7 @@
     <img src="{{product.get_images.0.image.url}}" alt="{{product.name}}" />
     <img src="{{product.get_images.1.image.url}}" alt="{{product.name}}" />
     <div class="productLabels clearfix">
-      <span class="plDis">- {{ product.price|discount:product.old_price }}</span>
+      {% if product.price != product.old_price %}<span class="plDis">- {{ product.price|discount:product.old_price }}</span>{% endif %}
       <span class="plSale {{product.status}}">{{product.status}}</span>
     </div>
     <div class="pi01Actions">
@@ -23,7 +23,7 @@
     <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
     <div class="pi01Price">
       <ins>${{product.price}}</ins>
-      <del>${{product.old_price}}</del>
+      {% if product.price != product.old_price %}<del>${{product.old_price}}</del>{% endif %}
     </div>
     <div class="pi02Desc">{{product.description}}</div>
     <div class="pi01Variations">

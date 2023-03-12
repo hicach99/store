@@ -41,6 +41,7 @@ def product(request,slug):
     )
 def products(request):
     cart = Cart(request)
+    categories=Category.get_all()
     products=Product.get_by_date()
     return render(
         request,
@@ -48,6 +49,7 @@ def products(request):
         {
             'config':config,
             'cart':cart,
+            'categories':categories,
             'products':products,
         }
     )

@@ -975,16 +975,32 @@
         var itemsLength=parseInt($('.itemsLength').text());
         var visibleItems=parseInt($('.visibleItems').text());
         if (visibleItems<=itemsLength) {
-            for (let i = visibleItems; i < visibleItems+ElementsStep; i++) {
+            for (let i = visibleItems; i <= visibleItems+ElementsStep; i++) {
                 $('.item'+i).attr('style','display: block;');
             }
             (visibleItems+ElementsStep>itemsLength)?$('.visibleItems').text(itemsLength):$('.visibleItems').text(visibleItems+ElementsStep);    
         }
     }
-    $('.visibleItems').text(1);
+    $('.visibleItems').text(0);
     showElements();
     $('.shopLoadMore').on('click', function(e){
         showElements();
     })
-
+    $('.productFilter').on('change', function(){
+        var path=$('#current_path').val()
+        var value=$(this).val();
+        if (path.includes('?')) {
+            if (path.includes('&orderby')) {
+                path=path.substr(0,path.indexOf("&orderby"));
+                if(value!='')path=path+'&orderby='+value;
+            }
+            else{
+                if(value!='')path=path+'&orderby='+value;
+            }
+        }
+        else{
+            if(value!='')path=path+'?orderby='+value;
+        }
+        window.location.href=path
+    })
 })(jQuery)

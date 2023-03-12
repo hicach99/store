@@ -12,5 +12,6 @@ def get_property_name(id):
         return Property.objects.get(id=id).name
     except:
         ''
-    
-
+@register.filter
+def capitalize(string:str):
+    return string[0].upper()+string[1:].lower()

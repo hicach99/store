@@ -25,7 +25,7 @@ class Configuration(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True,null=True)
     image = models.ImageField(upload_to='category_images/',blank=True)
     def __str__(self):
         return self.name
@@ -38,9 +38,13 @@ class Category(models.Model):
         return Category.objects.all()
 class Tag(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True,null=True)
     def __str__(self):
         return self.name
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Tag, self).save(*args, **kwargs)
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):

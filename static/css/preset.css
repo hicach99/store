@@ -57,6 +57,9 @@ a{
     -moz-transition: all ease 350ms;
     -webkit-transition: all ease 350ms;
 }
+li.active a{
+    color: #52586d;
+}
 a:hover, a:focus{
     color: #52586d;
     text-decoration: none;

@@ -18,6 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
     exclude = ('slug',)
 class TagAdmin(admin.ModelAdmin):
     display=('name')
+    exclude = ('slug',)
 class ProductAdmin(admin.ModelAdmin):
     list_display=('id','name','price','old_price')
     form = ProductAdminForm
