@@ -10,7 +10,7 @@ try:
 except:
     config=None
 def main(request):
-    latest_products=Product.get_by_date()
+    latest_products=Product.objects.all()
     cart = Cart(request)
     categories=Category.get_all()
     return render(
@@ -27,7 +27,7 @@ def product(request,slug):
     cart = Cart(request)
     product = Product.objects.get(slug=slug)
     categories=Category.get_all()
-    related_products=Product.get_by_date()
+    related_products=Product.objects.all()
     return render(
         request,
         'product.html',
@@ -42,7 +42,26 @@ def product(request,slug):
 def products(request):
     cart = Cart(request)
     categories=Category.get_all()
-    products=Product.get_by_date()
+    products=None
+    if 'category' in request.GET:
+        products=Product.get_by_category(slug=request.GET['category'])
+    elif 'tag' in request.GET:
+        products=Product.get_by_tag(slug=request.GET['tag'])
+    elif 'q' in request.GET:
+        pass
+    else:
+        products=Product.objects.all()
+    if 'orderby' in request.GET:
+        if request.GET['orderby']=='price-desc':
+            products=Product.get_by_price(products=products)
+        if request.GET['orderby']=='price':
+            products=Product.get_by_price(products=products,desc=False)
+        if request.GET['orderby']=='rating':
+            products=Product.get_by_rating(products=products)
+        if request.GET['orderby']=='latest':
+            products=Product.get_by_date(products=products)
+        if request.GET['orderby']=='oldest':
+            products=Product.get_by_date(products=products,desc=False)
     return render(
         request,
         'shop.html',
@@ -95,4 +114,4 @@ def api_add_cart(request):
             return JsonResponse({'status':'error','message':e},safe=False,json_dumps_params={"ensure_ascii": False})
     return JsonResponse({'status':'error','message':'Could\'t add product to the shopping cart'},safe=False,json_dumps_params={"ensure_ascii": False})
 def test(request):
-    return HttpResponse('cart.cart')
+    return HttpResponse(Product.get_by_rating())

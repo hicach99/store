@@ -55,7 +55,7 @@
           <ul>
             {% for category in categories  %}
             <li>
-              <a href="shop">{{category}}</a>
+              <a href="{% url 'shop' %}?category={{category.slug}}">{{category}}</a>
             </li>
             {% endfor %}            
           </ul>

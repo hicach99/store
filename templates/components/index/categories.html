@@ -18,7 +18,7 @@
                     <div class="ci01Thumb">
                       <img src="{{category.image.url}}" alt="Watches">
                     </div>
-                    <h3><a href="shop_right_sidebar.html">{{category.name}}</a></h3>
+                    <h3><a href="{% url 'shop' %}?category={{category.slug}}">{{category.name}}</a></h3>
                     <p>{{category.name}}</p>
                   </div>
                 </div>

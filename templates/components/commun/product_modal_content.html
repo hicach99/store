@@ -9,7 +9,7 @@
     <div class="col-lg-6">
       <div class="productContent">
         <div class="pcCategory">
-          <a href="shop_right_sidebar.html">{{product.category.name}}</a>
+          <a href="{% url 'shop' %}?category={{product.category.slug}}">{{product.category.name}}</a>
         </div>
         <h2><a href="{% if product %}{% url 'product_details' product.slug %}{% endif %} " id="productName">{{product.name}}</a></h2>
         <div class="pi01Price">
@@ -77,7 +77,7 @@
           <p class="pcmTags">
             <span>Tags&nbsp;</span>
             {% for tag in product.tags.all %}
-                <a href="{{tag.id}}">{{tag.name|capitalize}}</a>&nbsp;
+                <a href="{% url 'shop' %}?tag={{tag.slug}}">{{tag.name|capitalize}}</a>&nbsp;
             {% endfor %}
           </p>
           <p class="pcmSocial">

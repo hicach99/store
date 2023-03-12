@@ -36,15 +36,7 @@ class Category(models.Model):
     @staticmethod
     def get_all():
         return Category.objects.all()
-class Tag(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True,null=True)
-    def __str__(self):
-        return self.name
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super(Tag, self).save(*args, **kwargs)
+
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):
@@ -59,6 +51,15 @@ class Property(models.Model):
         if not self.value:
             self.value = self.name
         super(Property, self).save(*args, **kwargs)
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(null=True)
+    def __str__(self):
+        return self.name
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Tag, self).save(*args, **kwargs)
 class Product(models.Model):
     product_status = [
         ('Hot', 'Hot'),
@@ -73,8 +74,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     old_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    tags = models.ManyToManyField(Tag)
     properties = models.ManyToManyField(Property)
+    tags = models.ManyToManyField(Tag)
     enabled=models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     class Meta:
@@ -90,17 +91,40 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super(Product, self).save(*args, **kwargs)
+    # Get products by category
+    @staticmethod
+    def get_by_category(slug):
+        try:
+            category=Category.objects.get(slug=slug)
+            return category.products.all()
+        except:
+            return []
+    # Get products by tag
+    @staticmethod
+    def get_by_tag(slug):
+        data=[]
+        try:
+            products=Product.objects.all()
+            tag=Tag.objects.get(slug=slug)
+            for product in products:
+                if product.tags.all().contains(tag): data.append(product)
+            return data
+        except:
+            return []
     # Get products ordered by price
     @staticmethod
-    def get_by_price(desc=True):
-        d = '-' if desc else ''
-        return Product.objects.order_by(d+'price')
+    def get_by_price(products=[],desc=True):
+        return sorted(products, key=lambda x: x.price, reverse=desc)
     # Get products ordered by date
     @staticmethod
-    def get_by_date(limit=None,desc=True):
-        d = '-' if desc else ''
-        return Product.objects.order_by(d+'created_at')
-
+    def get_by_date(products=[],desc=True):
+        return sorted(products, key=lambda x: x.created_at.timestamp(), reverse=desc)
+    # Get products ordered by rating
+    @staticmethod
+    def get_by_rating(products=[]):
+        for product in products:
+            product.rating=product.get_statistics()[1]
+        return sorted(products, key=lambda x: x.rating, reverse=True)
 class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='product_images/')
@@ -113,6 +137,7 @@ class ProductInformation(models.Model):
     value = models.CharField(max_length=255)
     def __str__(self):
         return '{"'+str(self.key)+'":"'+str(self.value)+'"}'
+
 class ProductReview(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     rating = models.IntegerField(default=1)

@@ -14,15 +14,32 @@
             <div class="col-sm-6 col-xl-4">
                 <div class="shopAccessBar">
                     <div class="sortNav">
-                        <form method="post" action="https://uiuxom.com/ulina/html/shop_full_width.html#">
+                        <form method="post" action="#">
                             <label>Sort By</label>
                             <select name="productFilter" class="productFilter" style="display: none;">
-                                <option value="">Default</option>
-                                <option value="1">High to low</option>
-                                <option value="2">Low to high</option>
-                                <option value="3">Top rated</option>
-                                <option value="4">Recently viewed</option>
-                            </select><div class="nice-select" tabindex="0"><span class="current">Default</span><ul class="list"><li data-value="" class="option selected">Default</li><li data-value="1" class="option">High to low</li><li data-value="2" class="option">Low to high</li><li data-value="3" class="option">Top rated</li><li data-value="4" class="option">Recently viewed</li></ul></div>
+                                <option value="">Latest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="price-desc">High to low</option>
+                                <option value="price">Low to high</option>
+                                <option value="rating">Top rated</option>
+
+                            </select>
+                            <div class="nice-select" tabindex="0">
+                                <span class="current">
+                                    {% if not request.GET.orderby %}Latest{% endif %}
+                                    {% if request.GET.orderby == 'oldest' %}Oldest{% endif %}
+                                    {% if request.GET.orderby == 'price-desc' %}High to low{% endif %}
+                                    {% if request.GET.orderby == 'price' %}Low to high{% endif %}
+                                    {% if request.GET.orderby == 'rating' %}Top rated{% endif %}
+                                </span>
+                                <ul class="list">
+                                    <li data-value="" class="option {% if not request.GET.orderby %}selected{% endif %}">Latest</li>
+                                    <li data-value="oldest" class="option {% if request.GET.orderby == 'oldest' %}selected{% endif %}">Oldest</li>
+                                    <li data-value="price-desc" class="option {% if request.GET.orderby == 'price-desc' %}selected{% endif %}">High to low</li>
+                                    <li data-value="price" class="option {% if request.GET.orderby == 'price' %}selected{% endif %}" >Low to high</li>
+                                    <li data-value="rating" class="option {% if request.GET.orderby == 'rating' %}selected{% endif %}">Top rated</li>
+                                </ul>
+                            </div>
                         </form>
                     </div>
                     <ul class="nav productViewTabnav" id="productViewTab" role="tablist">

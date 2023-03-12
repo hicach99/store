@@ -737,6 +737,8 @@
     display: block;
     font-size: 16px;
     line-height: 20px;
+    max-height: 60px;
+    overflow: hidden;
     position: relative;
     bottom: auto;
     color: #52586d;
@@ -1659,6 +1661,9 @@
 }
 
 .pi01Details h3 a {
+    overflow: hidden;
+    max-height: 90px;
+    display: block;
     color: inherit;
 }
 

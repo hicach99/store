@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/product/<int:id>', api_product_details,name='api_product_details'),
     path('api/cart', api_cart,name='api_cart'),
     path('api/cart/add', api_add_cart,name='api_add_cart'),
+    path('test', test,name='test'),
 ]

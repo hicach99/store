@@ -1,14 +1,3 @@
-/*
- Theme Name: Ulina
- Theme URI: https://uiuxom.com/ulina/html/
- Author: uiuxom
- Author URI: https://themeforest.net/user/uiuxom
- Description: Ulina - Fashion Ecommerce Responsive HTML Template
- Version: 1.0
- License:
- License URI: 
-*/
-
 /*==================================
     [Table of contents]
 ===================================
@@ -979,6 +968,7 @@
                 $('.item'+i).attr('style','display: block;');
             }
             (visibleItems+ElementsStep>itemsLength)?$('.visibleItems').text(itemsLength):$('.visibleItems').text(visibleItems+ElementsStep);    
+            if (visibleItems+ElementsStep>itemsLength) $('.shopLoadMore').attr('style','display:none;')
         }
     }
     $('.visibleItems').text(0);
@@ -993,6 +983,10 @@
             if (path.includes('&orderby')) {
                 path=path.substr(0,path.indexOf("&orderby"));
                 if(value!='')path=path+'&orderby='+value;
+            }
+            else if(path.includes('?orderby')) {
+                path=path.substr(0,path.indexOf("?orderby"));
+                if(value!='')path=path+'?orderby='+value;
             }
             else{
                 if(value!='')path=path+'&orderby='+value;
