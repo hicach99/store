@@ -7,6 +7,8 @@
             </div>
             <div class="d-none col-lg-4 col-xl-4 d-xl-flex">
                 <ul class="filterUL">
+                    {% if request.GET.tag %}<li class="active"><a href="{% url 'shop' %}?tag={{request.GET.tag}}">tag: {{request.GET.tag}}</a></li>{% endif %}   
+                    {% if request.GET.q %}<li class="active"><a href="{% url 'shop' %}?q={{request.GET.q}}">q: {{request.GET.q|slice:"0:6"}}...</a></li>{% endif %}   
                     <li {% if not request.GET.category and not request.GET.tag and not request.GET.q %}class="active"{% endif %}><a href="{% url 'shop' %}">All</a> </li>       
                     {% for category in categories %}<li {% if request.GET.category == category.slug %}class="active"{% endif %}><a href="{% url 'shop' %}?category={{category.slug}}">{{category.name}}</a></li>{% endfor %}
                 </ul>

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from django.db.models import Q
 class Configuration(models.Model):
     # Website configurations
     website_url = models.CharField(max_length=255,default='.')
@@ -111,6 +111,17 @@ class Product(models.Model):
             return data
         except:
             return []
+    # Get products by query
+    def get_by_query(q):
+        words=q.split()
+        products=[]
+        try:
+            for word in words:
+                for p in Product.objects.filter( Q(name__icontains=word) | Q(description__icontains=word) | Q(product_details__icontains=word) ):
+                    if not p.id in [i.id for i in products]: products.append(p)
+            return products
+        except:
+            return []
     # Get products ordered by price
     @staticmethod
     def get_by_price(products=[],desc=True):
@@ -125,6 +136,29 @@ class Product(models.Model):
         for product in products:
             product.rating=product.get_statistics()[1]
         return sorted(products, key=lambda x: x.rating, reverse=True)
+    @staticmethod
+    def get_products(request):
+        products=None
+        if 'category' in request.GET:
+            products=Product.get_by_category(slug=request.GET['category'])
+        elif 'tag' in request.GET:
+            products=Product.get_by_tag(slug=request.GET['tag'])
+        elif 'q' in request.GET:
+            products=Product.get_by_query(q=request.GET['q'])
+        else:
+            products=Product.objects.all()
+        if 'orderby' in request.GET:
+            if request.GET['orderby']=='price-desc':
+                products=Product.get_by_price(products=products)
+            if request.GET['orderby']=='price':
+                products=Product.get_by_price(products=products,desc=False)
+            if request.GET['orderby']=='rating':
+                products=Product.get_by_rating(products=products)
+            if request.GET['orderby']=='latest':
+                products=Product.get_by_date(products=products)
+            if request.GET['orderby']=='oldest':
+                products=Product.get_by_date(products=products,desc=False)
+        return products
 class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='product_images/')

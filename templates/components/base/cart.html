@@ -3,21 +3,23 @@
 <div class="cartWidgetArea">
   {% if cart %}
     {% if cart|length != 0 %} 
-    {% for item in cart %}
-      <div class="cartWidgetProduct">
-        <img src="{{ item.product.get_images.0.image.url }}" alt="{{ item.product.name }}" />
-        <a href="{% url 'product_details' item.product.slug %}">
-          {{ item.product.name }}
-        </a>
-        <span>
-          {% for property in item.properties %}
-          {{ property.name }}&nbsp;&nbsp;
-          {% endfor %}
-        </span>
-        <div class="cartProductPrice clearfix">
-          <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_currency">$</span><span class="cart_price">{{ item.product.price }}</span>
+    {% for item_id in cart %}
+      {% for item in item_id %}
+        <div class="cartWidgetProduct">
+          <img src="{{ item.product.get_images.0.image.url }}" alt="{{ item.product.name }}" />
+          <a href="{% url 'product_details' item.product.slug %}">
+            {{ item.product.name }}
+          </a>
+          <span>
+            {% for property in item.properties %}
+            {{ property.name }}&nbsp;&nbsp;
+            {% endfor %}
+          </span>
+          <div class="cartProductPrice clearfix">
+            <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_currency">$</span><span class="cart_price">{{ item.product.price }}</span>
+          </div>
         </div>
-      </div>
+      {% endfor %}
     {% endfor %}
     <div class="totalPrice">
       Subtotal:

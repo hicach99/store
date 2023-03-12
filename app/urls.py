@@ -4,6 +4,7 @@ urlpatterns = [
     path('', main,name='main'),
     path('product/<slug:slug>', product,name='product_details'),
     path('shop/', products,name='shop'),
+    path('cart/', cart,name='cart'),
 
     # api calls
     path('api/product/<int:id>', api_product_details,name='api_product_details'),

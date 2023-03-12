@@ -15,12 +15,11 @@
               <li>
                 <a href="{% url 'shop' %}">Shop</a>
               </li>
+              {% for category in categories  %}
               <li>
-                <a href="about">About</a>
+                <a href="{% url 'shop' %}?category={{category.slug}}">{{category}}</a>
               </li>
-              <li>
-                <a href="contacts">Contacts</a>
-              </li>
+              {% endfor %} 
             </ul>
           </div>
           <div class="accessNav">
