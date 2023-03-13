@@ -37,32 +37,25 @@
               <div class="anSelect">
                 <select name="languages" style="display: none;">
                   <option value="ENG">EN</option>
-                  <option value="ARA">AR</option>
-                  <option value="GER">GR</option>
-                  <option value="SPA">SP</option>
                 </select>
                 <div class="nice-select" tabindex="0">
                   <span class="current">EN</span><ul class="list">
                     <li data-value="ENG" class="option selected">EN</li>
-                    <li data-value="ARA" class="option">AR</li>
-                    <li data-value="GER" class="option">GR</li>
-                    <li data-value="SPA" class="option">SP</li>
                   </ul>
                 </div>
               </div>
               <div class="anSelect">
-                <select name="currency" style="display: none;">
-                  <option value="USD">USD</option>
-                  <option value="GBP">GBP</option>
-                  <option value="EUR">EUR</option>
-                  <option value="OMR">OMR</option>
+                <select name="currency" id="currency" style="display: none;">
+                  {% for currency in config.currencies %}
+                  <option value="{{currency.code}}">{{currency.code}}</option>
+                  {% endfor %}
                 </select>
                 <div class="nice-select" tabindex="0">
-                  <span class="current">USD</span>
+                  <span class="current">{{request.session.currency}}</span>
                   <ul class="list">
-                    <li data-value="USD" class="option selected">USD</li>
-                    <li data-value="GBP" class="option">GBP</li>
-                    <li data-value="EUR" class="option">EUR</li>
+                  {% for currency in config.currencies %}
+                    <li data-value="{{currency.code}}" class="option{% if currency.code == request.session.currency %} selected{% endif %}">{{currency.code}}</li>
+                  {% endfor %}
                   </ul>
                 </div>
               </div>

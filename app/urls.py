@@ -5,7 +5,8 @@ urlpatterns = [
     path('product/<slug:slug>', product,name='product_details'),
     path('shop/', products,name='shop'),
     path('cart/', cart,name='cart'),
-
+    # session: currency, language
+    path('set_currency/<str:code>', set_currency,name='set_currency'),
     # api calls
     path('api/product/<int:id>', api_product_details,name='api_product_details'),
     path('api/cart', api_cart,name='api_cart'),

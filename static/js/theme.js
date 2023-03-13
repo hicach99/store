@@ -997,4 +997,8 @@
         }
         window.location.href=path
     })
+    $('#currency').on('change', function(){
+        var value=$(this).val();
+        window.location.href='/set_currency/'+value
+    })
 })(jQuery)

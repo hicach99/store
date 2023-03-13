@@ -36,7 +36,7 @@
                     </td>
                     <td class="product-price">
                         <div class="pi01Price">
-                        <ins>${{ item.product.price }}</ins>
+                        <ins>{{ item.product.price|convert:request.session.currency }}</ins> 
                         </div>
                     </td>
                     <td class="product-quantity">
@@ -48,7 +48,7 @@
                     </td>
                     <td class="product-subtotal">
                         <div class="pi01Price">
-                        <ins>${{ item.total_price }}</ins>
+                        <ins>{{ item.total_price|convert:request.session.currency }}</ins>
                         </div>
                     </td>
                     <td class="product-remove">

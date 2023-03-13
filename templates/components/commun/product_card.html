@@ -5,7 +5,7 @@
     <img src="{{product.get_images.1.image.url}}" alt="{{product.name}}" />
     <div class="pi01Actions">
       <a href="javascript:void(0);" class="pi01QuickView" data-id="{{product.id}}"><i class="fa-solid fa-arrows-up-down-left-right"></i></a>
-    </div>
+    </div>  
     <div class="productLabels clearfix">
       {% if product.price != product.old_price %}<span class="plDis">- {{ product.price|discount:product.old_price }}</span>{% else %}<span class="plDis"></span>{% endif %}
       <span class="plSale {{product.status}}">{{product.status}}</span>
@@ -22,8 +22,8 @@
     </div>
     <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
     <div class="pi01Price">
-      <ins>${{product.price}}</ins>
-      {% if product.price != product.old_price %}<del>${{product.old_price}}</del>{% endif %}
+      <ins>{{product.price|convert:request.session.currency}}</ins>
+      {% if product.price != product.old_price %}<del>{{product.old_price|convert:request.session.currency}}</del>{% endif %}
     </div>
     <div class="pi01Variations">
       <div class="pi01VColor">

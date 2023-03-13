@@ -1,4 +1,5 @@
 {% load static %}
+{% load functions %}
 <a href="javascript:void(0);" class="cartIcon"><i class="fa-solid fa-shopping-cart"></i><span>{{ cart|length }}</span></a>
 <div class="cartWidgetArea">
   {% if cart %}
@@ -10,24 +11,24 @@
           <a href="{% url 'product_details' item.product.slug %}">
             {{ item.product.name }}
           </a>
-          <span>
+          <span> 
             {% for property in item.properties %}
             {{ property.name }}&nbsp;&nbsp;
             {% endfor %}
           </span>
           <div class="cartProductPrice clearfix">
-            <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_currency">$</span><span class="cart_price">{{ item.product.price }}</span>
+            <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_price">{{ item.product.price|convert:request.session.currency }}</span>
           </div>
         </div>
       {% endfor %}
     {% endfor %}
     <div class="totalPrice">
       Subtotal:
-      <span class="price"><span><span class="cart_currency">$</span><span class="cart_total_price">{{ cart.get_total_price }}</span></span></span>
+      <span class="price">{{ cart.get_total_price|convert:request.session.currency }}</span>
     </div>
     <div class="cartWidgetBTN clearfix">
-      <a class="cart" href="cart">View Cart</a>
-      <a class="checkout" href="checkout">Checkout</a>
+      <a class="cart" href="{% url 'cart' %}">View Cart</a>
+      <a class="checkout" href="{% url 'cart' %}">Checkout</a>
     </div>
     {% endif %}
   {% else %}

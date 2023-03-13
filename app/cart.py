@@ -1,12 +1,16 @@
 import json
-
-from app.models import Product, Property
-
+from app.models import Product, Property, Configuration
+try:
+    config=Configuration.objects.all()[0]
+except:
+    config=None
 class Cart:
     def __init__(self, request):
         self.request = request
         self.session = request.session
         self.cart = self.session.get('cart')
+        if not 'currency' in request.session:
+            request.session['currency'] = config.currency.code if config else 'MAD'
         if not self.cart:
             self.cart = {}
             self.session['cart'] = self.cart

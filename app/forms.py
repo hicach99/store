@@ -2,6 +2,11 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from .models import *
 
+try:
+    config=Configuration.objects.all()[0]
+except:
+    config=None
+
 class ImageInlineFormset(forms.models.BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,8 +25,8 @@ class PropertyAdminForm(forms.ModelForm):
         model = Property
         fields = '__all__'
 class ProductAdminForm(forms.ModelForm):
-    price=forms.FloatField(help_text="USD")
-    old_price=forms.FloatField(help_text="USD")
+    price=forms.FloatField(help_text=config.currency if config else "MAD")
+    old_price=forms.FloatField(help_text=config.currency if config else "MAD")
     images = ImageFormSet()
     informations = InformationFormSet()
     tags = forms.ModelMultipleChoiceField(required=False,queryset=Tag.objects.all())

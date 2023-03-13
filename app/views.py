@@ -1,14 +1,34 @@
 import json
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from app.cart import Cart
 from app.models import *
 from django.template.loader import render_to_string
+
+from django.urls.base import resolve, reverse
+from django.urls.exceptions import Resolver404
+from urllib.parse import unquote, urlparse
 # Loading Configuration
 try:
     config=Configuration.objects.all()[0]
 except:
     config=None
+
+def set_currency(request,code:str):
+    request.session['currency']=code
+    try:
+        view = resolve(urlparse(request.META.get("HTTP_REFERER")).path)
+    except Resolver404:
+        view = None
+    if view:
+        args=view.args
+        kwargs=json.loads(unquote(str(view.kwargs).replace("'",'"')))
+        next_url = reverse(view.url_name, args=args, kwargs=kwargs)
+        response = HttpResponseRedirect(next_url)
+    else:
+        response = redirect("main")
+    return response
+
 def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
@@ -100,11 +120,12 @@ def api_add_cart(request):
         cart = Cart(request)
         data = json.loads(request.body)
         try:
-            cart.add(Product.objects.get(id=data['id']),data['quantity'],data['properties'])
+            cart.add(Product.objects.get(id=int(data['id'])),int(data['quantity']),data['properties'])
             total_product=len(cart)
             return JsonResponse({'status':'ok','message':'Product added to cart','data':total_product},safe=False,json_dumps_params={"ensure_ascii": False})
         except Exception as e:
             return JsonResponse({'status':'error','message':e},safe=False,json_dumps_params={"ensure_ascii": False})
     return JsonResponse({'status':'error','message':'Could\'t add product to the shopping cart'},safe=False,json_dumps_params={"ensure_ascii": False})
 def test(request):
+    request.session['currency'] = 'EUR'
     return HttpResponse(Product.get_by_rating())

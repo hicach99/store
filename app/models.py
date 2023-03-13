@@ -1,25 +1,40 @@
 from django.db import models
 from django.utils.text import slugify
 from django.db.models import Q
+
+class Currency(models.Model):
+    code = models.CharField(max_length=255)
+    symbol = models.CharField(max_length=255,blank=True)
+    def __str__(self):
+        return self.code+' : '+self.symbol
+    def save(self, *args, **kwargs):
+        self.code = self.code.upper()
+        self.symbol = self.symbol.upper()
+        if not self.symbol:
+            self.symbol= self.code
+        super(Currency, self).save(*args, **kwargs)
 class Configuration(models.Model):
     # Website configurations
-    website_url = models.CharField(max_length=255,default='.')
+    website_url = models.CharField(max_length=255,blank=True)
     website_name = models.CharField(max_length=255,null=False)
     # SEO configurations
-    description = models.TextField()
-    keywords = models.TextField()
-    author = models.CharField(max_length=255,default='.')
+    description = models.TextField(blank=True)
+    keywords = models.TextField(blank=True)
+    author = models.CharField(max_length=255,blank=True)
     # Contact configurations
-    support_phone = models.CharField(max_length=255,default='.')
-    contact_phone = models.CharField(max_length=255,default='.')
-    contact_email = models.CharField(max_length=255,default='.')
-    address = models.CharField(max_length=255,default='.')
+    support_phone = models.CharField(max_length=255,blank=True)
+    contact_phone = models.CharField(max_length=255,blank=True)
+    contact_email = models.CharField(max_length=255,blank=True)
+    address = models.CharField(max_length=255,blank=True)
     # Social Meadia configurations
-    whatsapp = models.CharField(max_length=255,default='.')
-    instagram = models.CharField(max_length=255,default='.')
-    facebook = models.CharField(max_length=255,default='.')
-    tiktiok = models.CharField(max_length=255,default='.')
-    whatsapp = models.CharField(max_length=255,default='.')
+    whatsapp = models.CharField(max_length=255,blank=True)
+    instagram = models.CharField(max_length=255,blank=True)
+    facebook = models.CharField(max_length=255,blank=True)
+    tiktiok = models.CharField(max_length=255,blank=True)
+    whatsapp = models.CharField(max_length=255,blank=True)
+    # Default Currency
+    currency=models.ForeignKey(Currency, on_delete=models.CASCADE)
+    currencies=Currency.objects.all()
     def __str__(self) -> str:
         return self.website_name
 

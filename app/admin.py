@@ -19,6 +19,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     display=('name')
     exclude = ('slug',)
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display=('code','symbol')
 class ProductAdmin(admin.ModelAdmin):
     list_display=('id','name','price','old_price')
     form = ProductAdminForm
@@ -37,3 +39,4 @@ admin.site.register(PropertyType)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductReview, ProductReviewAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Currency,CurrencyAdmin)
