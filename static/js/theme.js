@@ -1001,4 +1001,56 @@
         var value=$(this).val();
         window.location.href='/set_currency/'+value
     })
+
+    $('.product-quantity .btnPlus').click( function(e){
+        var qty_el=$(this).parent().find('.qty[name="quantity"]');
+        qty_el.val(parseInt(qty_el.val())+1);
+    });
+    $('.product-quantity .btnMinus').click(  function(e){
+        var qty_el=$(this).parent().find('.qty[name="quantity"]');
+        if (parseInt(qty_el.val())>1) {
+            qty_el.val(parseInt(qty_el.val())-1);
+        }
+    });
+    function CVDfSS(data){
+        for (let index = 0; index < data.length; index++) {
+            const e = data[index];
+            if(e.quantity<=0) return false;
+        }
+        return true;
+    }
+    $('.UpdateCart').click(function(e){
+        var data=[];
+        var item;
+        $('.qty[name="quantity"]').each(function() {
+            var elt=$(this)
+            item={
+                'id':elt.attr('data-id'),
+                'properties':elt.attr('data-properties'),
+                'quantity':parseInt(elt.val())
+            };
+            data.push(item)
+        });
+        if (CVDfSS(data)) {
+            fetch('/cart/update', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                window.location.href='/cart'
+            })
+            .catch(error => {
+                $.simplyToast(error,'danger',toast_options);
+                $('.ErrorCart').text('invalid quantity')
+            });
+        }
+        else{
+            $('.ErrorCart').text('invalid quantity')
+        }
+    })
 })(jQuery)

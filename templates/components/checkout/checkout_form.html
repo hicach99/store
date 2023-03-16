@@ -1,0 +1,117 @@
+{% load functions %}
+<section class="checkoutPage">
+  <div class="container">
+    <form action="/" method="post">
+      {% csrf_token %}
+      <div class="row">
+        {% if cart|length > 0 %}
+          <div class="col-lg-6">
+            <div class="checkoutForm">
+              <h3>Your Billing Address</h3>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" name="field1" placeholder="First Name *" />
+                </div>
+    
+                <div class="col-md-6">
+                  <input type="text" name="field4" placeholder="Email address *" />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="field5" placeholder="Phone *" />
+                </div>
+    
+                <div class="col-lg-12">
+                  <input type="text" name="field7" placeholder="Address *" />
+                </div>
+                <div class="col-lg-12">
+                  <input type="text" name="field8" placeholder="City/Town *" />
+                </div>
+    
+                <div class="col-md-12">
+                  <input type="text" name="field10" placeholder="Zip Code *" />
+                </div>
+    
+                <div class="col-lg-12">
+                  <textarea name="field14" placeholder="Order Note"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="orderReviewWrap">
+              <h3>Your Order</h3>
+              <div class="orderReview">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item_id in cart %}
+                    {% for item in item_id %}
+                    <tr>
+                      <td>
+                        <a href="javascript:void(0);">{{item.product.name}}</a>
+                      </td>
+                      <td>
+                        <div class="pi01Price">
+                          <ins>{{item.total_price|convert:request}}</ins>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Sub Total</th>
+                      <td>
+                        <div class="pi01Price">
+                          <ins>{{cart.get_total_price|convert:request }}</ins>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="shippingRow">
+                      <th>Shipping</th>
+                      <td>
+                        <div class="pi01Price">
+                          <ins>Free</ins>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Total</th>
+                      <td>
+                        <div class="pi01Price">
+                          <ins>{{cart.get_total_price|convert:request }}</ins>
+                        </div>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <ul class="wc_payment_methods">
+                  <li class="active">
+                    <input type="radio" checked="" value="1" name="paymentMethod" id="paymentMethod01" />
+                    <label for="paymentMethod01">Direct bank transfer</label>
+                  </li>
+    
+                  <li class="active">
+                    <input type="radio" value="2" name="paymentMethod" id="paymentMethod02" />
+                    <label for="paymentMethod02">Cash on delivery</label>
+                  </li>
+                  <li class="">
+                    <input type="radio" value="3" name="paymentMethod" id="paymentMethod03" />
+                    <label for="paymentMethod03">Paypal</label>
+                  </li>
+                </ul>
+                <button type="submit" class="placeOrderBTN ulinaBTN"><span>Place Order</span></button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </form>
+</div>
+</section>

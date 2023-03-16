@@ -22,8 +22,8 @@
     </div>
     <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
     <div class="pi01Price">
-      <ins>{{product.price|convert:request.session.currency}}</ins>
-      {% if product.price != product.old_price %}<del>{{product.old_price|convert:request.session.currency}}</del>{% endif %}
+      <ins>{{product.price|convert:request}}</ins>
+      {% if product.price != product.old_price %}<del>{{product.old_price|convert:request}}</del>{% endif %}
     </div>
     <div class="pi02Desc">{{product.description}}</div>
     <div class="pi01Variations">

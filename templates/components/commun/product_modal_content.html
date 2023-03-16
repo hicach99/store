@@ -15,8 +15,8 @@
       </div>
       <h2><a href="{% if product %}{% url 'product_details' product.slug %}{% endif %} " id="productName">{{product.name}}</a></h2>
       <div class="pi01Price">
-        <ins id="productPrice">{{product.price|convert:request.session.currency}}</ins>
-        {% if product.price != product.old_price %}<del id="productOldPrice">{{product.old_price|convert:request.session.currency}}</del>{% endif %}
+        <ins id="productPrice">{{product.price|convert:request}}</ins>
+        {% if product.price != product.old_price %}<del id="productOldPrice">{{product.old_price|convert:request}}</del>{% endif %}
       </div>
       <div class="productRadingsStock clearfix">
         <div class="productRatings float-start">
@@ -31,38 +31,40 @@
       <div class="pcExcerpt" id="productDesc">{{product.description}}</div>
       <input type="hidden" id="productId" name="productId" value="{{product.id}}">
       <div class="pcVariations">
+      {% if product.properties.all|filterby:"color" %}
         <div class="pcVariation">
           <span>Color</span>
           <div class="pcvContainer">
-              {% for property in product.properties.all %}
-              {% if property.type.name == 'color' %}
+              {% for property in product.properties.all|filterby:"color" %}
                 <style>
                   .pi01VCItem label.{{property.name}}::after{
                     background:{{property.value}};
                   }
                 </style>
                 <div class="pi01VCItem">
-                  <input checked type="radio" name="color" value="{{property.id}}" id="color_{{property.name}}" />
+                  <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="color" value="{{property.id}}" id="color_{{property.name}}" />
                   <label class="{{property.name}}" for="color_{{property.name}}"></label>
                 </div>
-              {% endif %}
               {% endfor %}
           </div>
         </div>
-        <div class="pcVariation pcv2">
-          <span>Size</span>
-          <div class="pcvContainer">
-              {% for property in product.properties.all %}
-              {% if property.type.name == 'size' %}
-                <div class="pswItem">
-                  <input checked type="radio" name="size" value="{{property.id}}" id="size_{{property.name}}" />
-                  <label for="size_{{property.name}}">{{property.name}}</label>
-              </div>
-              {% endif %}
-            {% endfor %}
+      {% endif %}
+      {% if product.properties.all|filterby:"size" %}
+
+          <div class="pcVariation pcv2">
+            <span>Size</span>
+            <div class="pcvContainer">
+                {% for property in product.properties.all|filterby:"size" %}
+                  <div class="pswItem">
+                    <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="size" value="{{property.id}}" id="size_{{property.name}}" />
+                    <label for="size_{{property.name}}">{{property.name}}</label>
+                </div>
+              {% endfor %}
+            </div>
           </div>
-        </div>
+      {% endif %}
       </div>
+
       <div class="pcBtns">
         <div class="quantity clearfix">
           <button type="button" name="btnMinus" id="btnMinus" class="qtyBtn btnMinus">_</button>
@@ -76,12 +78,14 @@
           <span>Sku</span>
           <a href="javascript:void(0);">3489 JE0765</a>
         </p> {% endcomment %}
+        {% if product.tags.all %}
         <p class="pcmTags">
           <span>Tags&nbsp;</span>
           {% for tag in product.tags.all %}
               <a href="{% url 'shop' %}?tag={{tag.slug}}">{{tag.name|capitalize}}</a>&nbsp;
           {% endfor %}
         </p>
+        {% endif %}
         <p class="pcmSocial">
           <span>Share</span>
           <a class="fac" href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>

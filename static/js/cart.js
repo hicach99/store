@@ -18,6 +18,7 @@ $('.cartIcon').hover(function(){
     .catch(error => {
         $.simplyToast(error,'danger',toast_options);
     });
+    $(this).unbind('mouseenter mouseleave');
 });
 $('.cartRemoveProducts').click(function() {
     var id=parseInt($(this).attr('data-prod'));

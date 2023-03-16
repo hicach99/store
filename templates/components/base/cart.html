@@ -17,18 +17,18 @@
             {% endfor %}
           </span>
           <div class="cartProductPrice clearfix">
-            <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_price">{{ item.product.price|convert:request.session.currency }}</span>
+            <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_price">{{ item.product.price|convert:request }}</span>
           </div>
         </div>
       {% endfor %}
     {% endfor %}
     <div class="totalPrice">
       Subtotal:
-      <span class="price">{{ cart.get_total_price|convert:request.session.currency }}</span>
+      <span class="price">{{ cart.get_total_price|convert:request }}</span>
     </div>
     <div class="cartWidgetBTN clearfix">
       <a class="cart" href="{% url 'cart' %}">View Cart</a>
-      <a class="checkout" href="{% url 'cart' %}">Checkout</a>
+      <a class="checkout" href="{% url 'checkout' %}">Checkout</a>
     </div>
     {% endif %}
   {% else %}

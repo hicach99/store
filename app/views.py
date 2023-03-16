@@ -1,4 +1,5 @@
 import json
+import requests
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from app.cart import Cart
@@ -27,11 +28,20 @@ def set_currency(request,code:str):
         response = HttpResponseRedirect(next_url)
     else:
         response = redirect("main")
+    calculate_rates(request)
     return response
-
+def calculate_rates(request):
+    try:
+        url = f"https://open.er-api.com/v6/latest/{config.currency.code}"
+        d = requests.get(url).json()
+        if config and d["result"] == "success":
+            request.session['rates']=d["rates"]
+    except:
+        pass
 def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
+    
     categories=Category.get_all()
     return render(
         request,
@@ -45,6 +55,7 @@ def main(request):
     )
 def product(request,slug):
     cart = Cart(request)
+    
     product = Product.objects.get(slug=slug)
     categories=Category.get_all()
     related_products=Product.objects.all()
@@ -61,6 +72,7 @@ def product(request,slug):
     )
 def products(request):
     cart = Cart(request)
+    
     categories=Category.get_all()
     products=Product.get_products(request=request)
     return render(
@@ -85,7 +97,37 @@ def cart(request):
             'categories':categories,
         }
     )
-
+def checkout(request):
+    cart = Cart(request)
+    categories=Category.get_all()
+    return render(
+        request,
+        'checkout.html',
+        {
+            'config':config,
+            'cart':cart,
+            'categories':categories,
+        }
+    )
+def remove_cart(request):
+    cart = Cart(request)
+    product_id=request.GET['id']
+    properties=request.GET['properties'].split(',')[0:-1]
+    try:
+        cart.remove(product_id,[int(p) for p in properties])
+    except Exception as e:
+        print(e)
+    return redirect('cart')
+def clear_cart(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect('cart')
+def update_cart(request):
+    if request.method == 'POST':
+        cart = Cart(request)
+        data = json.loads(request.body)
+        cart.update(data)
+    return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})
 # api calls
 def api_product_details(request,id):
     try:
@@ -104,6 +146,7 @@ def api_product_details(request,id):
 def api_cart(request,cart=None):
     try:
         if not cart: cart = Cart(request)
+        
         html=render_to_string('components/base/cart.html',{'cart':cart},request=request)
         data={
             'status' : 'ok',
@@ -118,6 +161,7 @@ def api_cart(request,cart=None):
 def api_add_cart(request):
     if request.method == 'POST':
         cart = Cart(request)
+        
         data = json.loads(request.body)
         try:
             cart.add(Product.objects.get(id=int(data['id'])),int(data['quantity']),data['properties'])

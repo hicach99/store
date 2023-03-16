@@ -1,4 +1,6 @@
 import json
+
+import requests
 from app.models import Product, Property, Configuration
 try:
     config=Configuration.objects.all()[0]
@@ -11,6 +13,13 @@ class Cart:
         self.cart = self.session.get('cart')
         if not 'currency' in request.session:
             request.session['currency'] = config.currency.code if config else 'MAD'
+            try:
+                url = f"https://open.er-api.com/v6/latest/{request.session['currency']}"
+                d = requests.get(url).json()
+                if config and d["result"] == "success":
+                    request.session['rates']=d["rates"]
+            except:
+                pass
         if not self.cart:
             self.cart = {}
             self.session['cart'] = self.cart
@@ -28,10 +37,24 @@ class Cart:
 
         self.save()
 
+    def update_product(self, product_id,properties,quantity):
+        if product_id in self.cart:
+            for item in self.cart[product_id]:
+                if set(item['properties']) == set(properties):
+                    item['quantity']=quantity
+    def update(self, data):
+        for item in data:
+            properties=[int(p) for p in item['properties'].split(',')[0:-1]]
+            self.update_product(item['id'],properties,item['quantity'])
+        self.save()
     def remove(self, product_id, properties=[]):
         if product_id in self.cart:
-            index=[i for i,x in enumerate(self.cart[product_id]) if x['properties'] == properties][0]
-            self.cart[product_id].pop(index)
+            to_remove_index=0
+            for item in self.cart[product_id]:
+                if set(item['properties']) == set(properties):
+                    break
+                to_remove_index+=1
+            del self.cart[product_id][to_remove_index]
             self.save()
     def save(self):
         self.session.modified = True

@@ -1,5 +1,4 @@
 from django.template import Library
-import requests
 from app.models import Configuration, Property,Currency
 register = Library()
 
@@ -22,18 +21,22 @@ def capitalize(string:str):
     return string[0].upper()+string[1:].lower()
 
 @register.filter
-def convert(amount:float,output)-> str:
+def filterby(l,filter:str):
+    new=[]
+    for i in l:
+        if i.type.name==filter: new.append(i)
+    return new
+
+@register.filter
+def convert(amount:float,request)-> str:
+    output=request.session['currency']
+    rates=request.session['rates']
     input=config.currency.code if config else 'MAD'
     symbol=Currency.objects.get(code=output).symbol
     result=amount
-    print(input,output)
     if input != output:
-    # Converter
-        url = f"https://open.er-api.com/v6/latest/{input}"
-        d = requests.get(url).json()
-        if config and d["result"] == "success":
-            ex_target =  d["rates"][output]
-            result = float(ex_target) * float(amount)
+        ex_target =  rates[output]
+        result = float(ex_target) * float(amount)
     if len(symbol)>=2:
         result = "%.2f " % result+symbol
     else:

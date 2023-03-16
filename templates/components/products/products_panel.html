@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row shopAccessRow">
             <div class="col-sm-6 col-xl-4">
-                <div class="productCount">Showing <strong>1 - <span class="visibleItems">16</span></strong> of <strong class="itemsLength">{{products|length}}</strong> items</div>
+                <div class="productCount">Showing <strong>{% if products %}1{% else %}0{% endif %} - <span class="visibleItems">16</span></strong> of <strong class="itemsLength">{{products|length}}</strong> items</div>
             </div>
             <div class="d-none col-lg-4 col-xl-4 d-xl-flex">
                 <ul class="filterUL">

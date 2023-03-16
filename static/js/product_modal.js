@@ -10,7 +10,7 @@ $(document).ready(function(){
         }
     });
     $('.addingBTN').click(function() {
-        properties=[];
+        var properties=[];
         $('.pcVariations input[type="radio"]:checked').each(function() {properties.push(parseInt($(this).val()))});
         var quantity=parseInt($('#quantity').val());
         var id=parseInt($('#productId').val());
