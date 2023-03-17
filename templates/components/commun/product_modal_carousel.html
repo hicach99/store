@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}" />
+<div id="sync1" class="owl-carousel owl-loaded owl-drag">
+      {% for image in product.get_images %}
+        <div class="item" data-hash="{{image.id}}">
+          <img src="{{image.image.url}}" alt="" />
+        </div>
+      {% endfor %}
+</div>
+<div id="sync2" class="owl-carousel owl-loaded owl-drag">
+      {% for image in product.get_images %}
+          <div class="item">
+              <a href="#{{image.id}}">
+                <img src="{{image.image.url}}" alt="" />
+              </a>
+          </div>
+      {% endfor %}
+</div>
+<script src="{% static 'js/carousel_modal.js' %}" defer=""></script>

@@ -144,7 +144,7 @@
         var $categoryCarousel_obj = $categoryCarousel.owlCarousel({
             autoplay: false,
             margin: 24,
-            loop: true,
+            loop: false,
             nav: true,
             navText: ['<i class="fa-solid fa-angle-left"></i>', '<i class="fa-solid fa-angle-right"></i>'],
             dots: false,

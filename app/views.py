@@ -1,7 +1,7 @@
 import json
 import requests
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from app.cart import Cart
 from app.models import *
 from django.template.loader import render_to_string
@@ -16,7 +16,7 @@ except:
     config=None
 
 def set_currency(request,code:str):
-    request.session['currency']=code
+    request.session['currency']=code.upper()
     try:
         view = resolve(urlparse(request.META.get("HTTP_REFERER")).path)
     except Resolver404:
@@ -32,16 +32,15 @@ def set_currency(request,code:str):
     return response
 def calculate_rates(request):
     try:
-        url = f"https://open.er-api.com/v6/latest/{config.currency.code}"
+        url = f"https://v6.exchangerate-api.com/v6/{config.exchangerate_api}/latest/{config.currency.code}" if config else 'https://google.com'
         d = requests.get(url).json()
         if config and d["result"] == "success":
-            request.session['rates']=d["rates"]
+            request.session['rates']=d["conversion_rates"]
     except:
-        pass
+        request.session['rates']='hhhhh'
 def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
-    
     categories=Category.get_all()
     return render(
         request,
@@ -55,7 +54,6 @@ def main(request):
     )
 def product(request,slug):
     cart = Cart(request)
-    
     product = Product.objects.get(slug=slug)
     categories=Category.get_all()
     related_products=Product.objects.all()
@@ -171,5 +169,10 @@ def api_add_cart(request):
             return JsonResponse({'status':'error','message':e},safe=False,json_dumps_params={"ensure_ascii": False})
     return JsonResponse({'status':'error','message':'Could\'t add product to the shopping cart'},safe=False,json_dumps_params={"ensure_ascii": False})
 def test(request):
-    request.session['currency'] = 'EUR'
-    return HttpResponse(Product.get_by_rating())
+    return render(
+        request,
+        'test.html',
+        {
+            'config':config,
+        }
+    )

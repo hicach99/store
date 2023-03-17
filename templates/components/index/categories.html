@@ -10,10 +10,8 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="categoryCarousel owl-carousel owl-loaded owl-drag">
-          <div class="owl-stage-outer">
-            <div class="owl-stage" style="transform: translate3d(-399px, 0px, 0px); transition: all 0s ease 0s; width: 1463px;">
               {% for category in categories %}
-                <div class="owl-item" style="width: 109px; margin-right: 24px;">
+                <div class="item">
                   <div class="categoryItem01 text-center">
                     <div class="ci01Thumb">
                       <img src="{{category.image.url}}" alt="Watches">
@@ -23,8 +21,6 @@
                   </div>
                 </div>
               {% endfor %}
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@
       <a href="javascript:void(0);" class="pi01QuickView" data-id="{{product.id}}"><i class="fa-solid fa-arrows-up-down-left-right"></i></a>
     </div>  
     <div class="productLabels clearfix">
-      {% if product.price != product.old_price %}<span class="plDis">- {{ product.price|discount:product.old_price }}</span>{% else %}<span class="plDis"></span>{% endif %}
+      {% if product.price != product.old_price %}<span class="plDis">- {{ product.price|discount:product.old_price }}</span>{% else %}<span class="plDis">🗸</span>{% endif %}
       <span class="plSale {{product.status}}">{{product.status}}</span>
     </div>
   </div>

@@ -33,6 +33,7 @@ class Configuration(models.Model):
     tiktiok = models.CharField(max_length=255,blank=True)
     whatsapp = models.CharField(max_length=255,blank=True)
     # Default Currency
+    exchangerate_api=models.CharField(max_length=255,blank=True)
     currency=models.ForeignKey(Currency, on_delete=models.CASCADE)
     currencies=Currency.objects.all()
     def __str__(self) -> str:

@@ -31,11 +31,11 @@ def filterby(l,filter:str):
 def convert(amount:float,request)-> str:
     output=request.session['currency']
     rates=request.session['rates']
-    input=config.currency.code if config else 'MAD'
+    input=config.currency.code
     symbol=Currency.objects.get(code=output).symbol
     result=amount
     if input != output:
-        ex_target =  rates[output]
+        ex_target =  rates[output] if rates else 1
         result = float(ex_target) * float(amount)
     if len(symbol)>=2:
         result = "%.2f " % result+symbol

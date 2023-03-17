@@ -1,5 +1,3 @@
-import json
-
 import requests
 from app.models import Product, Property, Configuration
 try:
@@ -11,15 +9,6 @@ class Cart:
         self.request = request
         self.session = request.session
         self.cart = self.session.get('cart')
-        if not 'currency' in request.session:
-            request.session['currency'] = config.currency.code if config else 'MAD'
-            try:
-                url = f"https://open.er-api.com/v6/latest/{request.session['currency']}"
-                d = requests.get(url).json()
-                if config and d["result"] == "success":
-                    request.session['rates']=d["rates"]
-            except:
-                pass
         if not self.cart:
             self.cart = {}
             self.session['cart'] = self.cart

@@ -1,43 +1,20 @@
 {% load functions %}
 <section class="checkoutPage">
   <div class="container">
-    <form action="/" method="post">
-      {% csrf_token %}
+      <div class="row">
+        <div class="col" >
+          <div class="shippingCoupons">
+            <h3>Coupon Code</h3>
+            <div class="couponFormWrap clearfix">
+                <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Write your Coupon Code">
+                <button type="submit" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>Apply Code</span></button>
+            </div>
+        </div>
+        </div>
+      </div>
       <div class="row">
         {% if cart|length > 0 %}
-          <div class="col-lg-6">
-            <div class="checkoutForm">
-              <h3>Your Billing Address</h3>
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="text" name="field1" placeholder="First Name *" />
-                </div>
-    
-                <div class="col-md-6">
-                  <input type="text" name="field4" placeholder="Email address *" />
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="field5" placeholder="Phone *" />
-                </div>
-    
-                <div class="col-lg-12">
-                  <input type="text" name="field7" placeholder="Address *" />
-                </div>
-                <div class="col-lg-12">
-                  <input type="text" name="field8" placeholder="City/Town *" />
-                </div>
-    
-                <div class="col-md-12">
-                  <input type="text" name="field10" placeholder="Zip Code *" />
-                </div>
-    
-                <div class="col-lg-12">
-                  <textarea name="field14" placeholder="Order Note"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
+          <div class="col">
             <div class="orderReviewWrap">
               <h3>Your Order</h3>
               <div class="orderReview">
@@ -53,7 +30,7 @@
                     {% for item in item_id %}
                     <tr>
                       <td>
-                        <a href="javascript:void(0);">{{item.product.name}}</a>
+                        <a href="javascript:void(0);">{{item.product.name}}</a>  {% for property in item.properties %},{{ property.name }}{% endfor %}
                       </td>
                       <td>
                         <div class="pi01Price">
@@ -106,12 +83,46 @@
                     <label for="paymentMethod03">Paypal</label>
                   </li>
                 </ul>
-                <button type="submit" class="placeOrderBTN ulinaBTN"><span>Place Order</span></button>
+                <button type="button" class="placeOrderBTN ulinaBTN"><span>Place Order</span></button>
               </div>
             </div>
           </div>
-        {% endif %}
+          {% endif %}
       </div>
-    </form>
 </div>
 </section>
+
+{% comment %}
+          <div class="col-lg-6">
+            <div class="checkoutForm">
+              <h3>Your Billing Address</h3>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" name="field1" placeholder="First Name *" />
+                </div>
+    
+                <div class="col-md-6">
+                  <input type="text" name="field4" placeholder="Email address *" />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="field5" placeholder="Phone *" />
+                </div>
+    
+                <div class="col-lg-12">
+                  <input type="text" name="field7" placeholder="Address *" />
+                </div>
+                <div class="col-lg-12">
+                  <input type="text" name="field8" placeholder="City/Town *" />
+                </div>
+    
+                <div class="col-md-12">
+                  <input type="text" name="field10" placeholder="Zip Code *" />
+                </div>
+    
+                <div class="col-lg-12">
+                  <textarea name="field14" placeholder="Order Note"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+{% endcomment %}

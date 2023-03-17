@@ -1,19 +1,19 @@
 $(document).ready(function(){
-    $('.modal #btnPlus').click( function(e){
-        var qty=parseInt($('.modal .qty[name="quantity"]').val());
-        $('.modal .qty[name="quantity"]').val(qty+1);
+    $('#btnPlus').click( function(e){
+        var qty=parseInt($('.qty[name="quantity"]').val());
+        $('.qty[name="quantity"]').val(qty+1);
     });
-    $('.modal #btnMinus').click(  function(e){
-        var qty=parseInt($('.modal .qty[name="quantity"]').val());
+    $('#btnMinus').click(  function(e){
+        var qty=parseInt($('.qty[name="quantity"]').val());
         if (qty>1) {
-            $('.modal .qty[name="quantity"]').val(qty-1);
+            $('.qty[name="quantity"]').val(qty-1);
         }
     });
-    $('.modal .addingBTN').click(function() {
+    $('.addingBTN').click(function() {
         var properties=[];
-        $('.modal .pcVariations input[type="radio"]:checked').each(function() {properties.push(parseInt($(this).val()))});
-        var quantity=parseInt($('.modal #quantity').val());
-        var id=parseInt($('.modal #productId').val());
+        $('.pcVariations input[type="radio"]:checked').each(function() {properties.push(parseInt($(this).val()))});
+        var quantity=parseInt($('#quantity').val());
+        var id=parseInt($('#productId').val());
         var data={'id':id,'properties':properties,'quantity':(quantity>1)?quantity:1};
         fetch('/api/cart/add', {
             method: 'POST',
