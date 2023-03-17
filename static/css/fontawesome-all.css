@@ -6349,7 +6349,15 @@ readers do not read off random characters that represent icons */
 .fab,
 .fa-brands {
   font-family: 'Font Awesome 6 Brands';
-  font-weight: 400; }
+  font-weight: 400; 
+}
+
+.fab,.footerSocial .fa-brands {
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400; 
+  width: 16px;
+  height: 16px;
+}
 
 .fa-42-group:before {
   content: "\e080"; }

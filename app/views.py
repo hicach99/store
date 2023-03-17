@@ -87,27 +87,31 @@ def products(request):
 def cart(request):
     cart = Cart(request)
     categories=Category.get_all()
-    return render(
-        request,
-        'cart.html',
-        {
-            'config':config,
-            'cart':cart,
-            'categories':categories,
-        }
-    )
+    if len(cart)>0:
+        return render(
+            request,
+            'cart.html',
+            {
+                'config':config,
+                'cart':cart,
+                'categories':categories,
+            }
+        )
+    return redirect('shop')
 def checkout(request):
     cart = Cart(request)
     categories=Category.get_all()
-    return render(
-        request,
-        'checkout.html',
-        {
-            'config':config,
-            'cart':cart,
-            'categories':categories,
-        }
-    )
+    if len(cart)>0:
+        return render(
+            request,
+            'checkout.html',
+            {
+                'config':config,
+                'cart':cart,
+                'categories':categories,
+            }
+        )
+    return redirect('shop')
 def remove_cart(request):
     cart = Cart(request)
     product_id=request.GET['id']

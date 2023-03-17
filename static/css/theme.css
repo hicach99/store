@@ -763,7 +763,7 @@
     font-family: 'Jost', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: #7b9496;
+    color: #e09d00b5;
     line-height: 1;
 }
 
@@ -807,7 +807,7 @@
 
 .totalPrice .price {
     float: right;
-    color: #7b9496;
+    color: #d89700;
 }
 
 .cartWidgetBTN {
@@ -821,7 +821,7 @@
     position: relative;
     height: 35px;
     min-width: 10px;
-    background: #9ebbbd;
+    background: #202124;
     border-radius: 35px;
     font-size: 12px;
     line-height: 36px;
@@ -840,7 +840,7 @@
 }
 
 .cartWidgetBTN a:hover {
-    background: #52586d;
+    background: #35363a;
     color: #FFF;
 }
 
@@ -1477,8 +1477,6 @@
 }
 
 .pi01Actions a {
-    width: 48px;
-    height: 48px;
     background: #FFF;
     border-radius: 50%;
     text-align: center;
@@ -1488,8 +1486,12 @@
     margin: 0 4px;
     opacity: 0;
     visibility: hidden;
+    padding: 20px;
 }
-
+.fa-arrows-up-down-left-right::before{
+    width: 32px!important;
+    height: 32px!important;
+}
 .pi01Actions a.pi01QuickView i {
     transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -1571,7 +1573,7 @@
 }
 
 .pi01Actions a:hover {
-    background: #7b9496;
+    background: #202124;
     color: #FFF;
 }
 
@@ -1695,7 +1697,7 @@
     font-size: 21px;
     line-height: 30px;
     font-weight: 500;
-    color: #7b9496;
+    color: #e09d00b5;
     text-decoration: none;
     margin: 0 0 6px;
 }
@@ -1706,7 +1708,7 @@
 
 .pi01Price del {
     font-size: 16px;
-    color: #aeb3c3;
+    color: #d70000;
     position: relative;
     text-decoration: none;
     padding: 0 6px;
@@ -1722,7 +1724,7 @@
     top: 7px;
     width: 100%;
     height: 1px;
-    background: #aeb3c3;
+    background: #d70000;
     margin: 0;
 }
 
@@ -2297,7 +2299,7 @@
 .lb01M11 .pi01Price del {
     font-size: 21px;
     line-height: 1;
-    color: #52586d;
+    color: #d70000;
     margin-left: 16px;
 }
 
@@ -3484,15 +3486,13 @@
 }
 
 .footerSocial a {
-    width: 42px;
-    height: 42px;
     font-size: 16px;
     color: #4a5556;
-    line-height: 42px;
     text-align: center;
     background: #FFF;
-    border-radius: 50%;
+    border-radius: 25px;
     margin-right: 12px;
+    padding: 10px;
 }
 
 .footerMode2 .footerSocial a {
@@ -3502,7 +3502,7 @@
 
 .footerSocial a:hover,
 .footerMode2 .footerSocial a:hover {
-    background: #9ebbbd;
+    background: #35363a;
     color: #FFF;
 }
 
@@ -3536,11 +3536,13 @@
 }
 
 .footerPayments a:hover {
-    color: #9ebbbd;
+    background-color: #202124;
+    color: #e4e4e4;
 }
 
 .footerMode2 .footerPayments a:hover {
-    color: #9ebbbd;
+    background-color: #202124;
+    color: #e4e4e4;
 }
 
 .footerAccessRow {
@@ -4322,8 +4324,8 @@
 
 .pswItem input[type="radio"]:checked+label {
     color: #FFF;
-    border-color: #7b9496;
-    background: #7b9496;
+    border-color: #f0f0f0;
+    background: #202124;
 }
 
 .productColorWrap {
@@ -5415,7 +5417,7 @@
     position: relative;
     width: 48px;
     height: 48px;
-    border: 1px solid #c5d0cf;
+    border: 1px solid #202124;
     display: inline-block;
     background: transparent;
     border-radius: 50%;
@@ -5470,8 +5472,8 @@
 }
 
 .woocommerce .shop_table.cart_table tbody tr td a.remove:hover {
-    border-color: #9ebbbd;
-    background: #9ebbbd;
+    border-color: #202124;
+    background: #202124;
 }
 
 .woocommerce .shop_table.cart_table tbody tr td a.remove:hover span:before,
@@ -5499,7 +5501,7 @@
     color: #52586d;
     font-size: 16px;
     font-weight: 500;
-    border-color: #9ebbbd;
+    border-color: #202124;
     padding: 0 36px;
     margin-left: 4px;
 }
@@ -5687,7 +5689,7 @@
 .cart_totals {
     position: relative;
     margin: 5px 0 0 60px;
-    background: #ecf5f4;
+    background: #f5f4f485;
     border-radius: 5px;
     padding: 27px 24px 28px;
 }
@@ -5714,7 +5716,7 @@
 .cart_totals table tr td .pi01Price {
     font-size: 16px;
     line-height: 28px;
-    color: #7b9496;
+    color: #e09d00b5;
     float: right;
     margin: 0;
 }
@@ -8295,7 +8297,7 @@ form.contactForm button.ulinaBTN {
     border-radius: 50%;
     right: -12px;
     top: -12px;
-    background: #9ebbbd;
+    background: #202124;
     z-index: 9;
 }
 
