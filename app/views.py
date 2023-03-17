@@ -9,12 +9,13 @@ from django.template.loader import render_to_string
 from django.urls.base import resolve, reverse
 from django.urls.exceptions import Resolver404
 from urllib.parse import unquote, urlparse
+
+from app.sender import send
 # Loading Configuration
 try:
     config=Configuration.objects.all()[0]
 except:
     config=None
-
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
     try:
@@ -171,10 +172,12 @@ def api_add_cart(request):
 def test(request):
     cart = Cart(request)
     info = {
-        'name':'ico',
+        'name':'Hicham Achahboun',
         'phone':'0612365489',
+        'email':'gasamis172@galcake.com',
         'address':'XCD DFGFG DFDFF',
         'city':'marrackech',
     }
-    Order.create_order(info,cart)
+    order=Order.create_order(info,cart)
+    if order: send(order,[],config=config)
     return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})

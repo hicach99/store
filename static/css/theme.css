@@ -55,7 +55,8 @@
     left: 0;
     top: 0;
     width: 100%;
-    background: #ecf5f4;
+    color: #202124;
+    background: #fffffffe;
     z-index: 999;
     box-shadow: 0 0 50px 0 rgba(29, 35, 58, .08);
 }
@@ -151,7 +152,7 @@
 .mainMenu ul li a {
     font-size: 18px;
     line-height: 1;
-    color: #52586d;
+    color: #202124;
     display: block;
     position: relative;
 }
@@ -481,10 +482,18 @@
     justify-content: flex-start;
     position: relative;
     padding: 0 0 0 23px;
+}
+
+.accessNav .anSelects {
     margin: 51px 24px 51px 0;
 }
 
-.anSelects:before {
+.mainMenu .anSelects {
+    display: none;
+    align-items: center;
+}
+
+.accessNav .anSelects:before {
     content: '';
     position: absolute;
     left: 0;
@@ -558,7 +567,7 @@
 .anSelect .nice-select .option:hover,
 .anSelect .nice-select .option.focus,
 .anSelect .nice-select .option.selected.focus {
-    background-color: #9ebbbd !important;
+    background-color: #202125 !important;
     color: #FFF !important;
 }
 
@@ -604,7 +613,7 @@
 }
 
 .anItems>div>a:hover {
-    color: #9ebbbd;
+    color: #202125;
 }
 
 .anItems>div.anCart>a span {
@@ -937,25 +946,32 @@
     outline: none;
     font-size: 22px;
     line-height: 50px;
-    color: #ffffff;
+    color: #000;
     font-weight: 300;
 }
 
 .popup_search_form input[type="search"]::-moz-placeholder {
-    color: #ffffff;
+    color: #333;
     opacity: 1;
 }
 
 .popup_search_form input[type="search"]::-ms-input-placeholder {
-    color: #ffffff;
+    color: #333;
     opacity: 1;
 }
 
 .popup_search_form input[type="search"]::-webkit-input-placeholder {
-    color: #ffffff;
+    color: #333;
     opacity: 1;
 }
-
+/* clears the ‘X’ from Internet Explorer */
+.popup_search_form input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+.popup_search_form input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+.popup_search_form input[type="search"]::-webkit-search-decoration,
+.popup_search_form input[type="search"]::-webkit-search-cancel-button,
+.popup_search_form input[type="search"]::-webkit-search-results-button,
+.popup_search_form input[type="search"]::-webkit-search-results-decoration { display: none; }
 @-webkit-keyframes fadeIn {
     0% {
         opacity: 0;
@@ -1080,7 +1096,7 @@
     margin: 0;
     padding: 0;
     background: transparent;
-    color: #ffffff;
+    color: #000000;
     transition: all ease 300ms;
     -moz-transition: all ease 300ms;
     -webkit-transition: all ease 300ms;
@@ -1373,7 +1389,6 @@
 .pi01Thumb {
     position: relative;
     overflow: hidden;
-    max-height: 320px;
     border-radius: 3px;
     background: #FFF;
     margin: 0 0 17px;
@@ -3262,7 +3277,7 @@
 .footer {
     position: relative;
     padding: 90px 0 0;
-    background: #4a5556;
+    background: #1f2124;
 }
 
 .footerMode2 {
@@ -3556,7 +3571,7 @@
 }
 
 .siteInfoSection {
-    background: #4a5556;
+    background: #1f2124;
 }
 
 .sisMode2 {
@@ -3564,12 +3579,12 @@
 }
 
 .siteInfo {
-    color: #bbbdc4;
+    color: #ebf3f2;
     padding: 31px 0 46px;
 }
 
 .sisMode2 .siteInfo {
-    color: #7f8495;
+    color: #ebf3f2;
 }
 
 .siteInfo a {
@@ -3582,7 +3597,7 @@
 }
 
 .sisMode2 .siteInfo a:hover {
-    color: #9ebbbd;
+    color: #eef1f5;
 }
 
 .footerNav {
@@ -3998,8 +4013,8 @@
 .sortNav form .nice-select .option:hover,
 .sortNav form .nice-select .option.focus,
 .sortNav form .nice-select .option.selected.focus {
-    background-color: #9ebbbd !important;
-    color: #FFF !important;
+    background-color: #202125 !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .productViewTabnav {
@@ -7754,13 +7769,14 @@
 /  20. Page Banner
 /-----------------------------------------*/
 .pageBannerSection {
-    background: #ecf5f4;
-    min-height: 568px;
+    background: #202124;
+    font-size: medium;
+    color: white;
 }
 
 .pageBannerContent {
     position: relative;
-    padding: 253px 0 177px;
+    padding: 140px 0 20px;
 }
 
 .singleBlogPageBanner .pageBannerContent {
@@ -7783,7 +7799,6 @@
     position: relative;
     font-size: 16px;
     line-height: 24px;
-    color: #7f8495;
 }
 
 .pageBannerPath a {

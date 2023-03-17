@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.db.models import Q
+from django.utils.html import mark_safe
 
 
 class Currency(models.Model):
@@ -18,6 +19,8 @@ class Configuration(models.Model):
     # Website configurations
     website_url = models.CharField(max_length=255,blank=True)
     website_name = models.CharField(max_length=255,null=False)
+    logo = models.ImageField(blank=True,upload_to='logos/')
+    logo_white = models.ImageField(blank=True,upload_to='logos/')
     # SEO configurations
     description = models.TextField(blank=True)
     keywords = models.TextField(blank=True)
@@ -37,9 +40,22 @@ class Configuration(models.Model):
     exchangerate_api=models.CharField(max_length=255,blank=True)
     currency=models.ForeignKey(Currency, on_delete=models.CASCADE)
     currencies=Currency.objects.all()
+    # mailing settings
+    smtp_host = models.CharField(max_length=255,blank=True)
+    smtp_port = models.IntegerField(default=465)
+    smtp_username = models.CharField(max_length=255,blank=True)
+    smtp_password = models.CharField(max_length=255,blank=True)
+    smtp_SSL = models.BooleanField(default=True)
+    email_recivers = models.TextField(blank=True)
+    # telegram settings
+    telegram_bot_api = models.CharField(max_length=255,blank=True)
+    telegram_recivers = models.TextField(blank=True)
     def __str__(self) -> str:
         return self.website_name
-
+    def get_telegram_recivers(self):
+        return [r.strip() for r in self.telegram_recivers.split(',')]
+    def get_email_recivers(self):
+        return [r.strip() for r in self.email_recivers.split(',')]
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True,null=True)
@@ -97,6 +113,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     class Meta:
         ordering = ['-created_at']
+    def img_preview(self): #new
+        return mark_safe(f'<img src = "{self.images.all()[0].url}" width = "300"/>')
     def get_images(self):
         return self.images.all()
     def get_statistics(self):
@@ -134,7 +152,7 @@ class Product(models.Model):
         products=[]
         try:
             for word in words:
-                for p in Product.objects.filter( Q(name__icontains=word) | Q(description__icontains=word) | Q(product_details__icontains=word) ):
+                for p in Product.objects.filter(Q(name__icontains=word)):
                     if not p.id in [i.id for i in products]: products.append(p)
             return products
         except:
@@ -202,13 +220,13 @@ class ProductReview(models.Model):
 
 class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
-    complete = models.BooleanField(default=False)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255,null=True)
     phone = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
+    address = models.TextField(null=True)
     city = models.CharField(max_length=255)
     total_price = models.DecimalField(max_digits=10, decimal_places=2,null=True)
+    complete = models.BooleanField(default=False)
     def calculate_total_price(self):
         items=self.items.all()
         self.total_price=sum([item.total_price for item in items])
@@ -219,17 +237,20 @@ class Order(models.Model):
         ordering = ['-complete']
     @staticmethod
     def create_order(info,cart):
-        order=Order.objects.create(name=info['name'],phone=info['phone'],address=info['address'],city=info['city'])
-        order.save()
-        order=Order.objects.get(id=order.id)
-        for item_id in cart:
-            for item in item_id:
-                properties = item['properties']
-                order_item=OrderItem.objects.create(order=order,product=item['product'],quantity=item['quantity'])
-                for properity in properties: order_item.properties.add(properity)
-                order_item.save()
-        order.calculate_total_price()
-        cart.clear()
+        if len(cart)>0:
+            order=Order.objects.create(name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city'])
+            order.save()
+            order=Order.objects.get(id=order.id)
+            for item_id in cart:
+                for item in item_id:
+                    properties = item['properties']
+                    order_item=OrderItem.objects.create(order=order,product=item['product'],quantity=item['quantity'])
+                    for properity in properties: order_item.properties.add(properity)
+                    order_item.save()
+            order.calculate_total_price()
+            cart.clear()
+            return order
+        return None
     def save(self, *args, **kwargs):
         super(Order, self).save(*args, **kwargs)
 class OrderItem(models.Model):

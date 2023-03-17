@@ -5,7 +5,7 @@
       <div class="col-lg-12">
         <div class="headerInner01">
           <div class="logo">
-            <a href="{% url 'main' %}"><img src="{% static 'media/logo.png' %}" alt="Logo" /></a>
+            <a href="{% url 'main' %}"><img src="{% if config.logo %}{{config.logo.url}}{% else %}#{% endif %}" alt="Logo" /></a>
           </div>
           <div class="mainMenu">
             <ul>
@@ -19,11 +19,29 @@
               <li>
                 <a href="{% url 'shop' %}?category={{category.slug}}">{{category}}</a>
               </li>
-              {% endfor %} 
+              {% endfor %}
+              <li>
+                <div class="anSearch">
+                  <a href="javascript:void(0);">search</a>
+                </div>
+              </li>
+              <li class="">
+                <div class="anSelects">
+                  <select name="languages" style="display: inline-block;width: 45%;">
+                    <option value="ENG">EN</option>
+                  </select>
+                  <select name="currency" id="currency" style="display: inline-block;width: 45%;">
+                    {% for currency in config.currencies %}
+                    <option value="{{currency.code}}" {% if currency.code == request.session.currency %} selected{% endif %}>{{currency.code}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </li>
             </ul>
           </div>
           <div class="accessNav">
-            <a href="javascript:void(0);" class="menuToggler"><i class="fa-solid fa-bars"></i> <span>Menu</span></a>
+            <a href="javascript:void(0);" class="menuToggler"><i class="fa-solid fa-bars"></i> <span>Menu</span>
+            </a>
             <div class="anSocial">
               <div class="ansWrap">
                 <a class="fac" href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
@@ -80,5 +98,17 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="search_bar" class="container-fluid" style="display: none;">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+          <div class="popup_search_form">
+              <form method="get" action="{% url 'shop' %}">
+                  <input type="search" name="q" id="s" placeholder="Type Words and Hit Enter">
+                  <button type="submit"><i class="fa-solid fa-search"></i></button>
+              </form>
+          </div>
+      </div>
+  </div>
   </div>
 </header>

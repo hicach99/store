@@ -1155,9 +1155,14 @@
     .menuToggler{
         margin-right: 20px;
     }
-    .anSelects{
+    .accessNav .anSelects{
         display: none;
     }
+
+    .mainMenu .anSelects {
+        display: block;
+    }
+
     .tp-caption.theSubTitle {
         padding: 0 !important;
     }
@@ -1454,7 +1459,11 @@
     }
 }
 
-
+@media (min-width: 575px){
+    .mainMenu .anSearch{
+        display: none;
+    }
+}
 /*----------------========----------------
 /  12. max-width: 575px
 /----------------========----------------*/

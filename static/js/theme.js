@@ -749,14 +749,13 @@
     /*--------------------------------------------------------
     / 17. Popup Search
     /----------------------------------------------------------*/
-    $('.anSearch > a').on('click', function (e) {
-        e.preventDefault();
-        $('.popup_search_sec').toggleClass('active');
+    $('.accessNav .anSearch > a').on('click', function (e) {
+        $('#search_bar').slideToggle('slow');
     });
-    $('.popup_search_overlay, #search_Closer').on('click', function () {
-        $('.popup_search_sec').removeClass('active');
+    $('.mainMenu .anSearch > a').on('click', function (e) {
+        $('.mainMenu').slideUp();
+        $('#search_bar').slideToggle('slow');
     });
-    
     /*--------------------------------------------------------
     /  18. Preloader
     /---------------------------------------------------------*/
@@ -902,6 +901,7 @@
     });
     $('.menuToggler').on('click', function(e){
         e.preventDefault();
+        $('#search_bar').slideUp();
         $('.mainMenu').slideToggle();
         $(this).toggleClass('active');
     });
@@ -997,11 +997,14 @@
         }
         window.location.href=path
     })
-    $('#currency').on('change', function(){
+    $('.mainMenu #currency').on('change', function(){
         var value=$(this).val();
         window.location.href='/set_currency/'+value
     })
-
+    $('.accessNav #currency').on('change', function(){
+        var value=$(this).val();
+        window.location.href='/set_currency/'+value
+    })
     $('.product-quantity .btnPlus').click( function(e){
         var qty_el=$(this).parent().find('.qty[name="quantity"]');
         qty_el.val(parseInt(qty_el.val())+1);

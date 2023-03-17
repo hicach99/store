@@ -1,5 +1,5 @@
 import requests
-from app.models import Product, Property, Configuration
+from app.models import *
 try:
     config=Configuration.objects.all()[0]
 except:

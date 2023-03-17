@@ -125,7 +125,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 # https://app.exchangerate-api.com/
 # piladav888@oniecan.com
 # Hicham5028@

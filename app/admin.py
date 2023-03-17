@@ -1,7 +1,7 @@
 
 
 from django.contrib import admin
-from app.forms import OrderAdminForm, ProductAdminForm, PropertyAdminForm
+from app.forms import ConfigurationAdminForm, OrderAdminForm, ProductAdminForm, PropertyAdminForm
 from .models import *
 
 class ImageInline(admin.TabularInline):
@@ -15,6 +15,7 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display=('id','website_name')
+    form = ConfigurationAdminForm
 class CategoryAdmin(admin.ModelAdmin):
     list_display=('id','name')
     exclude = ('slug',)
@@ -25,6 +26,7 @@ class CurrencyAdmin(admin.ModelAdmin):
     list_display=('code','symbol')
 class ProductAdmin(admin.ModelAdmin):
     list_display=('id','name','price','old_price')
+    readonly_fields = ['img_preview']
     form = ProductAdminForm
     exclude = ('slug',)
     inlines = [ImageInline,InfoInline]
