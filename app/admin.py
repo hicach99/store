@@ -1,7 +1,7 @@
 
 
 from django.contrib import admin
-from app.forms import ProductAdminForm, PropertyAdminForm
+from app.forms import OrderAdminForm, ProductAdminForm, PropertyAdminForm
 from .models import *
 
 class ImageInline(admin.TabularInline):
@@ -10,7 +10,9 @@ class ImageInline(admin.TabularInline):
 class InfoInline(admin.TabularInline):
     model = ProductInformation
     extra = 1
-
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display=('id','website_name')
 class CategoryAdmin(admin.ModelAdmin):
@@ -28,9 +30,14 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageInline,InfoInline]
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display=('id','title','product','name')
+
 class PropertyAdmin(admin.ModelAdmin):
     list_display=('id','name','value','type')
     form = PropertyAdminForm
+class OrderAdmin(admin.ModelAdmin):
+    list_display=('id','name','phone','total_price','complete')
+    form = OrderAdminForm
+    inlines = [OrderItemInline]
 
 admin.site.register(Configuration,ConfigurationAdmin)
 admin.site.register(Category,CategoryAdmin)
@@ -40,3 +47,4 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductReview, ProductReviewAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Currency,CurrencyAdmin)
+admin.site.register(Order,OrderAdmin)

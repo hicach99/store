@@ -169,10 +169,12 @@ def api_add_cart(request):
             return JsonResponse({'status':'error','message':e},safe=False,json_dumps_params={"ensure_ascii": False})
     return JsonResponse({'status':'error','message':'Could\'t add product to the shopping cart'},safe=False,json_dumps_params={"ensure_ascii": False})
 def test(request):
-    return render(
-        request,
-        'test.html',
-        {
-            'config':config,
-        }
-    )
+    cart = Cart(request)
+    info = {
+        'name':'ico',
+        'phone':'0612365489',
+        'address':'XCD DFGFG DFDFF',
+        'city':'marrackech',
+    }
+    Order.create_order(info,cart)
+    return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})

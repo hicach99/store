@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.db.models import Q
 
+
 class Currency(models.Model):
     code = models.CharField(max_length=255)
     symbol = models.CharField(max_length=255,blank=True)
@@ -198,3 +199,48 @@ class ProductReview(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False)
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255,null=True)
+    phone = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2,null=True)
+    def calculate_total_price(self):
+        items=self.items.all()
+        self.total_price=sum([item.total_price for item in items])
+        self.save()
+    def __str__(self):
+        return str(self.id)
+    class Meta:
+        ordering = ['-complete']
+    @staticmethod
+    def create_order(info,cart):
+        order=Order.objects.create(name=info['name'],phone=info['phone'],address=info['address'],city=info['city'])
+        order.save()
+        order=Order.objects.get(id=order.id)
+        for item_id in cart:
+            for item in item_id:
+                properties = item['properties']
+                order_item=OrderItem.objects.create(order=order,product=item['product'],quantity=item['quantity'])
+                for properity in properties: order_item.properties.add(properity)
+                order_item.save()
+        order.calculate_total_price()
+        cart.clear()
+    def save(self, *args, **kwargs):
+        super(Order, self).save(*args, **kwargs)
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE,related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    properties = models.ManyToManyField(Property)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return f"{self.quantity} of {self.product.name}"
+    def save(self, *args, **kwargs):
+        self.total_price= self.quantity * self.product.price
+        super(OrderItem, self).save(*args, **kwargs)
+
