@@ -2,7 +2,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=0.9"/>
   <title>{{config.website_name}}</title>
   <meta name="description" content="{{config.description}}"/>
   <meta name="keywords" content="{{config.keywords}}"/>
@@ -27,7 +27,7 @@
   <!-- END: CSS -->
 
   <!-- BEGIN: Favicon -->
-  <link rel="icon" type="image/png" href="https://uiuxom.com/ulina/html/images/favicon.png" />
+  <link rel="icon" type="image/png" href="{% if config.favicon %}{{config.favicon.url}}{% endif %}" />
   <!-- END: Favicon -->
   <!-- BEGIN: style -->
   <style>

@@ -36,7 +36,7 @@
                     </td>
                     <td class="product-price">
                         <div class="pi01Price">
-                        <ins>{{ item.product.price|convert:request }}</ins> 
+                        <ins>{{ item.product.price|convert:request }}</ins>
                         </div>
                     </td>
                     <td class="product-quantity">
@@ -48,7 +48,9 @@
                     </td>
                     <td class="product-subtotal">
                         <div class="pi01Price">
-                        <ins>{{ item.total_price|convert:request }}</ins>
+                          <strong>
+                            <ins>{{ item.total_price|convert:request }}</ins>
+                          </strong>
                         </div>
                     </td>
                     <td class="product-remove">
@@ -75,15 +77,18 @@
       </div>
     </div>
     <div class="row cartAccessRow">
-      <div class="col">
+      <div class="row">
+        <div class="col">
         <div class="cartCoupon">
           <h3>Have A Coupon Code?</h3>
           <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Write your Coupon Code" />
           <button type="submit" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>Apply Code</span></button>
         </div>
       </div>
+    </div>
+    <div class="row mt-5">
       <div class="col">
-        <div class="col-sm-12 cart_totals">
+        <div class="col cart_totals">
           <table class="shop_table shop_table_responsive">
             <tbody>
               <tr class="cart-subtotal">
@@ -91,6 +96,14 @@
                 <td data-title="Subtotal">
                   <div class="pi01Price">
                     <ins>{{cart.get_total_price|convert:request }}</ins>
+                  </div>
+                </td>
+              </tr>
+              <tr class="cart-subtotal">
+                <th>Coupon Discount</th>
+                <td data-title="Subtotal">
+                  <div class="pi01Price">
+                    <ins>- {{0|convert:request }}</ins>
                   </div>
                 </td>
               </tr>
@@ -115,6 +128,7 @@
           <a href="{% url 'checkout' %}" class="checkout-button ulinaBTN"><span>Proceed to checkout</span></a>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>

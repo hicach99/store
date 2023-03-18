@@ -1,19 +1,49 @@
 {% load functions %}
+{% load static %}
 <section class="checkoutPage">
-  <div class="container">
+  <form action="/checkout_process" id="checkout_form" method="post">
+    {% csrf_token %}
+    <div class="container">
       <div class="row">
         <div class="col" >
           <div class="shippingCoupons">
             <h3>Coupon Code</h3>
             <div class="couponFormWrap clearfix">
                 <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Write your Coupon Code">
-                <button type="submit" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>Apply Code</span></button>
+                <button type="javascript:void(0);" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>Apply Code</span></button>
             </div>
         </div>
         </div>
       </div>
       <div class="row">
         {% if cart|length > 0 %}
+          <div class="col-lg-6">
+            <div class="checkoutForm">
+              <h3>Your Billing Address</h3>
+              <div class="row checkoutInputs" >
+                <div class="col-md-12">
+                  <input type="text" name="name" placeholder="Full Name" />
+                </div>
+                <div class="col-md-12">
+                  <input type="text" name="phone" placeholder="Phone" />
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" name="address" placeholder="Address" />
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" name="city" placeholder="City" />
+                </div>
+                <div class="col-lg-6">
+                  <label id="email-error" class="error" for="email"></label>
+                  <label id="name-error" class="error" for="name"></label>
+                  <label id="phone-error" class="error" for="phone"></label>
+                  <label id="address-error" class="error" for="address"></label>
+                  <label id="city-error" class="error" for="city"></label>
+                  <label id="payment_method-error" class="error" for="payment_method"></label>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col">
             <div class="orderReviewWrap">
               <h3>Your Order</h3>
@@ -30,7 +60,7 @@
                     {% for item in item_id %}
                     <tr>
                       <td>
-                        <a href="javascript:void(0);">{{item.product.name}}</a>  {% for property in item.properties %},{{ property.name }}{% endfor %}
+                        <a href="javascript:void(0);">{{item.product.name}}</a>  {% for property in item.properties %},{{ property.name }}{% endfor %} x {{item.quantity}}
                       </td>
                       <td>
                         <div class="pi01Price">
@@ -70,59 +100,26 @@
                 </table>
                 <ul class="wc_payment_methods">
                   <li class="active">
-                    <input type="radio" checked="" value="1" name="paymentMethod" id="paymentMethod01" />
-                    <label for="paymentMethod01">Direct bank transfer</label>
+                    <input type="radio" checked="" value="1" name="payment_method" id="paymentMethod01" />
+                    <label for="paymentMethod01">Cash On Delivery</label>
                   </li>
-    
                   <li class="active">
-                    <input type="radio" value="2" name="paymentMethod" id="paymentMethod02" />
-                    <label for="paymentMethod02">Cash on delivery</label>
+                    <input type="radio" value="2" name="payment_method" id="paymentMethod02" />
+                    <label for="paymentMethod02">Credit Card (CMI) <span class="error">Coming Soon</span> </label>
                   </li>
                   <li class="">
-                    <input type="radio" value="3" name="paymentMethod" id="paymentMethod03" />
-                    <label for="paymentMethod03">Paypal</label>
+                    <input type="radio" value="3" name="payment_method" id="paymentMethod03" />
+                    <label for="paymentMethod03">Paypal <span class="error">Coming Soon</span></label>
                   </li>
                 </ul>
-                <button type="button" class="placeOrderBTN ulinaBTN"><span>Place Order</span></button>
+                <a href="javascript:void(0)" class="placeOrderBTN ulinaBTN"><span>Place Order</span></a>
               </div>
             </div>
           </div>
         {% endif %}
       </div>
-</div>
+    </div>
+  </form>
+  <script src="{% static 'js/jquery.validate.min.js' %}" defer></script>
+  <script src="{% static 'js/checkout.js' %}" defer></script>
 </section>
-
-{% comment %}
-          <div class="col-lg-6">
-            <div class="checkoutForm">
-              <h3>Your Billing Address</h3>
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="text" name="field1" placeholder="First Name *" />
-                </div>
-    
-                <div class="col-md-6">
-                  <input type="text" name="field4" placeholder="Email address *" />
-                </div>
-                <div class="col-md-6">
-                  <input type="text" name="field5" placeholder="Phone *" />
-                </div>
-    
-                <div class="col-lg-12">
-                  <input type="text" name="field7" placeholder="Address *" />
-                </div>
-                <div class="col-lg-12">
-                  <input type="text" name="field8" placeholder="City/Town *" />
-                </div>
-    
-                <div class="col-md-12">
-                  <input type="text" name="field10" placeholder="Zip Code *" />
-                </div>
-    
-                <div class="col-lg-12">
-                  <textarea name="field14" placeholder="Order Note"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-{% endcomment %}

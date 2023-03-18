@@ -416,6 +416,8 @@
 
 .menuToggler {
     display: none;
+    background-color: #1f2124;
+    color: white;
 }
 
 
@@ -2427,7 +2429,7 @@
 }
 
 .dpcPriceWrap .pi01Price del:after {
-    background: #52586d;
+    background: #d70000b5!important;
     top: 11px;
 }
 
@@ -5686,13 +5688,7 @@
     margin-left: 88px;
 }
 
-.cart_totals {
-    position: relative;
-    margin: 5px 0 0 60px;
-    background: #f5f4f485;
-    border-radius: 5px;
-    padding: 27px 24px 28px;
-}
+
 
 .cart_totals table {
     margin: 0 0 23px;
@@ -8370,4 +8366,30 @@ form.contactForm button.ulinaBTN {
 
 .productQuickView .pgImage {
     border-radius: 0;
+}
+
+ins{
+    color: #e09d00b5!important;
+}
+
+del,del:after{
+    color: #d70000b5!important;
+}
+.cart_totals {
+    position: relative;
+    margin: 5px 0 0 60px;
+    background: #f5f4f466;
+    border-radius: 5px;
+    padding: 27px 24px 28px;
+}
+
+.orderReview {
+    background: #f5f4f466;
+    padding: 35px 36px 36px;
+    border-radius: 5px;
+}
+
+.error{
+    color: red;
+    font-size: small;
 }

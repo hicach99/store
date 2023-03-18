@@ -19,8 +19,9 @@ class Configuration(models.Model):
     # Website configurations
     website_url = models.CharField(max_length=255,blank=True)
     website_name = models.CharField(max_length=255,null=False)
-    logo = models.ImageField(blank=True,upload_to='logos/')
-    logo_white = models.ImageField(blank=True,upload_to='logos/')
+    logo = models.ImageField(blank=True,upload_to='website_images/')
+    logo_white = models.ImageField(blank=True,upload_to='website_images/')
+    favicon = models.FileField(blank=True,upload_to='website_images/')
     # SEO configurations
     description = models.TextField(blank=True)
     keywords = models.TextField(blank=True)
@@ -225,6 +226,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=255)
     address = models.TextField(null=True)
     city = models.CharField(max_length=255)
+    payment_method = models.CharField(max_length=255,null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     complete = models.BooleanField(default=False)
     def calculate_total_price(self):
@@ -233,12 +235,11 @@ class Order(models.Model):
         self.save()
     def __str__(self):
         return str(self.id)
-    class Meta:
-        ordering = ['-complete']
+
     @staticmethod
     def create_order(info,cart):
         if len(cart)>0:
-            order=Order.objects.create(name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city'])
+            order=Order.objects.create(payment_method=info['payment_method'],name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city'])
             order.save()
             order=Order.objects.get(id=order.id)
             for item_id in cart:

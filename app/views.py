@@ -1,21 +1,32 @@
 import json
+import os
 import requests
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from app.cart import Cart
 from app.models import *
 from django.template.loader import render_to_string
-
 from django.urls.base import resolve, reverse
 from django.urls.exceptions import Resolver404
 from urllib.parse import unquote, urlparse
-
 from app.sender import send
+
 # Loading Configuration
 try:
     config=Configuration.objects.all()[0]
 except:
     config=None
+def restart(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        try:
+            if os.name == 'posix':
+                os.system('sudo systemctl restart apache2')
+            elif os.name == 'nt':
+                os.system('net stop w3svc && net start w3svc')
+            return redirect('/admin')
+        except Exception as e:
+            print(e)
+    return redirect('main') if not request.user.is_authenticated else redirect('/admin')
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
     try:
@@ -112,6 +123,7 @@ def checkout(request):
             }
         )
     return redirect('shop')
+
 def remove_cart(request):
     cart = Cart(request)
     product_id=request.GET['id']
@@ -131,6 +143,24 @@ def update_cart(request):
         data = json.loads(request.body)
         cart.update(data)
     return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})
+def checkout_process(request):
+    if request.method == 'POST':
+        if request.POST.get('payment_method')=='1':
+            payment_method='cash on delivery'
+            info = {
+                'name':request.POST.get('name'),
+                'phone':request.POST.get('phone'),
+                'email':request.POST.get('email',None),
+                'address':request.POST.get('address'),
+                'city':request.POST.get('city'),
+                'payment_method':payment_method,
+            }
+            cart = Cart(request)
+            order=Order.create_order(info,cart)
+            if order: send(order,[],config=config,request=request)
+    if 'payment_method' in request.session:
+        pass
+    return redirect('main')
 # api calls
 def api_product_details(request,id):
     try:
@@ -174,14 +204,4 @@ def api_add_cart(request):
             return JsonResponse({'status':'error','message':e},safe=False,json_dumps_params={"ensure_ascii": False})
     return JsonResponse({'status':'error','message':'Could\'t add product to the shopping cart'},safe=False,json_dumps_params={"ensure_ascii": False})
 def test(request):
-    cart = Cart(request)
-    info = {
-        'name':'Hicham Achahboun',
-        'phone':'0612365489',
-        'email':'gasamis172@galcake.com',
-        'address':'XCD DFGFG DFDFF',
-        'city':'marrackech',
-    }
-    order=Order.create_order(info,cart)
-    if order: send(order,[],config=config)
-    return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})
+    return render(request,'email/order.html' ,{'config':config,'order':Order.objects.first()})

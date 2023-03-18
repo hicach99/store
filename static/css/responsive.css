@@ -301,14 +301,14 @@
 @media (max-width: 1365px){
     /* Menu */
     .menuToggler{
+        background-color: #1f2124;
+        color: white!important;
         display: inline-flex;
-        background: #9ebbbd;
         font-size: 14px;
         text-transform: uppercase;
         height: 48px;
         line-height: 48px;
         border-radius: 5px;
-        color: #FFF;
         font-weight: 500;
         font-family: 'Jost', sans-serif;
         align-items: center;
@@ -1153,6 +1153,8 @@
         padding: 0 12px;
     }
     .menuToggler{
+        background-color: #1f2124;
+        color: white!important;
         margin-right: 20px;
     }
     .accessNav .anSelects{
@@ -1578,6 +1580,8 @@
         margin: 12px 0 0;
     }
     .menuToggler {
+        background-color: #1f2124;
+        color: white!important;
         margin-right: 15px;
     }
     .anItems > div.anUser{
