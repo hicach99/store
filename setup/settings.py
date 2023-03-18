@@ -127,7 +127,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
-SECURE_SSL_REDIRECT = True
+import sys
+if len(sys.argv) >= 2 and sys.argv[1] == 'runserver': SECURE_SSL_REDIRECT = True
 
 # https://app.exchangerate-api.com/
 # piladav888@oniecan.com
