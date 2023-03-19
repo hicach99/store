@@ -18,17 +18,6 @@ try:
 except:
     config=None
 
-def restart(request):
-    if request.user.is_authenticated and request.user.is_superuser:
-        try:
-            if os.name == 'posix':
-                os.system('sudo systemctl restart apache2')
-            elif os.name == 'nt':
-                os.system('net stop w3svc && net start w3svc')
-            return redirect('/admin')
-        except Exception as e:
-            print(e)
-    return redirect('main') if not request.user.is_authenticated else redirect('/admin')
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
     try:
