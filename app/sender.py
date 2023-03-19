@@ -25,6 +25,7 @@ def order_to_message(order,config):
     message=f"======={order.date_ordered.strftime('%d-%m-%Y %H:%M:%S')}======\n"
     message+=f"id: #{order.id}\n"
     message+=f"name: {order.name}\n"
+    message+=f"token: {order.token}\n" if order.token else ''
     message+=f"email: {order.email}\n" if order.email else ''
     message+=f"phone: {order.phone}\n"
     message+=f"address: {order.address}\n"

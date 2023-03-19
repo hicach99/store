@@ -202,7 +202,6 @@
 
         /* -------------------------------------
             ALERTS
-            Change the class depending on warning email, good email or bad email
         ------------------------------------- */
         .alert {
             font-size: 16px;
@@ -318,7 +317,8 @@
                                               {{order.name}}
                                               <br />Invoice #{{order.id}}
                                               <br />{{order.date_ordered}}
-                                              <br />{{order.email}}
+                                              {% if order.token %}<br />{{order.token}}{% endif %}
+                                              {% if order.email %}<br />{{order.email}}{% endif %}
                                               <br />{{order.phone}}
                                               <br />{{order.address}}
                                           </td>

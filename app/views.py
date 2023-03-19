@@ -173,22 +173,28 @@ def checkout_process(request):
     if success: return redirect('success')
     return redirect('echec')
 def success(request):
+    categories=Category.get_all()
     cart = Cart(request)
+    products=Product.objects.all()
     return render(
         request,
         'success.html',
         {
             'config':config,
+            'categories':categories,
             'cart':cart,
+            'products':products,
         }
     )
 def echec(request):
+    categories=Category.get_all()
     cart = Cart(request)
     return render(
         request,
         'echec.html',
         {
             'config':config,
+            'categories':categories,
             'cart':cart,
         }
     )
