@@ -15,6 +15,8 @@ class Currency(models.Model):
         if not self.symbol:
             self.symbol= self.code
         super(Currency, self).save(*args, **kwargs)
+    class Meta:
+        verbose_name_plural = "Currencies"
 class Configuration(models.Model):
     # Website configurations
     website_url = models.CharField(max_length=255,blank=True)
@@ -51,6 +53,10 @@ class Configuration(models.Model):
     # telegram settings
     telegram_bot_api = models.CharField(max_length=255,blank=True)
     telegram_recivers = models.TextField(blank=True)
+    # paypal credentials 
+    paypal_public_key = models.CharField(max_length=512,blank=True)
+    paypal_secret_key = models.CharField(max_length=512,blank=True)
+    paypal_sandbox = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.website_name
     def get_telegram_recivers(self):
@@ -70,7 +76,8 @@ class Category(models.Model):
     @staticmethod
     def get_all():
         return Category.objects.all()
-
+    class Meta:
+        verbose_name_plural = "Categories"
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):
@@ -85,6 +92,8 @@ class Property(models.Model):
         if not self.value:
             self.value = self.name
         super(Property, self).save(*args, **kwargs)
+    class Meta:
+        verbose_name_plural = "Properties"
 class Tag(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
@@ -221,6 +230,7 @@ class ProductReview(models.Model):
 
 class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
+    token = models.CharField(blank=True,max_length=255)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255,null=True)
     phone = models.CharField(max_length=255)
@@ -229,17 +239,19 @@ class Order(models.Model):
     payment_method = models.CharField(max_length=255,null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     complete = models.BooleanField(default=False)
+    delivered = models.BooleanField(default=False)
+    class Meta:
+        ordering = ['-date_ordered']
     def calculate_total_price(self):
         items=self.items.all()
         self.total_price=sum([item.total_price for item in items])
         self.save()
     def __str__(self):
         return str(self.id)
-
     @staticmethod
     def create_order(info,cart):
         if len(cart)>0:
-            order=Order.objects.create(payment_method=info['payment_method'],name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city'])
+            order = Order.objects.create(token=info['paypal_order_id'],complete=True,payment_method=info['payment_method'],name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city']) if 'paypal_order_id' in info else Order.objects.create(payment_method=info['payment_method'],name=info['name'],phone=info['phone'],email=info['email'],address=info['address'],city=info['city'])
             order.save()
             order=Order.objects.get(id=order.id)
             for item_id in cart:

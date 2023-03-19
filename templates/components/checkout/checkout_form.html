@@ -1,7 +1,11 @@
 {% load functions %}
 {% load static %}
+<script>
+  const req='<span style="padding-left: 25px;"> <small>(Required) Fill the blank to recieve reciept</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="Email" />';
+  const op='<span style="padding-left: 25px;"> <small>(optional) Fill it if you want to recieve reciept in your inbox</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="Email (Not Required)" />';
+</script>
 <section class="checkoutPage">
-  <form action="/checkout_process" id="checkout_form" method="post">
+  <form action="{% url 'checkout_process' %}" id="checkout_form" method="post">
     {% csrf_token %}
     <div class="container">
       <div class="row">
@@ -21,25 +25,48 @@
             <div class="checkoutForm">
               <h3>Your Billing Address</h3>
               <div class="row checkoutInputs" >
+                <div class="col-md-12 email_container_op">
+                  <span style="padding-left: 25px;">
+                    <small>(optional) Fill it if you want to recieve reciept in your inbox</small>
+                  </span>
+                  <span style="padding-left: 25px;">
+                    <small>
+                      <label id="email_optional-error" class="error" for="email_optional"></label>
+                    </small>
+                  </span>
+                  <input type="email" name="email_optional"  placeholder="Email (Not Required)" />
+                </div>
                 <div class="col-md-12">
+                  <span style="padding-left: 25px;">
+                    <small>
+                      <label id="name-error" class="error" for="name"></label>
+                    </small>
+                  </span>
                   <input type="text" name="name" placeholder="Full Name" />
                 </div>
                 <div class="col-md-12">
+                  <span style="padding-left: 25px;">
+                    <small>
+                      <label id="phone-error" class="error" for="phone"></label>
+                    </small>
+                  </span>
                   <input type="text" name="phone" placeholder="Phone" />
                 </div>
                 <div class="col-lg-6">
+                  <span style="padding-left: 25px;">
+                    <small>
+                      <label id="address-error" class="error" for="address"></label>
+                    </small>
+                  </span>
                   <input type="text" name="address" placeholder="Address" />
                 </div>
                 <div class="col-lg-6">
+                  <span style="padding-left: 25px;">
+                    <small>
+                      <label id="city-error" class="error" for="city"></label>
+                    </small>
+                  </span>
                   <input type="text" name="city" placeholder="City" />
-                </div>
-                <div class="col-lg-6">
-                  <label id="email-error" class="error" for="email"></label>
-                  <label id="name-error" class="error" for="name"></label>
-                  <label id="phone-error" class="error" for="phone"></label>
-                  <label id="address-error" class="error" for="address"></label>
-                  <label id="city-error" class="error" for="city"></label>
-                  <label id="payment_method-error" class="error" for="payment_method"></label>
                 </div>
               </div>
             </div>
@@ -80,6 +107,14 @@
                         </div>
                       </td>
                     </tr>
+                    <tr>
+                      <th>Coupon Discount</th>
+                      <td>
+                        <div class="pi01Price">
+                          <ins>- {{0|convert:request }}</ins>
+                        </div>
+                      </td>
+                    </tr>
                     <tr class="shippingRow">
                       <th>Shipping</th>
                       <td>
@@ -98,7 +133,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <ul class="wc_payment_methods">
+                <ul class="wc_payment_methods" style="margin: 0%;">
                   <li class="active">
                     <input type="radio" checked="" value="1" name="payment_method" id="paymentMethod01" />
                     <label for="paymentMethod01">Cash On Delivery</label>
@@ -109,9 +144,13 @@
                   </li>
                   <li class="">
                     <input type="radio" value="3" name="payment_method" id="paymentMethod03" />
-                    <label for="paymentMethod03">Paypal <span class="error">Coming Soon</span></label>
+                    <label for="paymentMethod03"><span>Paypal </span><i class="fa-brands fa-cc-paypal" style="font-size: large;"></i></label>
                   </li>
+                  <small style="padding-left: 25px;"><label id="payment_method-error" class="error" for="payment_method"></label></small>
                 </ul>
+                <div class="email_container checkoutForm" style="padding: 0%;">
+
+                </div>
                 <a href="javascript:void(0)" class="placeOrderBTN ulinaBTN"><span>Place Order</span></a>
               </div>
             </div>

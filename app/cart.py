@@ -16,13 +16,13 @@ class Cart:
     def add(self, product, quantity=1,properties=[]):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id]=[{'quantity': quantity,'properties':properties}]
+            self.cart[product_id]=[{'quantity': quantity,'price': float(product.price),'properties':properties}]
         else:
             if any(x['properties'] == properties for x in self.cart[product_id]):
                 index=[i for i,x in enumerate(self.cart[product_id]) if x['properties'] == properties][0]
-                self.cart[product_id][index]={'quantity': quantity,'properties':properties}
+                self.cart[product_id][index]={'quantity': quantity,'price': float(product.price),'properties':properties}
             else:
-                self.cart[product_id].append({'quantity': quantity,'properties':properties})
+                self.cart[product_id].append({'quantity': quantity,'price': float(product.price),'properties':properties})
 
         self.save()
 

@@ -97,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Casablanca'
 
 USE_I18N = True
 
@@ -127,8 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
-import sys
-if len(sys.argv) >= 2 and sys.argv[1] == 'runserver': SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 
 # https://app.exchangerate-api.com/
 # piladav888@oniecan.com
