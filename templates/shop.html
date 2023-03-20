@@ -1,15 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load functions %}
 {% block content %}
-    {% if request.GET.category %}
-        {% include 'components/commun/page_banner.html' with title=request.GET.category|capitalize hint='Shop' %}
-    {% elif request.GET.tag %}
-        {% include 'components/commun/page_banner.html' with title=request.GET.tag|capitalize hint='Shop' %}
-    {% elif request.GET.q %}
-        {% include 'components/commun/page_banner.html' with title='Search Results' hint='Shop' %}
-    {% else %}
-        {% include 'components/commun/page_banner.html' with title='Our Shop' hint='Shop' %}
-    {% endif %}
+    {% include 'components/commun/page_banner.html' with title='Shop' hint='Shop' %}
     {% include 'components/products/products_panel.html' %}
     {% include 'components/commun/product_modal.html' %}
 {% endblock content %}

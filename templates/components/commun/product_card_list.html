@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load functions %}
 <div class="productItem02 clearfix"> 
   <div class="pi02Thumb"> 
@@ -18,7 +19,7 @@
           <span class="a{{product.get_statistics.1}}"></span>
         </div>
       </div>
-      <div class="ratingCounts">{{product.get_statistics.0}} Review{% if product.get_statistics.0 > 1 %}s{% endif %}</div>
+      <div class="ratingCounts">{{product.get_statistics.0}} {% if product.get_statistics.0 > 1 %}{% trans "Reviews" %} {% else %} {% trans "Review" %} {% endif %}</div>
     </div>
     <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
     <div class="pi01Price">

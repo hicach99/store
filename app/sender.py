@@ -1,6 +1,7 @@
 import requests
 from django.core.mail import EmailMultiAlternatives, get_connection
 from django.template.loader import render_to_string
+from asgiref.sync import sync_to_async
 
 connection = None
 def set_connection(config):
@@ -45,20 +46,19 @@ def order_to_html(order,config,request):
     message='Order Confirmed'
     html=render_to_string('email/order.html',{'config':config,'order':order},request=request)
     return subject,message,html
-def send_by_telegram(order,recivers:list[str]=[],config=None):
+async def send_by_telegram(order,recivers:list[str]=[],config=None):
     recivers.extend(config.get_telegram_recivers())
     message=order_to_message(order,config)
     bot_api = f'https://api.telegram.org/bot{config.telegram_bot_api}/sendMessage' if config else ' '
     for seciver in recivers:
         try:
-            requests.post(bot_api, json={'chat_id': seciver, 'text': message})
+            await sync_to_async(requests.post(bot_api, json={'chat_id': seciver, 'text': message}), thread_sensitive=False)
         except Exception as e:
             print(e)
-def send_by_mail(order,config=None,request=None):
+async def send_by_mail(order,config=None,request=None):
     bcc=config.get_email_recivers()
     subject, message, html_message=order_to_html(order,config,request)
     recivers=[order.email] if order.email else bcc
-    print(order.email, recivers, bcc)
     try:
         msg = EmailMultiAlternatives(
             subject=subject,
@@ -70,6 +70,6 @@ def send_by_mail(order,config=None,request=None):
         )
         msg.content_subtype = "html"
         msg.attach_alternative(html_message, "text/html")
-        msg.send()
+        await sync_to_async(msg.send(), thread_sensitive=False)
     except Exception as e:
         print(e)

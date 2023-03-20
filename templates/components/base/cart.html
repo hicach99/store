@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 {% load functions %}
 <a href="javascript:void(0);" class="cartIcon"><i class="fa-solid fa-shopping-cart"></i><span>{{ cart|length }}</span></a>
 <div class="cartWidgetArea">
@@ -27,12 +28,12 @@
       <span class="price">{{ cart.get_total_price|convert:request }}</span>
     </div>
     <div class="cartWidgetBTN clearfix">
-      <a class="cart" href="{% url 'cart' %}">View Cart</a>
-      <a class="checkout" href="{% url 'checkout' %}">Checkout</a>
+      <a class="cart" href="{% url 'cart' %}">{% trans "View Cart" %}</a>
+      <a class="checkout" href="{% url 'checkout' %}">{% trans "Checkout" %}</a>
     </div>
     {% endif %}
   {% else %}
-    <div class="cartWidgetProductEmpty">No products in the cart.</div>
+    <div class="cartWidgetProductEmpty">{% trans "No products in the cart." %}</div>
   {% endif %}
 </div>
 <script src="{% static 'js/cart.js' %}" defer></script>

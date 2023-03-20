@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.utils import translation
 import json
 import requests
 from django.shortcuts import render, redirect
@@ -8,8 +10,8 @@ from app.models import *
 from django.template.loader import render_to_string
 from django.urls.base import resolve, reverse
 from django.urls.exceptions import Resolver404
-from urllib.parse import unquote, urlparse
 from app.paypal import check_paypal_order, create_paypal_order
+from urllib.parse import urlparse
 from app.sender import send
 
 # Loading Configuration
@@ -41,6 +43,28 @@ def calculate_rates(request):
             request.session['rates']=d["conversion_rates"]
     except:
         request.session['rates']='hhhhh'
+def set_language(request, language):
+    for lang, _ in settings.LANGUAGES:
+        translation.activate(lang)
+        try:
+            view = resolve(urlparse(request.META.get("HTTP_REFERER")).path)
+        except Resolver404:
+            view = None
+        if view:
+            break
+    if view:
+        translation.activate(language)
+        args=view.args
+        print(view.kwargs)
+        kwargs=json.loads(unquote(str(view.kwargs).replace("'",'"')))
+        print(kwargs)
+        next_url = reverse(view.url_name, args=args, kwargs=kwargs)
+        response = HttpResponseRedirect(next_url)
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+    else:
+        response = HttpResponseRedirect("/")
+    return response
+
 def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)

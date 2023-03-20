@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <footer class="footer">
   <div class="container">
@@ -18,7 +19,7 @@
       </div>
       <div class="col-lg-3 col-md-6">
         <aside class="widget">
-          <h3 class="widgetTitle">Address</h3>
+          <h3 class="widgetTitle">{% trans "Address" %}</h3>
           <div class="addressContent">
             <div class="singleAddress">
               <i class="fa-solid fa-location-dot"></i>
@@ -37,13 +38,13 @@
       </div>
       <div class="col-lg-2 col-md-6">
         <aside class="widget">
-          <h3 class="widgetTitle">Useful Links</h3>
+          <h3 class="widgetTitle">{% trans "Useful Links" %}</h3>
           <ul>
             <li>
               <a href="javascript:void(0);">Shop Coupon</a>
             </li>
             <li>
-              <a href="about">About us</a>
+              <a href="about">{% trans "About us" %}</a>
             </li>
 
           </ul>
@@ -51,7 +52,7 @@
       </div>
       <div class="col-lg-3 col-md-6">
         <aside class="widget twoColMenu">
-          <h3 class="widgetTitle">Categories</h3>
+          <h3 class="widgetTitle">{% trans "Categories" %}</h3>
           <ul>
             {% for category in categories  %}
             <li>
@@ -94,15 +95,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="siteInfo">
-                    All rights reserved &nbsp;<a href="{% url 'main' %}">{{config.website_name}}</a>&nbsp;&nbsp;©&nbsp;&nbsp;{% now 'Y' %}
+                    {% trans "All rights reserved" %} &nbsp;<a href="{% url 'main' %}">{{config.website_name}}</a>&nbsp;&nbsp;©&nbsp;&nbsp;{% now 'Y' %}
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="footerNav">
                     <ul>
-                        <li><a href="javascript:void(0);">Terms &amp; Condition</a></li>
-                        <li><a href="javascript:void(0);">Privacy Policy</a></li>
-                        <li><a href="javascript:void(0);">Legal</a></li>
+                        <li><a href="javascript:void(0);">{% trans "Terms &amp; Condition" %}</a></li>
+                        <li><a href="javascript:void(0);">{% trans "Privacy Policy" %}</a></li>
+                        <li><a href="javascript:void(0);">{% trans "Legal" %}</a></li>
                     </ul>
                 </div>
             </div>

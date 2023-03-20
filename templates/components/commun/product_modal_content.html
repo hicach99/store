@@ -1,5 +1,6 @@
 {% load static %}
 {% load functions %}
+{% load i18n %}
 {% if product %}
   <div class="row">
     <div class="col-lg-6">
@@ -70,7 +71,7 @@
             <input type="number" class="carqty input-text qty text" name="quantity" id="quantity" min="1" value="1" />
             <button type="button" name="btnPlus" id="btnPlus" class="qtyBtn btnPlus">+</button>
           </div>
-          <button type="submit" class="ulinaBTN addingBTN"><span>Add to Cart</span></button>
+          <button type="submit" class="ulinaBTN addingBTN"><span>{% trans "Add to Cart" %}</span></button>
         </div>
         <div class="pcMeta">
           {% comment %} <p>

@@ -1,8 +1,9 @@
+{% load i18n %}
 {% load functions %}
 {% load static %}
 <script>
-  const req='<span style="padding-left: 25px;"> <small>(Required) Fill the blank to recieve reciept</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="Email" />';
-  const op='<span style="padding-left: 25px;"> <small>(optional) Fill it if you want to recieve reciept in your inbox</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="Email (Not Required)" />';
+  const req='<span style="padding-left: 25px;"> <small>(Required) {% trans "Fill the blank to recieve reciept" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="{% trans "Email" %}" />';
+  const op='<span style="padding-left: 25px;"> <small>(optional) {% trans "Fill it if you want to recieve reciept in your inbox" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" />';
 </script>
 <section class="checkoutPage">
   <form action="{% url 'checkout_process' %}" id="checkout_form" method="post">

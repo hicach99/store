@@ -1,5 +1,6 @@
 {% load static %}
 {% load functions %}
+{% load i18n %}
 {% if product %}
   <div class="row">
     <div class="col-lg-6">
@@ -32,7 +33,7 @@
         <div class="pcVariations">
         {% if product.properties.all|filterby:"color" %}
           <div class="pcVariation">
-            <span>Color</span>
+            <span>{% trans "Color" %}</span>
             <div class="pcvContainer">
                 {% for property in product.properties.all|filterby:"color" %}
                   <style>
@@ -51,7 +52,7 @@
         {% if product.properties.all|filterby:"size" %}
 
             <div class="pcVariation pcv2">
-              <span>Size</span>
+              <span>{% trans "Size" %}</span>
               <div class="pcvContainer">
                   {% for property in product.properties.all|filterby:"size" %}
                     <div class="pswItem">
@@ -70,7 +71,7 @@
             <input type="number" class="carqty input-text qty text" name="quantity" id="quantity" min="1" value="1" />
             <button type="button" name="btnPlus" id="btnPlus" class="qtyBtn btnPlus">+</button>
           </div>
-          <button type="submit" class="ulinaBTN addingBTN"><span>Add to Cart</span></button>
+          <button type="submit" class="ulinaBTN addingBTN"><span>{% trans "Add to Cart" %}</span></button>
         </div>
         <div class="pcMeta">
           {% comment %} <p>
@@ -79,14 +80,14 @@
           </p> {% endcomment %}
           {% if product.tags.all %}
           <p class="pcmTags">
-            <span>Tags&nbsp;</span>
+            <span>{% trans "Tags" %}&nbsp;</span>
             {% for tag in product.tags.all %}
                 <a href="{% url 'shop' %}?tag={{tag.slug}}">{{tag.name|capitalize}}</a>&nbsp;
             {% endfor %}
           </p>
           {% endif %}
           <p class="pcmSocial">
-            <span>Share</span>
+            <span>{% trans "Share" %}</span>
             <a class="fac" href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
             <a class="twi" href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
             <a class="lin" href="javascript:void(0);"><i class="fa-brands fa-linkedin-in"></i></a>

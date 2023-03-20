@@ -1,6 +1,8 @@
 from django.template import Library
 import requests
+from django.utils.translation import get_language
 from app.models import Configuration, Property,Currency
+from setup import settings
 register = Library()
 
 try:
@@ -44,6 +46,12 @@ def convert(amount:float,request)-> str:
         result = symbol+"%.2f" % result
     return result
 
+@register.filter
+def get_languages(i):
+    return [l[0] for l in settings.LANGUAGES]
+@register.filter
+def get_current_language(i):
+    return get_language()
 @register.filter
 def instagram_feed(n):
     instagram_access_token = '2406057572895918|ENcC-8n8F4ntLZw4Lgpj5g3RVMc'

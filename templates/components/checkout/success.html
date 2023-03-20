@@ -1,9 +1,10 @@
+{% load i18n %}
 <table class="p-5" style="margin: 50px auto;">
     <tr>
         <td>
             <center>
-                <div class="bg-success text-white" style="padding: 20px;border-radius: 20px;">Thank you for shopping with us, We’ve received your order.
-                    {% if 'paied' in request.GET and request.GET.paied == 'true' %} <br>Check you email inbox we have sent you a reciept.{% endif %}
+                <div class="bg-success text-white" style="padding: 20px;border-radius: 20px;">{% trans "Thank you for shopping with us, We've received your order." %}
+                    {% if 'paied' in request.GET and request.GET.paied == 'true' %} <br>{% trans "Check you email inbox we have sent you a reciept." %}{% endif %}
                 </div>
             </center>
         </td>
@@ -12,7 +13,7 @@
         <td>
             <center>
                 <div style="padding: 20px;border-radius: 20px;">
-                    <a class="ulinaBTN text-white" style="width: 300px;" href="{% url 'shop' %}"><span>Check Other Products</span></a>
+                    <a class="ulinaBTN text-white" style="width: 300px;" href="{% url 'shop' %}"><span>{% trans "Check Other Products" %}</span></a>
                 </div>
             </center>
         </td>

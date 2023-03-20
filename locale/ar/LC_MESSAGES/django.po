@@ -1,0 +1,374 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-20 13:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\setup\settings.py:114
+msgid "French"
+msgstr ""
+
+#: .\setup\settings.py:115
+msgid "English"
+msgstr "الإنجليزية"
+
+#: .\setup\settings.py:116
+msgid "Arabic"
+msgstr "العربية"
+
+#: .\templates\components\base\cart.html:31
+msgid "View Cart"
+msgstr "عرض العربة"
+
+#: .\templates\components\base\cart.html:32
+msgid "Checkout"
+msgstr "الدفع"
+
+#: .\templates\components\base\cart.html:36
+msgid "No products in the cart."
+msgstr "لا توجد منتجات في العربة."
+
+#: .\templates\components\base\footer.html:22
+msgid "Address"
+msgstr "العنوان"
+
+#: .\templates\components\base\footer.html:41
+msgid "Useful Links"
+msgstr "روابط مفيدة"
+
+#: .\templates\components\base\footer.html:47
+msgid "About us"
+msgstr "حولنا"
+
+#: .\templates\components\base\footer.html:55
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: .\templates\components\base\footer.html:98
+msgid "All rights reserved"
+msgstr "كل الحقوق محفوظة"
+
+#: .\templates\components\base\footer.html:104
+#, fuzzy
+#| msgid "Terms & Condition"
+msgid "Terms &amp; Condition"
+msgstr "الشروط والأحكام"
+
+#: .\templates\components\base\footer.html:105
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: .\templates\components\base\footer.html:106
+msgid "Legal"
+msgstr "قانوني"
+
+#: .\templates\components\base\header.html:15
+#, fuzzy
+#| msgid "MenuHome"
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: .\templates\components\base\header.html:18
+msgid "Shop"
+msgstr "المتجر"
+
+#: .\templates\components\base\header.html:27
+msgid "search"
+msgstr "بحث"
+
+#: .\templates\components\base\header.html:45
+#, fuzzy
+#| msgid "MenuHome"
+msgid "Menu"
+msgstr "الصفحة الرئيسية"
+
+#: .\templates\components\base\header.html:112
+msgid "Search by title, Keyword"
+msgstr "البحث بالعنوان، الكلمة المفتاحية"
+
+#: .\templates\components\cart\cart_content.html:8
+msgid "Your Cart Items"
+msgstr "العناصر الموجودة في سلة التسوق"
+
+#: .\templates\components\cart\cart_content.html:15
+msgid "Item Name"
+msgstr "اسم العنصر"
+
+#: .\templates\components\cart\cart_content.html:17
+msgid "Price"
+msgstr "السعر"
+
+#: .\templates\components\cart\cart_content.html:18
+msgid "Quantity"
+msgstr "الكمية"
+
+#: .\templates\components\cart\cart_content.html:19
+#: .\templates\email\order.html:338
+msgid "Total"
+msgstr "المجموع"
+
+#: .\templates\components\cart\cart_content.html:69
+msgid "Continue Shopping"
+msgstr "متابعة التسوق"
+
+#: .\templates\components\cart\cart_content.html:73
+msgid "Update Cart"
+msgstr "تحديث السلة"
+
+#: .\templates\components\cart\cart_content.html:74
+msgid "Clear All"
+msgstr "مسح الكل"
+
+#: .\templates\components\cart\cart_content.html:84
+msgid "Have A Coupon Code?"
+msgstr "هل لديك رمز كوبون؟"
+
+#: .\templates\components\cart\cart_content.html:86
+msgid "Apply Code"
+msgstr "تطبيق الرمز"
+
+#: .\templates\components\cart\cart_content.html:104
+msgid "Coupon Discount"
+msgstr "خصم الكوبون"
+
+#: .\templates\components\cart\cart_content.html:112
+msgid "Shipping"
+msgstr "الشحن"
+
+#: .\templates\components\cart\cart_content.html:115
+msgid "Free"
+msgstr "مجاني"
+
+#: .\templates\components\cart\cart_content.html:120
+msgid "Grand Total"
+msgstr "المجموع الكلي"
+
+#: .\templates\components\cart\cart_content.html:129
+msgid "Proceed to checkout"
+msgstr "الانتقال إلى الدفع"
+
+#: .\templates\components\checkout\checkout_form.html:5
+msgid "Fill the blank to recieve reciept"
+msgstr "املأ الفراغ لتلقي الإيصال"
+
+#: .\templates\components\checkout\checkout_form.html:5
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: .\templates\components\checkout\checkout_form.html:6
+msgid "Fill it if you want to recieve reciept in your inbox"
+msgstr "املأه إذا كنت ترغب في تلقي الإيصال في صندوق الوارد الخاص بك"
+
+#: .\templates\components\checkout\checkout_form.html:6
+msgid "Email (Not Required)"
+msgstr "البريد الإلكتروني (غير مطلوب)"
+
+#: .\templates\components\checkout\echec.html:6
+msgid "Unfortunately, we were unable to process your payment"
+msgstr "عذراً، لم نتمكن من معالجة دفعتك"
+
+#: .\templates\components\checkout\echec.html:14
+msgid "Try Again"
+msgstr "حاول مرة أخرى"
+
+#: .\templates\components\checkout\success.html:6
+msgid "Thank you for shopping with us, We've received your order."
+msgstr "شكرًا لتسوقك معنا، لقد تلقينا طلبك."
+
+#: .\templates\components\checkout\success.html:7
+msgid "Check you email inbox we have sent you a reciept."
+msgstr "تحقق من صندوق بريدك الإلكتروني حيث أرسلنا لك إيصالًا."
+
+#: .\templates\components\checkout\success.html:16
+msgid "Check Other Products"
+msgstr "تحقق من المنتجات الأخرى"
+
+#: .\templates\components\commun\product_card.html:22
+#: .\templates\components\commun\product_card_list.html:22
+#: .\templates\components\product\product_tab.html:56
+msgid "Reviews"
+msgstr "التقييمات"
+
+#: .\templates\components\commun\product_card.html:22
+#: .\templates\components\commun\product_card_list.html:22
+#: .\templates\components\product\product_tab.html:56
+msgid "Review"
+msgstr "تقييم"
+
+#: .\templates\components\commun\product_modal_content.html:74
+#: .\templates\components\product\product_content.html:74
+msgid "Add to Cart"
+msgstr "أضف إلى السلة"
+
+#: .\templates\components\index\categories.html:7
+msgid "Shop By Category"
+msgstr "تسوق حسب الفئة"
+
+#: .\templates\components\index\categories.html:8
+msgid "Our categories list"
+msgstr "قائمة فئاتنا"
+
+#: .\templates\components\index\instagram.html:7
+msgid "Follow Us in Instagram"
+msgstr "تابعنا على إنستغرام"
+
+#: .\templates\components\index\popular.html:7
+msgid "Popular Products"
+msgstr "المنتجات الشائعة"
+
+#: .\templates\components\index\popular.html:8
+msgid "Showing our popular products"
+msgstr "عرض المنتجات الشائعة لدينا"
+
+#: .\templates\components\product\product_content.html:36
+msgid "Color"
+msgstr "اللون"
+
+#: .\templates\components\product\product_content.html:55
+msgid "Size"
+msgstr "الحجم"
+
+#: .\templates\components\product\product_content.html:84
+msgid "Tags"
+msgstr "العلامات"
+
+#: .\templates\components\product\product_content.html:91
+msgid "Share"
+msgstr "مشاركة"
+
+#: .\templates\components\product\product_tab.html:26
+msgid "Product Details"
+msgstr "تفاصيل المنتج"
+
+#: .\templates\components\product\product_tab.html:37
+msgid "Additional Information"
+msgstr "معلومات إضافية"
+
+#: .\templates\components\product\product_tab.html:73
+msgid "on"
+msgstr "على"
+
+#: .\templates\components\product\product_tab.html:83
+msgid "Add A Review"
+msgstr "أضف تقييمًا"
+
+#: .\templates\components\product\product_tab.html:88
+msgid "Your Rating"
+msgstr "تقييمك"
+
+#: .\templates\components\product\product_tab.html:95
+msgid "Review title"
+msgstr "عنوان التقييم"
+
+#: .\templates\components\product\product_tab.html:98
+msgid "Write your review here"
+msgstr "اكتب تقييمك هنا"
+
+#: .\templates\components\product\product_tab.html:101
+msgid "Your name"
+msgstr "اسمك"
+
+#: .\templates\components\product\product_tab.html:104
+msgid "Your email"
+msgstr "بريدك الإلكتروني"
+
+#: .\templates\components\product\product_tab.html:107
+msgid "Submit Now"
+msgstr "أرسل الآن"
+
+#: .\templates\components\products\products_panel.html:7
+msgid "Showing"
+msgstr "يعرض"
+
+#: .\templates\components\products\products_panel.html:7
+msgid "of"
+msgstr "من"
+
+#: .\templates\components\products\products_panel.html:7
+msgid "items"
+msgstr "العناصر"
+
+#: .\templates\components\products\products_panel.html:11
+msgid "tag"
+msgstr "وسم"
+
+#: .\templates\components\products\products_panel.html:12
+msgid "q"
+msgstr "بحث"
+
+#: .\templates\components\products\products_panel.html:13
+msgid "All"
+msgstr "الكل"
+
+#: .\templates\components\products\products_panel.html:21
+msgid "Sort By"
+msgstr "ترتيب حسب"
+
+#: .\templates\components\products\products_panel.html:23
+#: .\templates\components\products\products_panel.html:32
+#: .\templates\components\products\products_panel.html:39
+msgid "Latest"
+msgstr "الأحدث"
+
+#: .\templates\components\products\products_panel.html:24
+#: .\templates\components\products\products_panel.html:33
+#: .\templates\components\products\products_panel.html:40
+msgid "Oldest"
+msgstr "الأقدم"
+
+#: .\templates\components\products\products_panel.html:25
+#: .\templates\components\products\products_panel.html:34
+#: .\templates\components\products\products_panel.html:41
+msgid "High to low"
+msgstr "السعر: الأعلى إلى الأقل"
+
+#: .\templates\components\products\products_panel.html:26
+#: .\templates\components\products\products_panel.html:35
+#: .\templates\components\products\products_panel.html:42
+msgid "Low to high"
+msgstr "السعر: الأقل إلى الأعلى"
+
+#: .\templates\components\products\products_panel.html:27
+#: .\templates\components\products\products_panel.html:36
+#: .\templates\components\products\products_panel.html:43
+msgid "Top rated"
+msgstr "الأعلى تقييمًا"
+
+#: .\templates\components\products\products_panel.html:74
+msgid "No products found"
+msgstr "لم يتم العثور على منتجات"
+
+#: .\templates\components\products\products_panel.html:93
+msgid "Load More"
+msgstr "تحميل المزيد"
+
+#: .\templates\email\order.html:8
+msgid "Email Receipt"
+msgstr "إيصال بالبريد الإلكتروني"
+
+#: .\templates\email\order.html:309
+msgid "Thanks, for using"
+msgstr "شكراً لاستخدامك"
+
+#: .\templates\email\order.html:319
+msgid "Invoice #"
+msgstr "رقم الفاتورة #"
+
+#: .\templates\email\order.html:363
+msgid "Questions? Email"
+msgstr "أسئلة؟ البريد الإلكتروني"

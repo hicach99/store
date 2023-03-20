@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'setup.middleware.DefaultSessionMiddleware',
 ]
 
@@ -95,20 +96,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+
+
 LANGUAGE_CODE = 'fr'
 
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 TIME_ZONE = 'Africa/Casablanca'
 
-USE_I18N = True
-
-USE_TZ = True
-
-LANGUAGES = [
-    ('fr', 'French'),
-    ('en', 'English'),
-    ('ar', 'Arabic'),
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
 ]
 
+gettext = lambda s: s
+LANGUAGES = (
+    ('fr', gettext('French')),
+    ('en', gettext('English')),
+    ('ar', gettext('Arabic')),
+)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -133,6 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
 SECURE_SSL_REDIRECT = False
+
+X_FRAME_OPTIONS = 'ALLOW'
 
 
 # https://app.exchangerate-api.com/

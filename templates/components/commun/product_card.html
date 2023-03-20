@@ -1,6 +1,7 @@
 {% load functions %}
+{% load i18n %}
 <div class="productItem01">
-  <div class="pi01Thumb">
+<div class="pi01Thumb">
     <img src="{{product.get_images.0.image.url}}" alt="{{product.name}}" />
     <img src="{{product.get_images.1.image.url}}" alt="{{product.name}}" />
     <div class="pi01Actions">
@@ -18,7 +19,7 @@
           <span class="a{{product.get_statistics.1}}"></span>
         </div> 
       </div>
-      <div class="ratingCounts">{{product.get_statistics.0}} Review{% if product.get_statistics.0 > 1 %}s{% endif %}</div>
+      <div class="ratingCounts">{{product.get_statistics.0}} {% if product.get_statistics.0 > 1 %}{% trans "Reviews" %} {% else %} {% trans "Review" %} {% endif %}</div>
     </div>
     <h3><a href="{% url 'product_details' product.slug %}">{{product.name}}</a></h3>
     <div class="pi01Price">

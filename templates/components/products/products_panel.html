@@ -1,15 +1,16 @@
 
+{% load i18n %}
 <section class="shopPageSection">
     <div class="container">
         <div class="row shopAccessRow">
             <div class="col-sm-6 col-xl-4">
-                <div class="productCount">Showing <strong>{% if products %}1{% else %}0{% endif %} - <span class="visibleItems">16</span></strong> of <strong class="itemsLength">{{products|length}}</strong> items</div>
+                <div class="productCount">{% trans "Showing" %} <strong>{% if products %}1{% else %}0{% endif %} - <span class="visibleItems">16</span></strong> {% trans "of" %} <strong class="itemsLength">{{products|length}}</strong> {% trans "items" %}</div>
             </div>
             <div class="d-none col-lg-4 col-xl-4 d-xl-flex">
                 <ul class="filterUL">
-                    {% if request.GET.tag %}<li class="active"><a href="{% url 'shop' %}?tag={{request.GET.tag}}">tag: {{request.GET.tag}}</a></li>{% endif %}   
-                    {% if request.GET.q %}<li class="active"><a href="{% url 'shop' %}?q={{request.GET.q}}">q: {{request.GET.q|slice:"0:6"}}...</a></li>{% endif %}   
-                    <li {% if not request.GET.category and not request.GET.tag and not request.GET.q %}class="active"{% endif %}><a href="{% url 'shop' %}">All</a> </li>       
+                    {% if request.GET.tag %}<li class="active"><a href="{% url 'shop' %}?tag={{request.GET.tag}}">{% trans "tag" %}: {{request.GET.tag}}</a></li>{% endif %}   
+                    {% if request.GET.q %}<li class="active"><a href="{% url 'shop' %}?q={{request.GET.q}}">{% trans "q" %}: {{request.GET.q|slice:"0:6"}}...</a></li>{% endif %}   
+                    <li {% if not request.GET.category and not request.GET.tag and not request.GET.q %}class="active"{% endif %}><a href="{% url 'shop' %}">{% trans "All" %}</a> </li>       
                     {% for category in categories %}<li {% if request.GET.category == category.slug %}class="active"{% endif %}><a href="{% url 'shop' %}?category={{category.slug}}">{{category.name}}</a></li>{% endfor %}
                 </ul>
             </div>
@@ -17,29 +18,29 @@
                 <div class="shopAccessBar">
                     <div class="sortNav">
                         <form method="post" action="#">
-                            <label>Sort By</label>
+                            <label>{% trans "Sort By" %}</label>
                             <select name="productFilter" class="productFilter" style="display: none;">
-                                <option value="">Latest</option>
-                                <option value="oldest">Oldest</option>
-                                <option value="price-desc">High to low</option>
-                                <option value="price">Low to high</option>
-                                <option value="rating">Top rated</option>
+                                <option value="">{% trans "Latest" %}</option>
+                                <option value="oldest">{% trans "Oldest" %}</option>
+                                <option value="price-desc">{% trans "High to low" %}</option>
+                                <option value="price">{% trans "Low to high" %}</option>
+                                <option value="rating">{% trans "Top rated" %}</option>
 
                             </select>
                             <div class="nice-select" tabindex="0">
                                 <span class="current">
-                                    {% if not request.GET.orderby %}Latest{% endif %}
-                                    {% if request.GET.orderby == 'oldest' %}Oldest{% endif %}
-                                    {% if request.GET.orderby == 'price-desc' %}High to low{% endif %}
-                                    {% if request.GET.orderby == 'price' %}Low to high{% endif %}
-                                    {% if request.GET.orderby == 'rating' %}Top rated{% endif %}
+                                    {% if not request.GET.orderby %}{% trans "Latest" %}{% endif %}
+                                    {% if request.GET.orderby == 'oldest' %}{% trans "Oldest" %}{% endif %}
+                                    {% if request.GET.orderby == 'price-desc' %}{% trans "High to low" %}{% endif %}
+                                    {% if request.GET.orderby == 'price' %}{% trans "Low to high" %}{% endif %}
+                                    {% if request.GET.orderby == 'rating' %}{% trans "Top rated" %}{% endif %}
                                 </span>
                                 <ul class="list">
-                                    <li data-value="" class="option {% if not request.GET.orderby %}selected{% endif %}">Latest</li>
-                                    <li data-value="oldest" class="option {% if request.GET.orderby == 'oldest' %}selected{% endif %}">Oldest</li>
-                                    <li data-value="price-desc" class="option {% if request.GET.orderby == 'price-desc' %}selected{% endif %}">High to low</li>
-                                    <li data-value="price" class="option {% if request.GET.orderby == 'price' %}selected{% endif %}" >Low to high</li>
-                                    <li data-value="rating" class="option {% if request.GET.orderby == 'rating' %}selected{% endif %}">Top rated</li>
+                                    <li data-value="" class="option {% if not request.GET.orderby %}selected{% endif %}">{% trans "Latest" %}</li>
+                                    <li data-value="oldest" class="option {% if request.GET.orderby == 'oldest' %}selected{% endif %}">{% trans "Oldest" %}</li>
+                                    <li data-value="price-desc" class="option {% if request.GET.orderby == 'price-desc' %}selected{% endif %}">{% trans "High to low" %}</li>
+                                    <li data-value="price" class="option {% if request.GET.orderby == 'price' %}selected{% endif %}" >{% trans "Low to high" %}</li>
+                                    <li data-value="rating" class="option {% if request.GET.orderby == 'rating' %}selected{% endif %}">{% trans "Top rated" %}</li>
                                 </ul>
                             </div>
                         </form>
@@ -70,7 +71,7 @@
                         {% else %}
                         <div class="row">
                             <div class="col text-center">
-                                No products found
+                                {% trans "No products found" %}
                             </div>
                         </div>
                         {% endif %}
@@ -89,7 +90,7 @@
         </div>
         <div class="row shopPaginationRow">
             <div class="col-lg-12 text-center">
-                <a href="javascript:void(0);" class="ulinaBTN2 shopLoadMore">Load More</a>
+                <a href="javascript:void(0);" class="ulinaBTN2 shopLoadMore">{% trans "Load More" %}</a>
             </div>
         </div>
     </div>
