@@ -1,9 +1,9 @@
 import json
-import os
 import requests
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from app.cart import Cart
+from app.cmi import create_cmi_order_v1
 from app.models import *
 from django.template.loader import render_to_string
 from django.urls.base import resolve, reverse
@@ -151,8 +151,15 @@ def checkout_process(request):
             if order: 
                 send(order,[],config=config,request=request)
                 success=True
-    elif 'info' in request.session:
-        if request.session['info']['payment_method']=='paypal'and request.method == 'GET' and request.session['info']['paypal_order_id'] == request.GET['token'] and check_paypal_order(request.session['info']['paypal_order_id'],config):
+    elif request.method == 'GET' and 'info' in request.session:
+        if request.session['info']['payment_method']=='cmi':
+            cart = Cart(request)
+            order=Order.create_order(request.session['info'],cart)
+            if order: 
+                send(order,[],config=config,request=request)
+                del request.session['info']
+                success=True
+        elif request.session['info']['payment_method']=='paypal' and check_paypal_order(request.session['info']['paypal_order_id'],config):
             cart = Cart(request)
             order=Order.create_order(request.session['info'],cart)
             if order: 
@@ -232,23 +239,32 @@ def api_add_cart(request):
 def api_create_order(request):
     try:
         if request.method.upper()=='POST':
+            url=None
             cart = Cart(request)
-            paypal_order_id ,url = create_paypal_order(request,cart,config)
             data = json.loads(request.body)
-            if url and data['payment_method'] == '3':
-                payment_method='paypal'
-                request.session['info'] = {
-                    'name':str(data['name']),
-                    'phone':str(data['phone']),
-                    'email':str(data['email']),
-                    'address':str(data['address']),
-                    'city':str(data['city']),
-                    'payment_method':str(payment_method),
-                    'paypal_order_id':str(paypal_order_id),
-                }
-                return JsonResponse({'status':'ok','url':url}, safe=False)
+            request.session['info'] = {
+                'name':str(data['name']),
+                'phone':str(data['phone']),
+                'email':str(data['email']),
+                'address':str(data['address']),
+                'city':str(data['city']),
+            }
+            if data['payment_method'] == '2':
+                cmi_order_id ,url =create_cmi_order_v1(request,cart,config)
+                if url:
+                    request.session['info']['payment_method']='cmi'
+                    request.session['info']['cmi_order_id']=cmi_order_id
+            elif data['payment_method'] == '3':
+                paypal_order_id ,url = create_paypal_order(request,cart,config)
+                if url:
+                    request.session['info']['payment_method']='paypal'
+                    request.session['info']['paypal_order_id']=paypal_order_id
+            if url: return JsonResponse({'status':'ok','url':url}, safe=False)
     except Exception as e:
             return JsonResponse({'status':'error','message':e},safe=False)
     return JsonResponse({'status':'error','message':'Something went wrong'},safe=False)
 def test(request):
-    return HttpResponse(request.get_host()+reverse('checkout_process'))
+    return render(
+        request,
+        'test.html'
+    )

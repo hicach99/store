@@ -3,12 +3,6 @@
     {% block extrahead %}
         {{ block.super }}
         <script type="text/javascript">
-            window.onload = function() {
-                var restartLink = document.createElement('a');
-                restartLink.href = "{% url 'restart' %}";
-                restartLink.innerHTML = "Restart Application";
-                var navBar = document.getElementById('header');
-                navBar.appendChild(restartLink);
-            };
+
         </script>
     {% endblock %}

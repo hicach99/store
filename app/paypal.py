@@ -46,7 +46,6 @@ def create_paypal_order(request,cart,config):
     response_json = json.loads(response.text)
     if 'id' in response_json:
         order_id = response_json['id']
-        request.session['paypal_order_id']=order_id
         return order_id, next(link['href'] for link in response.json()['links'] if link['rel'] == 'approve')
     return None, None
 

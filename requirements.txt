@@ -1,4 +1,5 @@
+requests
+hashlib
 Django
 Pillow
 django_smtp_ssl
-requests

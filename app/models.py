@@ -57,6 +57,10 @@ class Configuration(models.Model):
     paypal_public_key = models.CharField(max_length=512,blank=True)
     paypal_secret_key = models.CharField(max_length=512,blank=True)
     paypal_sandbox = models.BooleanField(default=False)
+    # paypal credentials 
+    cmi_merchant_id = models.CharField(max_length=512,blank=True)
+    cmi_secret_key = models.CharField(max_length=512,blank=True)
+    cmi_sandbox = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.website_name
     def get_telegram_recivers(self):

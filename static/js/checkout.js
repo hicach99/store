@@ -52,7 +52,7 @@ $().ready(function() {
         },
     });
     jQuery.validator.addMethod("filter", function(value, element) {
-        return (value=='1')||(value=='3')//||(value=='2');
+        return (value=='1')||(value=='2')||(value=='3');
     }, "invalid payment method");
     jQuery.validator.addMethod("email_check", function(value, element) {
         return value.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -85,9 +85,7 @@ $().ready(function() {
                 case '1':
                     $("#checkout_form").submit();
                     break;
-                case '2':
-                    break;
-                case '3':
+                case '2':case '3':
                     const formDataArray = $("#checkout_form").serializeArray();
                     const formDataObject = formDataArray.reduce((acc, curr) => {
                         acc[curr.name] = curr.value;

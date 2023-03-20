@@ -1,4 +1,5 @@
 from django.template import Library
+import requests
 from app.models import Configuration, Property,Currency
 register = Library()
 
@@ -42,3 +43,13 @@ def convert(amount:float,request)-> str:
     else:
         result = symbol+"%.2f" % result
     return result
+
+@register.filter
+def instagram_feed(n):
+    instagram_access_token = '2406057572895918|ENcC-8n8F4ntLZw4Lgpj5g3RVMc'
+    api_url = f'https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url&access_token={instagram_access_token}&limit=10'
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()['data']
+        return [post['media_url'] for post in data]
+    return  response.content

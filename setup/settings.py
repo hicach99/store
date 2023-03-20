@@ -95,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Africa/Casablanca'
 
@@ -103,6 +103,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('fr', 'French'),
+    ('en', 'English'),
+    ('ar', 'Arabic'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -127,7 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
+
 
 # https://app.exchangerate-api.com/
 # piladav888@oniecan.com

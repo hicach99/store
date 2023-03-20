@@ -1,4 +1,6 @@
-from django.urls import path
+from django.views.static import serve
+from django.conf import settings
+from django.urls import path, re_path
 from app.views import *
 urlpatterns = [
     path('', main,name='main'),
@@ -20,4 +22,6 @@ urlpatterns = [
     path('api/cart/add', api_add_cart,name='api_add_cart'),
     path('api/order/create', api_create_order,name='api_create_order'),
     path('test', test,name='test'),
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
