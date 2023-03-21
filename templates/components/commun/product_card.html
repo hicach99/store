@@ -36,8 +36,8 @@
               }
             </style>
             <div class="pi01VCItem">
-              <input checked="" type="radio" name="color" value="{{property.id}}" id="color_{{product.id}}_{{property.name}}" />
-              <label class="{{property.name}}" for="color_{{product.id}}_{{property.name}}"></label>
+              <input checked="" type="radio" name="color" value="{{property.id}}" id="color_{{product.id}}_{{property.name_en}}" />
+              <label class="{{property.name_en}}" for="color_{{product.id}}_{{property.name_en}}"></label>
             </div>
         {% endfor %}
       </div>
@@ -46,8 +46,8 @@
       <div class="pi01VSize">
         {% for property in product.properties.all|filterby:"size" %}
             <div class="pi01VSItem">
-              <input type="radio" name="size" value="{{property.id}}" id="size_{{product.id}}_{{property.name}}" />
-              <label for="size_{{product.id}}_{{property.name}}">{{property.name}}</label>
+              <input type="radio" name="size" value="{{property.id}}" id="size_{{product.id}}_{{property.name_en}}" />
+              <label for="size_{{product.id}}_{{property.name_en}}">{{property.name}}</label>
           </div>
         {% endfor %}
       </div>

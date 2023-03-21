@@ -80,13 +80,12 @@ def google_callback(request):
     credentials = flow.credentials
     email = None
     try:
-        id_token = credentials.id_token
         userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo'
         headers = {'Authorization': f'Bearer {credentials.token}'}
         userinfo_response = requests.get(userinfo_endpoint, headers=headers)
         email = userinfo_response.json()['email']
     except Exception as e:
-        return JsonResponse({id_token:userinfo_response.json()})
+        return JsonResponse(e)
     if email:
         try:
             customer=Customer.objects.create(email=email)
@@ -102,13 +101,29 @@ def google_callback(request):
             "scopes": credentials.scopes,
             "email": email,
         }
-        return JsonResponse(request.session["google_auth_credentials"])
+        return redirect('dashboard')
     message=None
     try:
         pass
     except Exception as e:
         message=e
-    return HttpResponse(message)
+    return redirect('main')
+def dashboard(request):
+    customer=login_check(request)
+    if customer:
+        cart = Cart(request)
+        categories=Category.get_all()
+        return render(
+            request,
+            'dashboard.html',
+            {
+                'config':config,
+                'cart':cart,
+                'categories':categories,
+                'customer':customer,
+            }
+        )
+    return redirect('main')
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
     try:

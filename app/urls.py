@@ -5,6 +5,7 @@ urlpatterns = [
     path('', main,name='main'),
     path('auth/google/login/', google_login, name='google_login'),
     path('auth/google/callback/', google_callback, name='google_callback'),
+    path('customer/dashboard/', dashboard, name='dashboard'),
     path('product/<slug:slug>', product,name='product_details'),
     path('shop/', products,name='shop'),
     path('cart/', cart,name='cart'),

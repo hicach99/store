@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load functions %}
+    {% block content %}
+        {% if 0|get_current_language == 'fr' %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='tableau de bord' %}
+        {% elif 0|get_current_language == 'ar' %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='لوحة تحكم' %}
+        {% else %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='dashboard' %}
+        {% endif %}
+        {% include 'components/dashboard/dashboard_content.html' %}
+    {% endblock content %}
