@@ -75,7 +75,7 @@ def google_callback(request):
                     "scope": ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
                 }
             },
-            scopes=["openid", "email", "profile"],
+            scopes=["openid", 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
             redirect_uri = redirect_uri,
         )
         flow.fetch_token(
