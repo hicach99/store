@@ -126,9 +126,9 @@ def google_callback(request):
                 "scopes": credentials.scopes,
             }
             return render(request,'test.html')
-    except:
-        pass
-    return redirect('main')
+    except Exception as e:
+        message=e
+    return HttpResponse(message)
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
     try:
