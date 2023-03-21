@@ -23,7 +23,7 @@ except:
     config=None
 
 # google authentification
-scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+scopes=['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
 def google_login(request):
     redirect_uri='https://'+request.get_host()+reverse('google_callback')
     flow = Flow.from_client_config(
@@ -42,10 +42,7 @@ def google_login(request):
         scopes=scopes
     )
 
-    authorization_url, state = flow.authorization_url(
-        access_type='offline',
-        include_granted_scopes='true',
-    )
+    authorization_url, state = flow.authorization_url(access_type='offline', include_granted_scopes='true')
     request.session['google_auth_state'] = state
     return redirect(authorization_url)
 def login_check(request):
@@ -81,16 +78,26 @@ def google_callback(request):
         authorization_response=request.build_absolute_uri(),
     )
     credentials = flow.credentials
-    
-    email = True
+    email = None
+    try:
+        response = requests.get(
+            'https://api.example.com/user',
+            headers={'Authorization': f'Bearer {credentials.token}'}
+        )
+        if response.ok:
+            user_data = response.json()
+            email = user_data.get('email')
+    except Exception as e:
+        print(f"An error occurred: {e}")
     if email:
-        # try:
-        #     customer=Customer.objects.get(email=email)
-        # except:
-        #     customer=Customer.objects.create(email=email)
-        #     customer.save()
+        try:
+            customer=Customer.objects.get(email=email)
+        except:
+            customer=Customer.objects.create(email=email)
+            customer.save()
         request.session["google_auth_credentials"] = {
             "token": credentials.token,
+            "email": email,
             "refresh_token": credentials.refresh_token,
             "token_uri": credentials.token_uri,
             "client_id": credentials.client_id,
