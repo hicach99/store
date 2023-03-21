@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="cartHeader">
+        <div class="cartHeader" >
           <h3>{% trans "Your Cart Items" %}</h3>
         </div>
       </div>
@@ -12,12 +12,12 @@
         <table class="shop_table cart_table">
           <thead>
             <tr>
-              <th class="product-thumbnail">{% trans "Item Name" %}</th>
-              <th class="product-name">&nbsp;</th>
-              <th class="product-price">{% trans "Price" %}</th>
-              <th class="product-quantity">{% trans "Quantity" %}</th>
-              <th class="product-subtotal">{% trans "Total" %}</th>
-              <th class="product-remove">&nbsp;</th>
+              <th class="product-thumbnail" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>{% trans "Item Name" %}</th>
+              <th class="product-name" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>&nbsp;</th>
+              <th class="product-price" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>{% trans "Price" %}</th>
+              <th class="product-quantity" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>{% trans "Quantity" %}</th>
+              <th class="product-subtotal" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>{% trans "Total" %}</th>
+              <th class="product-remove" {% if 0|get_current_language == 'ar' %}style="text-align: right!important;"{% endif %}>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -82,7 +82,7 @@
         <div class="col">
         <div class="cartCoupon">
           <h3>{% trans "Have A Coupon Code?" %}</h3>
-          <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Write your Coupon Code" />
+          <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="{% trans "Write your Coupon Code" %}" />
           <button type="submit" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>{% trans "Apply Code" %}</span></button>
         </div>
       </div>
@@ -93,7 +93,7 @@
           <table class="shop_table shop_table_responsive">
             <tbody>
               <tr class="cart-subtotal">
-                <th>Subtotal</th>
+                <th>{% trans "Subtotal" %}</th>
                 <td data-title="Subtotal">
                   <div class="pi01Price">
                     <ins>{{cart.get_total_price|convert:request }}</ins>
@@ -104,7 +104,7 @@
                 <th>{% trans "Coupon Discount" %}</th>
                 <td data-title="Subtotal">
                   <div class="pi01Price">
-                    <ins>- {{0|convert:request }}</ins>
+                    <ins>{{0|convert:request}}</ins>
                   </div>
                 </td>
               </tr>

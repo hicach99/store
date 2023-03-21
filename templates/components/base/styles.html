@@ -1,0 +1,42 @@
+{% load static %}
+{% load i18n %}
+{% load functions %}
+{% if 0|get_current_language == 'ar' %}
+<style>
+    @media (max-width: 991px)
+    {
+        .cartWidgetArea {
+            right: -200px;
+        }
+    }
+    .anItems>div:last-of-type {
+        margin: none!important;
+    }
+    .anCart{
+        margin: none!important;
+    }
+    .anItems:before{
+        content: none;
+    }
+    .anSelect .nice-select{
+        padding: 0px 10px;
+    }
+    .anSelect .nice-select:after{
+        content: none;
+    }
+    @media (max-width: 1365px){
+        .menuToggler i{
+            margin:0 5px;
+        }
+    }
+    .owl-carousel{
+        direction: ltr !important;
+    }
+    .productTabs ul.productTabsNav li button{
+        padding:0 10px;
+    }
+    .popularProductsSection .secDesc {
+        margin: 0 0 80px;
+    }
+</style>
+{% endif %}

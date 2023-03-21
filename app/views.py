@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from django.urls.base import resolve, reverse
 from django.urls.exceptions import Resolver404
 from app.paypal import check_paypal_order, create_paypal_order
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 from app.sender import send
 
 # Loading Configuration
@@ -55,9 +55,7 @@ def set_language(request, language):
     if view:
         translation.activate(language)
         args=view.args
-        print(view.kwargs)
         kwargs=json.loads(unquote(str(view.kwargs).replace("'",'"')))
-        print(kwargs)
         next_url = reverse(view.url_name, args=args, kwargs=kwargs)
         response = HttpResponseRedirect(next_url)
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
@@ -158,7 +156,7 @@ def update_cart(request):
         cart.update(data)
     return JsonResponse({'status':'ok'},safe=False,json_dumps_params={"ensure_ascii": False})
 def checkout_process(request):
-    success=False
+    response = redirect('echec')
     if request.method == 'POST':
         if request.POST.get('payment_method')=='1':
             payment_method='cash on delivery'
@@ -174,7 +172,7 @@ def checkout_process(request):
             order=Order.create_order(info,cart)
             if order: 
                 send(order,[],config=config,request=request)
-                success=True
+                response = redirect('success')
     elif request.method == 'GET' and 'info' in request.session:
         if request.session['info']['payment_method']=='cmi':
             cart = Cart(request)
@@ -182,16 +180,16 @@ def checkout_process(request):
             if order: 
                 send(order,[],config=config,request=request)
                 del request.session['info']
-                success=True
+                response = redirect('success')
         elif request.session['info']['payment_method']=='paypal' and check_paypal_order(request.session['info']['paypal_order_id'],config):
             cart = Cart(request)
             order=Order.create_order(request.session['info'],cart)
             if order: 
                 send(order,[],config=config,request=request)
                 del request.session['info']
-                success=True
-    if success: return redirect('success')
-    return redirect('echec')
+                response = redirect('success')
+                response['Location']+='?paid=true'
+    return response
 def success(request):
     categories=Category.get_all()
     cart = Cart(request)

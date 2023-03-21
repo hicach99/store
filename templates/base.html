@@ -1,17 +1,24 @@
-{% include 'components/base/head.html' %}
-<body>
-    <!-- BEGIN: HEADER -->
-    {% include 'components/base/header.html' %}
-    <!-- END: HEADER -->
+{% load functions %}
+<html {% if 0|get_current_language == 'ar' %}dir="rtl"{% endif %}>
+    {% include 'components/base/head.html' %}
+    <body lang="{{0|get_current_language}}">
+        <!-- BEGIN: HEADER -->
+        {% include 'components/base/header.html' %}
+        <!-- END: HEADER -->
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-    <!-- BEGIN: FOOTER -->
-    {% include 'components/base/footer.html' %}
-    <!-- END: FOOTER -->
+        <!-- BEGIN: FOOTER -->
+        {% include 'components/base/footer.html' %}
+        <!-- END: FOOTER -->
 
-    <!-- BEGIN: JS -->
-    {% include 'components/base/scripts.html' %}
-    <!-- END: JS -->
-</body>
+        <!-- BEGIN: JS -->
+        {% include 'components/base/scripts.html' %}
+        <!-- END: JS -->
+
+        <!-- BEGIN: CSS -->
+        {% include 'components/base/styles.html' %}
+        <!-- END: CSS -->
+    </body>
+</html>

@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-20 13:50+0000\n"
+"POT-Creation-Date: 2023-03-21 00:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,354 +18,314 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\setup\settings.py:114
 msgid "French"
-msgstr ""
+msgstr "Français"
 
-#: .\setup\settings.py:115
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
-#: .\setup\settings.py:116
 msgid "Arabic"
-msgstr ""
+msgstr "arabe"
 
-#: .\templates\components\base\cart.html:31
+msgid "Subtotal"
+msgstr "Total"
+
 msgid "View Cart"
-msgstr ""
+msgstr "Voir le panier"
 
-#: .\templates\components\base\cart.html:32
 msgid "Checkout"
-msgstr ""
+msgstr "Vérifier"
 
-#: .\templates\components\base\cart.html:36
 msgid "No products in the cart."
-msgstr ""
+msgstr "Aucun produit dans le chariot."
 
-#: .\templates\components\base\footer.html:22
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
-#: .\templates\components\base\footer.html:41
 msgid "Useful Links"
-msgstr ""
+msgstr "Liens utiles"
 
-#: .\templates\components\base\footer.html:47
+msgid "Shop Coupon"
+msgstr "Coupon de magasin"
+
 msgid "About us"
-msgstr ""
+msgstr "À propos de nous"
 
-#: .\templates\components\base\footer.html:55
 msgid "Categories"
-msgstr ""
+msgstr "Catégories"
 
-#: .\templates\components\base\footer.html:98
 msgid "All rights reserved"
-msgstr ""
+msgstr "Tous les droits sont réservés"
 
-#: .\templates\components\base\footer.html:104
-msgid "Terms &amp; Condition"
-msgstr ""
+msgid "Terms & Condition"
+msgstr "Termes et conditions"
 
-#: .\templates\components\base\footer.html:105
 msgid "Privacy Policy"
-msgstr ""
+msgstr "politique de confidentialité"
 
-#: .\templates\components\base\footer.html:106
 msgid "Legal"
-msgstr ""
+msgstr "Juridique"
 
-#: .\templates\components\base\header.html:15
-#, fuzzy
-#| msgid "MenuHome"
-msgid "Home"
-msgstr "Accueil"
-
-#: .\templates\components\base\header.html:18
-msgid "Shop"
-msgstr ""
-
-#: .\templates\components\base\header.html:27
-msgid "search"
-msgstr ""
-
-#: .\templates\components\base\header.html:45
-#, fuzzy
-#| msgid "MenuHome"
-msgid "Menu"
-msgstr "Accueil"
-
-#: .\templates\components\base\header.html:112
-msgid "Search by title, Keyword"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:8
-msgid "Your Cart Items"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:15
-msgid "Item Name"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:17
-msgid "Price"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:18
-msgid "Quantity"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:19
-#: .\templates\email\order.html:338
-msgid "Total"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:69
-msgid "Continue Shopping"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:73
-msgid "Update Cart"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:74
-msgid "Clear All"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:84
-msgid "Have A Coupon Code?"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:86
-msgid "Apply Code"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:104
-msgid "Coupon Discount"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:112
-msgid "Shipping"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:115
-msgid "Free"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:120
-msgid "Grand Total"
-msgstr ""
-
-#: .\templates\components\cart\cart_content.html:129
-msgid "Proceed to checkout"
-msgstr ""
-
-#: .\templates\components\checkout\checkout_form.html:5
 msgid "Fill the blank to recieve reciept"
-msgstr ""
+msgstr "Remplissez le champ pour recevoir le reçu"
 
-#: .\templates\components\checkout\checkout_form.html:5
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
-#: .\templates\components\checkout\checkout_form.html:6
-msgid "Fill it if you want to recieve reciept in your inbox"
-msgstr ""
-
-#: .\templates\components\checkout\checkout_form.html:6
 msgid "Email (Not Required)"
-msgstr ""
+msgstr "E-mail (non requis)"
 
-#: .\templates\components\checkout\echec.html:6
+msgid "Product added successfully to the cart"
+msgstr "Produit ajouté avec succès au panier"
+
+msgid "Product was not added"
+msgstr "Le produit n'a pas été ajouté"
+
+msgid "Something went wrong!"
+msgstr "Quelque chose s'est mal passé !"
+
+msgid "Home"
+msgstr "Maison"
+
+msgid "Shop"
+msgstr "Boutique"
+
+msgid "search"
+msgstr "recherche"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Helpline"
+msgstr "Assistance téléphonique"
+
+msgid "Search by title, Keyword"
+msgstr "Recherche par titre, mot-clé"
+
+msgid "Your Cart Items"
+msgstr "Articles de votre panier"
+
+msgid "Item Name"
+msgstr "Nom de l'article"
+
+msgid "Price"
+msgstr "Prix"
+
+msgid "Quantity"
+msgstr "Quantité"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Continue Shopping"
+msgstr "Continuer vos achats"
+
+msgid "Update Cart"
+msgstr "Mise à jour panier"
+
+msgid "Clear All"
+msgstr "Tout effacer"
+
+msgid "Have A Coupon Code?"
+msgstr "Vous avez un code promo ?"
+
+msgid "Write your Coupon Code"
+msgstr "Vous avez un code promo ?"
+
+msgid "Apply Code"
+msgstr "Appliquer le code"
+
+msgid "Coupon Discount"
+msgstr "Bon de réduction"
+
+msgid "Shipping"
+msgstr "Expédition"
+
+msgid "Free"
+msgstr "Gratuit"
+
+msgid "Grand Total"
+msgstr "Total"
+
+msgid "Proceed to checkout"
+msgstr "Passer à la caisse"
+
+msgid "Coupon Code"
+msgstr "Vous avez un code promo ?"
+
+msgid "Your Billing Address"
+msgstr "Votre adresse de facturation"
+
+msgid "Full Name"
+msgstr "Nom et prénom"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "City"
+msgstr "Ville"
+
+msgid "Your Order"
+msgstr "Votre nom"
+
+msgid "Item"
+msgstr "Nom de l'article"
+
+msgid "Sub Total"
+msgstr "Total"
+
+msgid "Cash On Delivery"
+msgstr "Paiement à la livraison"
+
+msgid "Credit Card (CMI)"
+msgstr "Carte de crédit (CMI)"
+
+msgid "Place Order"
+msgstr "Passer la commande"
+
 msgid "Unfortunately, we were unable to process your payment"
-msgstr ""
+msgstr "Malheureusement, nous n'avons pas pu traiter votre paiement"
 
-#: .\templates\components\checkout\echec.html:14
 msgid "Try Again"
-msgstr ""
+msgstr "Essayer à nouveau"
 
-#: .\templates\components\checkout\success.html:6
 msgid "Thank you for shopping with us, We've received your order."
-msgstr ""
+msgstr "Merci d'avoir magasiné avec nous, nous avons reçu votre commande."
 
-#: .\templates\components\checkout\success.html:7
 msgid "Check you email inbox we have sent you a reciept."
-msgstr ""
+msgstr "Vérifiez votre boîte de réception, nous vous avons envoyé un reçu."
 
-#: .\templates\components\checkout\success.html:16
 msgid "Check Other Products"
-msgstr ""
+msgstr "Vérifier d'autres produits"
 
-#: .\templates\components\commun\product_card.html:22
-#: .\templates\components\commun\product_card_list.html:22
-#: .\templates\components\product\product_tab.html:56
 msgid "Reviews"
-msgstr ""
+msgstr "Commentaires"
 
-#: .\templates\components\commun\product_card.html:22
-#: .\templates\components\commun\product_card_list.html:22
-#: .\templates\components\product\product_tab.html:56
 msgid "Review"
-msgstr ""
+msgstr "Examen"
 
-#: .\templates\components\commun\product_modal_content.html:74
-#: .\templates\components\product\product_content.html:74
 msgid "Add to Cart"
-msgstr ""
+msgstr "Ajouter au panier"
 
-#: .\templates\components\index\categories.html:7
 msgid "Shop By Category"
-msgstr ""
+msgstr "Acheter par catégorie"
 
-#: .\templates\components\index\categories.html:8
 msgid "Our categories list"
-msgstr ""
+msgstr "Notre liste de catégories"
 
-#: .\templates\components\index\instagram.html:7
 msgid "Follow Us in Instagram"
-msgstr ""
+msgstr "Suivez-nous sur Instagram"
 
-#: .\templates\components\index\popular.html:7
 msgid "Popular Products"
-msgstr ""
+msgstr "Produits populaires"
 
-#: .\templates\components\index\popular.html:8
 msgid "Showing our popular products"
-msgstr ""
+msgstr "Affichage de nos produits populaires"
 
-#: .\templates\components\product\product_content.html:36
 msgid "Color"
-msgstr ""
+msgstr "Couleur"
 
-#: .\templates\components\product\product_content.html:55
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
-#: .\templates\components\product\product_content.html:84
 msgid "Tags"
-msgstr ""
+msgstr "Mots clés"
 
-#: .\templates\components\product\product_content.html:91
 msgid "Share"
-msgstr ""
+msgstr "Partager"
 
-#: .\templates\components\product\product_tab.html:26
-msgid "Product Details"
-msgstr ""
+msgid "Description"
+msgstr "Description"
 
-#: .\templates\components\product\product_tab.html:37
 msgid "Additional Information"
-msgstr ""
+msgstr "Informations Complémentaires"
 
-#: .\templates\components\product\product_tab.html:73
+msgid "Item Review"
+msgstr "Examen de l'article"
+
+msgid "Product Details"
+msgstr "détails du produit"
+
 msgid "on"
-msgstr ""
+msgstr "sur"
 
-#: .\templates\components\product\product_tab.html:83
 msgid "Add A Review"
-msgstr ""
+msgstr "Ajouter un commentaire"
 
-#: .\templates\components\product\product_tab.html:88
 msgid "Your Rating"
-msgstr ""
+msgstr "Votre note"
 
-#: .\templates\components\product\product_tab.html:95
 msgid "Review title"
-msgstr ""
+msgstr "Titre du commentaire"
 
-#: .\templates\components\product\product_tab.html:98
 msgid "Write your review here"
-msgstr ""
+msgstr "Donnez votre avis ici"
 
-#: .\templates\components\product\product_tab.html:101
 msgid "Your name"
-msgstr ""
+msgstr "Votre nom"
 
-#: .\templates\components\product\product_tab.html:104
 msgid "Your email"
-msgstr ""
+msgstr "Votre e-mail"
 
-#: .\templates\components\product\product_tab.html:107
 msgid "Submit Now"
-msgstr ""
+msgstr "Soumettre maintenant"
 
-#: .\templates\components\products\products_panel.html:7
 msgid "Showing"
-msgstr ""
+msgstr "Montrant"
 
-#: .\templates\components\products\products_panel.html:7
 msgid "of"
-msgstr ""
+msgstr "de"
 
-#: .\templates\components\products\products_panel.html:7
 msgid "items"
-msgstr ""
+msgstr "articles"
 
-#: .\templates\components\products\products_panel.html:11
 msgid "tag"
-msgstr ""
+msgstr "étiqueter"
 
-#: .\templates\components\products\products_panel.html:12
 msgid "q"
-msgstr ""
+msgstr "q"
 
-#: .\templates\components\products\products_panel.html:13
 msgid "All"
-msgstr ""
+msgstr "Tous"
 
-#: .\templates\components\products\products_panel.html:21
 msgid "Sort By"
-msgstr ""
+msgstr "Trier par"
 
-#: .\templates\components\products\products_panel.html:23
-#: .\templates\components\products\products_panel.html:32
-#: .\templates\components\products\products_panel.html:39
 msgid "Latest"
-msgstr ""
+msgstr "Dernier"
 
-#: .\templates\components\products\products_panel.html:24
-#: .\templates\components\products\products_panel.html:33
-#: .\templates\components\products\products_panel.html:40
 msgid "Oldest"
-msgstr ""
+msgstr "Le plus ancien"
 
-#: .\templates\components\products\products_panel.html:25
-#: .\templates\components\products\products_panel.html:34
-#: .\templates\components\products\products_panel.html:41
 msgid "High to low"
-msgstr ""
+msgstr "Haut en bas"
 
-#: .\templates\components\products\products_panel.html:26
-#: .\templates\components\products\products_panel.html:35
-#: .\templates\components\products\products_panel.html:42
 msgid "Low to high"
-msgstr ""
+msgstr "De bas en haut"
 
-#: .\templates\components\products\products_panel.html:27
-#: .\templates\components\products\products_panel.html:36
-#: .\templates\components\products\products_panel.html:43
 msgid "Top rated"
-msgstr ""
+msgstr "Les mieux notés"
 
-#: .\templates\components\products\products_panel.html:74
 msgid "No products found"
-msgstr ""
+msgstr "Aucun produit trouvé"
 
-#: .\templates\components\products\products_panel.html:93
 msgid "Load More"
-msgstr ""
+msgstr "Charger plus"
 
-#: .\templates\email\order.html:8
 msgid "Email Receipt"
-msgstr ""
+msgstr "Reçu par e-mail"
 
-#: .\templates\email\order.html:309
 msgid "Thanks, for using"
-msgstr ""
+msgstr "Merci d'avoir utilisé"
 
-#: .\templates\email\order.html:319
 msgid "Invoice #"
-msgstr ""
+msgstr "Facture #"
 
-#: .\templates\email\order.html:363
 msgid "Questions? Email"
-msgstr ""
+msgstr "Des questions? E-mail"
+
+msgid "Fill it if you want to recieve reciept in your inbox"
+msgstr "Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
+
+msgid "(optional) Fill it if you want to recieve reciept in your inbox"
+msgstr "(facultatif) Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"

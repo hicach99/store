@@ -52,6 +52,7 @@ def get_languages(i):
 @register.filter
 def get_current_language(i):
     return get_language()
+
 @register.filter
 def instagram_feed(n):
     instagram_access_token = '2406057572895918|ENcC-8n8F4ntLZw4Lgpj5g3RVMc'

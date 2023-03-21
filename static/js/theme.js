@@ -912,7 +912,7 @@
 
     $('.pi01QuickView').on('click', function(e){
         var id=$(this).attr('data-id');
-        fetch('/api/product/'+id).then(response => response.json()).then(data => {
+        fetch(productApi+id).then(response => response.json()).then(data => {
             if (data.status=='ok') {
                 var html=data.html
                 $('.modal-body').html(html);
@@ -947,7 +947,7 @@
                 })
             }
             else{
-                $.simplyToast('Something went wrong','danger',toast_options);
+                $.simplyToast(warningError,'danger',toast_options);
             }
         })
         .catch(error => {
@@ -1005,6 +1005,14 @@
         var value=$(this).val();
         window.location.href='/set_currency/'+value
     })
+    $('.mainMenu #language').on('change', function(){
+        var value=$(this).val();
+        window.location.href='/set_language/'+value
+    })
+    $('.accessNav #language').on('change', function(){
+        var value=$(this).val();
+        window.location.href='/set_language/'+value
+    })
     $('.product-quantity .btnPlus').click( function(e){
         var qty_el=$(this).parent().find('.qty[name="quantity"]');
         qty_el.val(parseInt(qty_el.val())+1);
@@ -1035,7 +1043,7 @@
             data.push(item)
         });
         if (CVDfSS(data)) {
-            fetch('/cart/update', {
+            fetch(cartUpdateApi, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

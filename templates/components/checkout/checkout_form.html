@@ -1,10 +1,6 @@
 {% load i18n %}
 {% load functions %}
 {% load static %}
-<script>
-  const req='<span style="padding-left: 25px;"> <small>(Required) {% trans "Fill the blank to recieve reciept" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="{% trans "Email" %}" />';
-  const op='<span style="padding-left: 25px;"> <small>(optional) {% trans "Fill it if you want to recieve reciept in your inbox" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" />';
-</script>
 <section class="checkoutPage">
   <form action="{% url 'checkout_process' %}" id="checkout_form" method="post">
     {% csrf_token %}
@@ -12,10 +8,10 @@
       <div class="row">
         <div class="col" >
           <div class="shippingCoupons">
-            <h3>Coupon Code</h3>
+            <h3>{% trans "Coupon Code" %}</h3>
             <div class="couponFormWrap clearfix">
-                <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Write your Coupon Code">
-                <button type="javascript:void(0);" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>Apply Code</span></button>
+                <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="{% trans "Write your Coupon Code" %}">
+                <button type="javascript:void(0);" class="ulinaBTN" name="apply_coupon" value="Apply Code"><span>{% trans "Apply Code" %}</span></button>
             </div>
         </div>
         </div>
@@ -24,18 +20,18 @@
         {% if cart|length > 0 %}
           <div class="col-lg-6">
             <div class="checkoutForm">
-              <h3>Your Billing Address</h3>
+              <h3>{% trans "Your Billing Address" %}</h3>
               <div class="row checkoutInputs" >
                 <div class="col-md-12 email_container_op">
                   <span style="padding-left: 25px;">
-                    <small>(optional) Fill it if you want to recieve reciept in your inbox</small>
+                    <small>{% trans "(optional) Fill it if you want to recieve reciept in your inbox" %}</small>
                   </span>
                   <span style="padding-left: 25px;">
                     <small>
                       <label id="email_optional-error" class="error" for="email_optional"></label>
                     </small>
                   </span>
-                  <input type="email" name="email_optional"  placeholder="Email (Not Required)" />
+                  <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" />
                 </div>
                 <div class="col-md-12">
                   <span style="padding-left: 25px;">
@@ -43,7 +39,7 @@
                       <label id="name-error" class="error" for="name"></label>
                     </small>
                   </span>
-                  <input type="text" name="name" placeholder="Full Name" />
+                  <input type="text" name="name" placeholder="{% trans "Full Name" %}" />
                 </div>
                 <div class="col-md-12">
                   <span style="padding-left: 25px;">
@@ -51,7 +47,7 @@
                       <label id="phone-error" class="error" for="phone"></label>
                     </small>
                   </span>
-                  <input type="text" name="phone" placeholder="Phone" />
+                  <input type="text" name="phone" placeholder="{% trans "Phone" %}" />
                 </div>
                 <div class="col-lg-6">
                   <span style="padding-left: 25px;">
@@ -59,7 +55,7 @@
                       <label id="address-error" class="error" for="address"></label>
                     </small>
                   </span>
-                  <input type="text" name="address" placeholder="Address" />
+                  <input type="text" name="address" placeholder="{% trans "Address" %}" />
                 </div>
                 <div class="col-lg-6">
                   <span style="padding-left: 25px;">
@@ -67,20 +63,20 @@
                       <label id="city-error" class="error" for="city"></label>
                     </small>
                   </span>
-                  <input type="text" name="city" placeholder="City" />
+                  <input type="text" name="city" placeholder="{% trans "City" %}" />
                 </div>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="orderReviewWrap">
-              <h3>Your Order</h3>
+              <h3>{% trans "Your Order" %}</h3>
               <div class="orderReview">
                 <table>
                   <thead>
                     <tr>
-                      <th>Item</th>
-                      <th>Price</th>
+                      <th>{% trans "Item" %}</th>
+                      <th>{% trans "Price" %}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -101,7 +97,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th>Sub Total</th>
+                      <th>{% trans "Sub Total" %}</th>
                       <td>
                         <div class="pi01Price">
                           <ins>{{cart.get_total_price|convert:request }}</ins>
@@ -109,7 +105,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th>Coupon Discount</th>
+                      <th>{% trans "Coupon Discount" %}</th>
                       <td>
                         <div class="pi01Price">
                           <ins>- {{0|convert:request }}</ins>
@@ -117,15 +113,15 @@
                       </td>
                     </tr>
                     <tr class="shippingRow">
-                      <th>Shipping</th>
+                      <th>{% trans "Shipping" %}</th>
                       <td>
                         <div class="pi01Price">
-                          <ins>Free</ins>
+                          <ins>{% trans "Free" %}</ins>
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <th>Total</th>
+                      <th>{% trans "Total" %}</th>
                       <td>
                         <div class="pi01Price">
                           <ins>{{cart.get_total_price|convert:request }}</ins>
@@ -137,22 +133,22 @@
                 <ul class="wc_payment_methods" style="margin: 0%;">
                   <li class="active">
                     <input type="radio" checked="" value="1" name="payment_method" id="paymentMethod01" />
-                    <label for="paymentMethod01">Cash On Delivery</label>
+                    <label for="paymentMethod01">{% trans "Cash On Delivery" %}</label>
                   </li>
                   <li class="active">
                     <input type="radio" value="2" name="payment_method" id="paymentMethod02" />
-                    <label for="paymentMethod02">Credit Card (CMI)</label>
+                    <label for="paymentMethod02">{% trans "Credit Card (CMI)" %}</label>
                   </li>
                   <li class="">
                     <input type="radio" value="3" name="payment_method" id="paymentMethod03" />
-                    <label for="paymentMethod03"><span>Paypal </span><i class="fa-brands fa-cc-paypal" style="font-size: large;"></i></label>
+                    <label for="paymentMethod03"><span>Paypal </span><i class="fa-brands fa-paypal" style="font-size: large;"></i></label>
                   </li>
                   <small style="padding-left: 25px;"><label id="payment_method-error" class="error" for="payment_method"></label></small>
                 </ul>
                 <div class="email_container checkoutForm" style="padding: 0%;">
 
                 </div>
-                <a href="javascript:void(0)" class="placeOrderBTN ulinaBTN"><span>Place Order</span></a>
+                <a href="javascript:void(0)" class="placeOrderBTN ulinaBTN"><span>{% trans "Place Order" %}</span></a>
               </div>
             </div>
           </div>

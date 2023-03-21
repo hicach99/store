@@ -4,12 +4,14 @@ $( document ).ready(function() {
     var sync2 = $("#sync2");
     sync1.owlCarousel({
         items: 1,
+
         URLhashListener: true,
         startPosition: 'URLHash'
     });
     // Initialize second carousel
     sync2.owlCarousel({
         items: 3,
+
         URLhashListener: true,
         startPosition: 'URLHash'
     });

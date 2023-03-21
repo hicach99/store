@@ -604,9 +604,7 @@
     margin-right: 24px;
 }
 
-.anItems>div:last-of-type {
-    margin: 0;
-}
+
 
 .anItems>div>a {
     font-size: 18px;

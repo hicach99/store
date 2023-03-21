@@ -15,7 +15,7 @@ $(document).ready(function(){
         var quantity=parseInt($('#quantity').val());
         var id=parseInt($('#productId').val());
         var data={'id':id,'properties':properties,'quantity':(quantity>1)?quantity:1};
-        fetch('/api/cart/add', {
+        fetch(cartCreateApi, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -27,7 +27,7 @@ $(document).ready(function(){
         .then(result => {
             cart_length=result.data
             $('.anCart a span').text(cart_length);
-            $.simplyToast(result.message,(result.status=='ok')?'success':'danger',toast_options);
+            $.simplyToast((result.status=='ok')?productMessage:productMessageError,(result.status=='ok')?'success':'danger',toast_options);
         })
         .catch(error => {
             $.simplyToast(error,'danger',toast_options);

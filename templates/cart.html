@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
-{% block content %}
-    {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='cart' %}
-    {% include 'components/cart/cart_content.html' %}
-{% endblock content %}
+{% load functions %}
+    {% block content %}
+        {% if 0|get_current_language == 'fr' %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='panier' %}
+        {% elif 0|get_current_language == 'ar' %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='عربة التسوق' %}
+        {% else %}
+        {% include 'components/commun/page_banner.html' with title='Shopping Cart' hint='cart' %}
+        {% endif %}
+        {% include 'components/cart/cart_content.html' %}
+    {% endblock content %}
+

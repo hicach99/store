@@ -1,5 +1,5 @@
 $('.cartIcon').hover(function(){
-    fetch('/api/cart', {
+    fetch(cartApi, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ $('.cartIcon').hover(function(){
             $('.anCart').html(result.html);
         }
         else{
-            $.simplyToast(result.message,'danger',toast_options);
+            $.simplyToast(warningError,'danger',toast_options);
         }
     })
     .catch(error => {
@@ -22,7 +22,7 @@ $('.cartIcon').hover(function(){
 });
 $('.cartRemoveProducts').click(function() {
     var id=parseInt($(this).attr('data-prod'));
-    fetch('/api/cart/remove/'+id, {
+    fetch(cartRemoveApi+id, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ $('.cartRemoveProducts').click(function() {
             $('.anCart').html(result.html);
         }
         else{
-            $.simplyToast(result.message,'danger',toast_options);
+            $.simplyToast(warningError,'danger',toast_options);
         }
     })
     .catch(error => {

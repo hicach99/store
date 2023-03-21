@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% load functions %}
 {% block content %}
+    {% if 0|get_current_language == 'fr' %}
+    {% include 'components/commun/page_banner.html' with title='Checkout' hint='paiement' %}
+    {% elif 0|get_current_language == 'ar' %}
+    {% include 'components/commun/page_banner.html' with title='Checkout' hint='الدفع' %}
+    {% else %}
     {% include 'components/commun/page_banner.html' with title='Checkout' hint='checkout' %}
+    {% endif %}
     {% include 'components/checkout/checkout_form.html' %}
 {% endblock content %}

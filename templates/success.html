@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
+{% load functions %}
 {% block content %}
+{% if 0|get_current_language == 'fr' %}
+    {% include 'components/commun/page_banner.html' with title=' ' hint='statut de la commande' %}
+    {% include 'components/checkout/success.html' %}
+    {% include 'components/commun/products_slider.html' with title='Produits suggérés' hint='' products=products %}
+{% elif 0|get_current_language == 'ar' %}
+    {% include 'components/commun/page_banner.html' with title=' ' hint='حالة الطلب' %}
+    {% include 'components/checkout/success.html' %}
+    {% include 'components/commun/products_slider.html' with title='المنتجات المقترحة' hint='' products=products %}
+{% else %}
     {% include 'components/commun/page_banner.html' with title=' ' hint='order / status' %}
     {% include 'components/checkout/success.html' %}
     {% include 'components/commun/products_slider.html' with title='Suggested Products' hint='' products=products %}
+    {% endif %}
+{% include 'components/commun/product_modal.html' %}
 {% endblock content %}
+

@@ -46,30 +46,31 @@ def order_to_html(order,config,request):
     message='Order Confirmed'
     html=render_to_string('email/order.html',{'config':config,'order':order},request=request)
     return subject,message,html
-async def send_by_telegram(order,recivers:list[str]=[],config=None):
+def send_by_telegram(order,recivers:list[str]=[],config=None):
     recivers.extend(config.get_telegram_recivers())
     message=order_to_message(order,config)
     bot_api = f'https://api.telegram.org/bot{config.telegram_bot_api}/sendMessage' if config else ' '
     for seciver in recivers:
         try:
-            await sync_to_async(requests.post(bot_api, json={'chat_id': seciver, 'text': message}), thread_sensitive=False)
+            requests.post(bot_api, json={'chat_id': seciver, 'text': message})
         except Exception as e:
             print(e)
-async def send_by_mail(order,config=None,request=None):
+def send_by_mail(order,config=None,request=None):
     bcc=config.get_email_recivers()
     subject, message, html_message=order_to_html(order,config,request)
     recivers=[order.email] if order.email else bcc
-    try:
-        msg = EmailMultiAlternatives(
-            subject=subject,
-            body=message,
-            from_email=config.smtp_username,
-            to=recivers,
-            bcc=bcc if not order.email else [],
-            connection=connection
-        )
-        msg.content_subtype = "html"
-        msg.attach_alternative(html_message, "text/html")
-        await sync_to_async(msg.send(), thread_sensitive=False)
-    except Exception as e:
-        print(e)
+    if bcc or order.email:
+        try:
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                body=message,
+                from_email=config.smtp_username,
+                to=recivers,
+                bcc=bcc if not order.email else [],
+                connection=connection
+            )
+            msg.content_subtype = "html"
+            msg.attach_alternative(html_message, "text/html")
+            msg.send()
+        except Exception as e:
+            print(e)

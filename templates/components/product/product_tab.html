@@ -3,17 +3,17 @@
   <ul class="nav productDetailsTab" id="productDetailsTab" role="tablist">
     {% if product.product_details %}
       <li role="presentation">
-        <button  id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+        <button  id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">{% trans "Description" %}</button>
       </li>
     {% endif %}
     {% if product.informations.all %}
         <li role="presentation">
-          <button class="active" id="additionalinfo-tab" data-bs-toggle="tab" data-bs-target="#additionalinfo" type="button" role="tab" aria-controls="additionalinfo" aria-selected="false" class="" tabindex="-1">Additional Information</button>
+          <button class="active" id="additionalinfo-tab" data-bs-toggle="tab" data-bs-target="#additionalinfo" type="button" role="tab" aria-controls="additionalinfo" aria-selected="false" class="" tabindex="-1">{% trans "Additional Information" %}</button>
         </li>
     {% endif %}
 
     <li role="presentation">
-      <button {% if not product.informations.all %}class="active"{% endif %} id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false" class="" tabindex="-1">Item Review</button>
+      <button {% if not product.informations.all %}class="active"{% endif %} id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false" class="" tabindex="-1">{% trans "Item Review" %}</button>
     </li>
   </ul>
   <div class="tab-content" id="desInfoRev_content">

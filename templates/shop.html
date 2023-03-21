@@ -1,8 +1,38 @@
 {% extends 'base.html' %}
-{% load i18n %}
 {% load functions %}
 {% block content %}
-    {% include 'components/commun/page_banner.html' with title='Shop' hint='Shop' %}
+    {% if 0|get_current_language == 'fr' %}
+        {% if request.GET.category %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.category|capitalize hint='boutique' %}
+        {% elif request.GET.tag %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.tag|capitalize hint='boutique' %}
+        {% elif request.GET.q %}
+            {% include 'components/commun/page_banner.html' with title='Search Results' hint='boutique' %}
+        {% else %}
+            {% include 'components/commun/page_banner.html' with title='Our Shop' hint='boutique' %}
+        {% endif %}
+    {% elif 0|get_current_language == 'ar' %}
+        {% if request.GET.category %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.category|capitalize hint='المتجر' %}
+        {% elif request.GET.tag %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.tag|capitalize hint='المتجر' %}
+        {% elif request.GET.q %}
+            {% include 'components/commun/page_banner.html' with title='Search Results' hint='المتجر' %}
+        {% else %}
+            {% include 'components/commun/page_banner.html' with title='Our Shop' hint='المتجر' %}
+        {% endif %}
+    {% else %}
+        {% if request.GET.category %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.category|capitalize hint='shop' %}
+        {% elif request.GET.tag %}
+            {% include 'components/commun/page_banner.html' with title=request.GET.tag|capitalize hint='shop' %}
+        {% elif request.GET.q %}
+            {% include 'components/commun/page_banner.html' with title='Search Results' hint='shop' %}
+        {% else %}
+            {% include 'components/commun/page_banner.html' with title='Our Shop' hint='shop' %}
+        {% endif %}
+    {% endif %}
+    {{ get_language }}
     {% include 'components/products/products_panel.html' %}
     {% include 'components/commun/product_modal.html' %}
 {% endblock content %}

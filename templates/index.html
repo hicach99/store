@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
+{% load functions %}
+
 {% block content %}
     {% include 'components/index/slider.html' %}
     {% include 'components/index/features.html' %}
-    {% include 'components/commun/products_slider.html' with title='Latest Arrival' hint='Showing our latest arrival' products=latest_products %}
+    {% if 0|get_current_language == 'fr' %}
+        {% include 'components/commun/products_slider.html' with title='Dernière arrivée' hint='Nos derniers produits' products=latest_products %}
+    {% elif 0|get_current_language == 'ar' %}
+        {% include 'components/commun/products_slider.html' with title='أحدث المنتجات' hint='أحدث منتجاتنا' products=latest_products %}
+    {% else %}
+        {% include 'components/commun/products_slider.html' with title='Latest Arrival' hint='Our latest arrival' products=latest_products %}
+    {% endif %}
     {% include 'components/index/categories.html' %}
     {% include 'components/index/popular.html' %}
     {% include 'components/commun/product_modal.html' %}

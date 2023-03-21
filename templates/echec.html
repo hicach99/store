@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
+{% load functions %}
 {% block content %}
-    {% include 'components/commun/page_banner.html' with title=' ' hint='order / status' %}
-    {% include 'components/checkout/echec.html' %}
+    {% if 0|get_current_language == 'fr' %}
+        {% include 'components/commun/page_banner.html' with title=' ' hint='statut de la commande' %}
+        {% include 'components/checkout/echec.html' %}
+    {% elif 0|get_current_language == 'ar' %}
+        {% include 'components/commun/page_banner.html' with title=' ' hint='حالة الطلب' %}
+        {% include 'components/checkout/echec.html' %}
+    {% else %}
+        {% include 'components/commun/page_banner.html' with title=' ' hint='order / status' %}
+        {% include 'components/checkout/echec.html' %}
+    {% endif %}
 {% endblock content %}

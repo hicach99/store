@@ -92,7 +92,7 @@ $().ready(function() {
                         return acc;
                     }, {});
                     const requestBody = JSON.stringify(formDataObject);
-                    fetch('/api/order/create', {
+                    fetch(orderCreateApi, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ $().ready(function() {
                         if (result.status=='ok') {
                             window.location.href = result.url;
                         }else{
-                            $.simplyToast(result.message,'danger',toast_options);
+                            $.simplyToast(warningError,'danger',toast_options);
                         }
                     })
                     .catch(error => {

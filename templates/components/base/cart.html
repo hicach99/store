@@ -9,7 +9,7 @@
       {% for item in item_id %}
         <div class="cartWidgetProduct">
           <img src="{{ item.product.get_images.0.image.url }}" alt="{{ item.product.name }}" />
-          <a href="{% url 'product_details' item.product.slug %}">
+          <a href="{% url 'product_details' item.product.slug %}" >
             {{ item.product.name }}
           </a>
           <span> 
@@ -21,10 +21,11 @@
             <span class="cart_quantity">{{ item.quantity }}</span> x <span class="cart_price">{{ item.product.price|convert:request }}</span>
           </div>
         </div>
+
       {% endfor %}
     {% endfor %}
     <div class="totalPrice">
-      Subtotal:
+      {% trans "Subtotal" %}:
       <span class="price">{{ cart.get_total_price|convert:request }}</span>
     </div>
     <div class="cartWidgetBTN clearfix">
