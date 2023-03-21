@@ -23,6 +23,7 @@ except:
     config=None
 
 # google authentification
+scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
 def google_login(request):
     redirect_uri='https://'+request.get_host()+reverse('google_callback')
     flow = Flow.from_client_config(
@@ -34,18 +35,17 @@ def google_login(request):
                 'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
                 'token_uri': 'https://accounts.google.com/o/oauth2/token',
                 'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
-                'scope': ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+                'scope': scopes,
             }
         },
-        scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
         redirect_uri = redirect_uri,
+        scopes=scopes
     )
 
     authorization_url, state = flow.authorization_url(
         access_type='offline',
         include_granted_scopes='true',
     )
-    print(state)
     request.session['google_auth_state'] = state
     return redirect(authorization_url)
 def login_check(request):
@@ -72,10 +72,10 @@ def google_callback(request):
                     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
                     "token_uri": "https://accounts.google.com/o/oauth2/token",
                     "userinfo_uri": "https://www.googleapis.com/oauth2/v1/userinfo",
-                    "scope": ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
+                    "scope": scopes,
                 }
             },
-            scopes=["openid", 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            scopes=scopes,
             redirect_uri = redirect_uri,
         )
         flow.fetch_token(
