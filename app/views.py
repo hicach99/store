@@ -74,8 +74,8 @@ def google_callback(request):
                 "scope": scopes,
             }
         },
-        scopes=scopes,
         redirect_uri = redirect_uri,
+        scopes=scopes,
     )
     flow.fetch_token(
         authorization_response=request.build_absolute_uri(),
