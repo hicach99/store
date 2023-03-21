@@ -99,7 +99,7 @@ def google_callback(request):
                 "client_secret": credentials.client_secret,
                 "scopes": credentials.scopes,
             }
-            return render(request,'test.html')
+            return JsonResponse(request.session["google_auth_credentials"])
     except Exception as e:
         message=e
     return HttpResponse(message)
