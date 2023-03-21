@@ -80,13 +80,11 @@ def google_callback(request):
     credentials = flow.credentials
     email = None
     try:
-        response = requests.get(
-            'https://api.example.com/user',
-            headers={'Authorization': f'Bearer {credentials.token}'}
-        )
-        if response.ok:
-            user_data = response.json()
-            email = user_data.get('email')
+        id_token = credentials.id_token
+        userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo'
+        headers = {'Authorization': f'Bearer {id_token}'}
+        userinfo_response = requests.get(userinfo_endpoint, headers=headers)
+        email = userinfo_response.json()['email']
     except Exception as e:
         return HttpResponse(e)
     if email:
@@ -97,14 +95,14 @@ def google_callback(request):
             customer.save()
         request.session["google_auth_credentials"] = {
             "token": credentials.token,
-            "email": email,
             "refresh_token": credentials.refresh_token,
             "token_uri": credentials.token_uri,
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret,
             "scopes": credentials.scopes,
+            "email": email,
         }
-        return JsonResponse(request.session["google_auth_credentials"])
+        return HttpResponse(request.session["google_auth_credentials"])
     message=None
     try:
         pass
