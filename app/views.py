@@ -48,7 +48,7 @@ def google_login(request):
 def login_check(request):
     customer = None
     try:
-        credentials = request.session.pop('google_auth_credentials', None)
+        credentials = request.session['google_auth_credentials']
         if credentials:
             customer=Customer.objects.get(email=credentials['email'])
     except:
