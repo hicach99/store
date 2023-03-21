@@ -25,7 +25,9 @@
       {% endfor %}
     {% endfor %}
     <div class="totalPrice">
-      {% trans "Subtotal" %}:
+      {% if 0|get_current_language != 'ar' %}
+        <span>{% trans "Subtotal" %}:</span>
+      {% endif %}
       <span class="price">{{ cart.get_total_price|convert:request }}</span>
     </div>
     <div class="cartWidgetBTN clearfix">

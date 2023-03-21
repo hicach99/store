@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.text import slugify
 from django.db.models import Q
@@ -61,6 +62,9 @@ class Configuration(models.Model):
     cmi_merchant_id = models.CharField(max_length=512,blank=True)
     cmi_secret_key = models.CharField(max_length=512,blank=True)
     cmi_sandbox = models.BooleanField(default=False)
+    # google auth
+    google_client_id = models.CharField(max_length=512,blank=True)
+    google_client_secret = models.CharField(max_length=512,blank=True)
     def __str__(self) -> str:
         return self.website_name
     def get_telegram_recivers(self):
@@ -232,6 +236,16 @@ class ProductReview(models.Model):
     def __str__(self):
         return self.name
 
+class Customer(models.Model):
+    name = models.EmailField(max_length=254)
+    phone = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
+    city = models.CharField(max_length=254)
+    address = models.TextField(blank=True)
+    def __str__(self) -> str:
+        return self.name
+    def get_orders(self):
+        return Order.objects.get(email=self.email)
 class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     token = models.CharField(blank=True,max_length=255)
@@ -265,6 +279,29 @@ class Order(models.Model):
                     for properity in properties: order_item.properties.add(properity)
                     order_item.save()
             order.calculate_total_price()
+            if order.email:
+                try:
+                    Customer.objects.create(
+                        email=order.email,
+                        phone=order.phone,
+                        address=order.address,
+                        name=order.name,
+                        city=order.city,
+                    )
+                except:
+                    try:
+                        customer=Customer.objects.get(email=order.email)
+                        if not customer.name:
+                            customer.name=order.name
+                        if not customer.phone:
+                            customer.phone=order.phone
+                        if not customer.address:
+                            customer.address=order.address
+                        if not customer.city:
+                            customer.city=order.city
+                        customer.save()
+                    except:
+                        pass
             cart.clear()
             return order
         return None

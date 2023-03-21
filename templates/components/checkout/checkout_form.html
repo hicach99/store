@@ -31,7 +31,7 @@
                       <label id="email_optional-error" class="error" for="email_optional"></label>
                     </small>
                   </span>
-                  <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" />
+                  <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %}/>
                 </div>
                 <div class="col-md-12">
                   <span style="padding-left: 25px;">
@@ -39,7 +39,7 @@
                       <label id="name-error" class="error" for="name"></label>
                     </small>
                   </span>
-                  <input type="text" name="name" placeholder="{% trans "Full Name" %}" />
+                  <input type="text" name="name" placeholder="{% trans "Full Name" %}" value="{{customer.name}}" {% if customer.name %}readonly{% endif %}/>
                 </div>
                 <div class="col-md-12">
                   <span style="padding-left: 25px;">
@@ -47,7 +47,7 @@
                       <label id="phone-error" class="error" for="phone"></label>
                     </small>
                   </span>
-                  <input type="text" name="phone" placeholder="{% trans "Phone" %}" />
+                  <input type="text" name="phone" placeholder="{% trans "Phone" %}" value="{{customer.phone}}"  {% if customer.phone %}readonly{% endif %}/>
                 </div>
                 <div class="col-lg-6">
                   <span style="padding-left: 25px;">
@@ -55,7 +55,7 @@
                       <label id="address-error" class="error" for="address"></label>
                     </small>
                   </span>
-                  <input type="text" name="address" placeholder="{% trans "Address" %}" />
+                  <input type="text" name="address" placeholder="{% trans "Address" %}" value="{{customer.address}}" {% if customer.address %}readonly{% endif %}/>
                 </div>
                 <div class="col-lg-6">
                   <span style="padding-left: 25px;">
@@ -63,7 +63,7 @@
                       <label id="city-error" class="error" for="city"></label>
                     </small>
                   </span>
-                  <input type="text" name="city" placeholder="{% trans "City" %}" />
+                  <input type="text" name="city" placeholder="{% trans "City" %}" {{customer.city}}  {% if customer.city %}readonly{% endif %}/>
                 </div>
               </div>
             </div>

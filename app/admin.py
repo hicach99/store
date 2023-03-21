@@ -40,6 +40,8 @@ class OrderAdmin(admin.ModelAdmin):
     list_display=('id','name','phone','total_price','complete')
     form = OrderAdminForm
     inlines = [OrderItemInline]
+class CustomerAdmin(admin.ModelAdmin):
+    list_display=('id','name','email','phone')
 
 admin.site.register(Configuration,ConfigurationAdmin)
 admin.site.register(Category,CategoryAdmin)
@@ -50,3 +52,4 @@ admin.site.register(ProductReview, ProductReviewAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Currency,CurrencyAdmin)
 admin.site.register(Order,OrderAdmin)
+admin.site.register(Customer,CustomerAdmin)

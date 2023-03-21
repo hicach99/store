@@ -27,11 +27,11 @@
       {% if product.price != product.old_price %}<del>{{product.old_price|convert:request}}</del>{% endif %}
     </div>
     <div class="pi01Variations">
+      {% if product.properties.all|filterby:"color" %}
       <div class="pi01VColor">
-        {% for property in product.properties.all %}
-          {% if property.type.name == 'color' %}
+        {% for property in product.properties.all|filterby:"color" %}
             <style>
-              .pi01VCItem label.{{property.name}}::after{
+              .pi01VCItem label.{{property.name_en}}::after{
                 background:{{property.value}};
               }
             </style>
@@ -39,19 +39,19 @@
               <input checked="" type="radio" name="color" value="{{property.id}}" id="color_{{product.id}}_{{property.name}}" />
               <label class="{{property.name}}" for="color_{{product.id}}_{{property.name}}"></label>
             </div>
-          {% endif %}
         {% endfor %}
       </div>
+      {% endif %}
+      {% if product.properties.all|filterby:"size" %}
       <div class="pi01VSize">
-        {% for property in product.properties.all %}
-          {% if property.type.name == 'size' %}
+        {% for property in product.properties.all|filterby:"size" %}
             <div class="pi01VSItem">
               <input type="radio" name="size" value="{{property.id}}" id="size_{{product.id}}_{{property.name}}" />
               <label for="size_{{product.id}}_{{property.name}}">{{property.name}}</label>
           </div>
-          {% endif %}
         {% endfor %}
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

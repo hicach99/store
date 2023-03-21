@@ -1,6 +1,7 @@
 requests
-hashlib
 Pillow
 Django
 django_smtp_ssl
 django-modeltranslation
+google-auth
+google-auth-oauthlib

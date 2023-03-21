@@ -98,10 +98,10 @@
                     <textarea name="comComment" placeholder="{% trans "Write your review here" %}"></textarea>
                   </div>
                   <div class="col-lg-6">
-                    <input type="text" name="comName" placeholder="{% trans "Your name" %}" />
+                    <input type="text" name="comName" placeholder="{% trans "Your name" %}" value="{{customer.name}}" {% if customer.name %}readonly{% endif %} />
                   </div>
                   <div class="col-lg-6">
-                    <input type="email" name="comEmail" placeholder="{% trans "Your email" %}" />
+                    <input type="email" name="comEmail" placeholder="{% trans "Your email" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %} />
                   </div>
                   <div class="col-lg-12">
                     <button type="submit" name="reviewtSubmit" class="ulinaBTN"><span>{% trans "Submit Now" %}</span></button>

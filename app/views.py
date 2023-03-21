@@ -13,12 +13,81 @@ from django.urls.exceptions import Resolver404
 from app.paypal import check_paypal_order, create_paypal_order
 from urllib.parse import unquote, urlparse
 from app.sender import send
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import Flow
 
 # Loading Configuration
 try:
     config=Configuration.objects.all()[0]
 except:
     config=None
+
+# google authentification
+def google_login(request):
+    redirect_uri='http://'+request.get_host()+reverse('google_callback')
+    flow = Flow.from_client_config(
+        {
+            'web': {
+                'client_id': config.google_client_id,
+                'client_secret': config.google_client_secret,
+                'redirect_uris': [redirect_uri],
+                'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+                'token_uri': 'https://accounts.google.com/o/oauth2/token',
+                'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
+                'scope': ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            }
+        },
+        scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+        redirect_uri = redirect_uri,
+    )
+
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        include_granted_scopes='true',
+    )
+    print(state)
+    request.session['google_auth_state'] = state
+    return redirect(authorization_url)
+def login_check(request):
+    try:
+        state = request.session.pop('google_auth_state', None)
+        if state:
+            state = request.session.pop('google_auth_state', None)
+            redirect_uri='http://'+request.get_host()+reverse('google_callback')
+            flow = Flow.from_client_config(
+                {
+                    'web': {
+                        'client_id': config.google_client_id,
+                        'client_secret': config.google_client_secret,
+                        'redirect_uris': [redirect_uri],
+                        'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+                        'token_uri': 'https://accounts.google.com/o/oauth2/token',
+                        'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
+                        'scope': ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+                    }
+                },
+            scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+            redirect_uri = redirect_uri,
+            state=state,
+            )
+            authorization_response = request.build_absolute_uri()
+            flow.fetch_token(authorization_response=authorization_response)
+            email = flow.credentials.id_token['email']
+            if email:
+                customer=None
+                try:
+                    customer=Customer.objects.get(email=email)
+                except:
+                    customer=Customer.objects.create(email=email)
+                    customer.save()
+                return customer
+    except:
+        pass
+    return None
+def google_callback(request):
+    if login_check(request):
+        render(request,'test.html')
+    return redirect('main')
 
 def set_currency(request,code:str):
     request.session['currency']=code.upper()
@@ -67,6 +136,7 @@ def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
     categories=Category.get_all()
+    customer=login_check(request)
     return render(
         request,
         'index.html',
@@ -74,6 +144,7 @@ def main(request):
             'config':config,
             'cart':cart,
             'categories':categories,
+            'customer':customer,
             'latest_products':latest_products
         }
     )
@@ -82,12 +153,14 @@ def product(request,slug):
     product = Product.objects.get(slug=slug)
     categories=Category.get_all()
     related_products=Product.objects.all()
+    customer=login_check(request)
     return render(
         request,
         'product.html',
         {
             'config':config,
             'cart':cart,
+            'customer':customer,
             'categories':categories,
             'related_products':related_products,
             'product':product,
@@ -98,12 +171,14 @@ def products(request):
     
     categories=Category.get_all()
     products=Product.get_products(request=request)
+    customer=login_check(request)
     return render(
         request,
         'shop.html',
         {
             'config':config,
             'cart':cart,
+            'customer':customer,
             'categories':categories,
             'products':products,
         }
@@ -112,13 +187,15 @@ def add_reviews(request):
     pass
 def cart(request):
     cart = Cart(request)
-    categories=Category.get_all()
     if len(cart)>0:
+        categories=Category.get_all()
+        customer=login_check(request)
         return render(
             request,
             'cart.html',
             {
                 'config':config,
+                'customer':customer,
                 'cart':cart,
                 'categories':categories,
             }
@@ -126,13 +203,15 @@ def cart(request):
     return redirect('shop')
 def checkout(request):
     cart = Cart(request)
-    categories=Category.get_all()
     if len(cart)>0:
+        categories=Category.get_all()
+        customer=login_check(request)
         return render(
             request,
             'checkout.html',
             {
                 'config':config,
+                'customer':customer,
                 'cart':cart,
                 'categories':categories,
             }
@@ -196,6 +275,7 @@ def success(request):
     categories=Category.get_all()
     cart = Cart(request)
     products=Product.objects.all()
+    categories=Category.get_all()
     return render(
         request,
         'success.html',
@@ -209,6 +289,7 @@ def success(request):
 def echec(request):
     categories=Category.get_all()
     cart = Cart(request)
+    categories=Category.get_all()
     return render(
         request,
         'echec.html',

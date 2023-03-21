@@ -85,7 +85,7 @@ msgid "Something went wrong!"
 msgstr "Quelque chose s'est mal passé !"
 
 msgid "Home"
-msgstr "Maison"
+msgstr "Accueil"
 
 msgid "Shop"
 msgstr "Boutique"

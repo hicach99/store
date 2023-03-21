@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'app',
 ]
 
+if DEBUG: INSTALLED_APPS.append('sslserver')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -43,7 +45,6 @@ MIDDLEWARE = [
     'setup.middleware.DefaultSessionMiddleware',
 ]
 
-SESSION_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'setup.urls'
 
@@ -140,10 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
 SECURE_SSL_REDIRECT = False
-
-X_FRAME_OPTIONS = 'ALLOW'
-
-
-# https://app.exchangerate-api.com/
-# piladav888@oniecan.com
-# Hicham5028@
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
