@@ -41,7 +41,7 @@ def convert(amount:float,request)-> str:
         ex_target =  rates[output] if rates else 1
         result = float(ex_target) * float(amount)
     if len(symbol)>=2:
-        result = "%.2f " % result+symbol
+        result = "%.2f " % result+symbol 
     else:
         result = symbol+"%.2f" % result
     return result

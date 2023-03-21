@@ -26,7 +26,7 @@
       <ins>{{product.price|convert:request}}</ins>
       {% if product.price != product.old_price %}<del>{{product.old_price|convert:request}}</del>{% endif %}
     </div>
-    <div class="pi02Desc">{{product.description}}</div>
+    <div class="pi02Desc ellipsis-text">{{product.description}}</div>
     <div class="pi01Variations">
       <div class="pi01VColor">
         <div class="pi01VColor">

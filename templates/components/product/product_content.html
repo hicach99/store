@@ -19,7 +19,7 @@
           {% if product.price != product.old_price %}<del id="productOldPrice">{{product.old_price|convert:request}}</del>{% endif %}
         </div>
         <div class="productRadingsStock clearfix">
-          <div class="productRatings float-start">
+          <div class="productRatings {% if 0|get_current_language == 'ar' %}float-end{% else %}float-start{% endif %}">
             <div class="productRatingWrap">
               <div class="star-rating">
                 <span class="a{{product.get_statistics.1}}"></span>
@@ -37,13 +37,13 @@
             <div class="pcvContainer">
                 {% for property in product.properties.all|filterby:"color" %}
                   <style>
-                    .pi01VCItem label.{{property.name}}::after{
+                    .pi01VCItem label.{{property.name_en}}::after{
                       background:{{property.value}};
                     }
                   </style>
                   <div class="pi01VCItem">
-                    <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="color" value="{{property.id}}" id="color_{{property.name}}" />
-                    <label class="{{property.name}}" for="color_{{property.name}}"></label>
+                    <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="color" value="{{property.id}}" id="color_{{property.name_en}}" />
+                    <label class="{{property.name_en}}" for="color_{{property.name_en}}"></label>
                   </div>
                 {% endfor %}
             </div>
@@ -56,8 +56,8 @@
               <div class="pcvContainer">
                   {% for property in product.properties.all|filterby:"size" %}
                     <div class="pswItem">
-                      <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="size" value="{{property.id}}" id="size_{{property.name}}" />
-                      <label for="size_{{property.name}}">{{property.name}}</label>
+                      <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="size" value="{{property.id}}" id="size_{{property.name_en}}" />
+                      <label for="size_{{property.name_en}}">{{property.name}}</label>
                   </div>
                 {% endfor %}
               </div>

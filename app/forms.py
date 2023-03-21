@@ -67,7 +67,7 @@ class OrderAdminForm(forms.ModelForm):
         fields = '__all__'
 
 class ConfigurationAdminForm(forms.ModelForm):
-    keywords=forms.CharField(required=False,help_text='Enter keywords separated by (,) Ex: apple,windows,amazon', widget=forms.TextInput(attrs={'placeholder': 'apple , windows , amazon'}))
+    keywords=forms.CharField(help_text='Enter keywords separated by (,) Ex: apple,windows,amazon')
     email_recivers=forms.CharField(required=False,help_text='Enter emails separated by (,) Ex: example1@ex.com,example2@ex.com,example3@ex.com', widget=forms.Textarea(attrs={'placeholder': 'example1@ex.com , example2@ex.com , example3@ex.com'}))
     telegram_recivers=forms.CharField(required=False,help_text='Enter telegram IDs separated by (,) Ex: 012345,54758,4557557', widget=forms.TextInput(attrs={'placeholder': '012345 , 54758 , 4557557'}))
     class Meta:

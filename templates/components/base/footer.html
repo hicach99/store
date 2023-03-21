@@ -8,7 +8,7 @@
           <div class="footerLogo">
             <a href="{% url 'main' %}"><img src="{% if config.logo_white %}{{config.logo_white.url}} {% else %}#{% endif %}" alt="Ulina" /></a>
           </div>
-          <div class="aboutWidContent">{{config.description}}</div>
+          <div class="aboutWidContent ellipsis-text">{{config.description}}</div>
           <div class="subscribForm">
             <form method="post" action="#">
               <input type="email" name="subsEmail" placeholder="Your email here" />

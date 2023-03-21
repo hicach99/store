@@ -38,7 +38,6 @@
   </style>
   <!-- END: style -->
   {% csrf_token %}
-  <input type="hidden" name="current_path"  id="current_path" value="{{ request.get_full_path }}">
   <script>
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const ElementsStep = 16
@@ -64,10 +63,10 @@
     const cartCreateApi=lang_url+'/api/cart/add';
     const cartUpdateApi=lang_url+'/cart/update';
     const orderCreateApi=lang_url+'/api/order/create';
-    const productApi=lang_url+'/api/product/';'/cart/update'
-    const productMessage='{% trans "Product added successfully to the cart" %}';
-    const productMessageError='{% trans "Product was not added" %}';
-    const warningError='{% trans "Something went wrong!" %}';
+    const productApi=lang_url+'/api/product/';
+    const productMessage="{% trans "Product added successfully to the cart" %}";
+    const productMessageError="{% trans "Product was not added" %}";
+    const warningError="{% trans "Something went wrong!" %}";
   </script>
-
+  <input type="hidden" name="current_path"  id="current_path" value="{{ request.get_full_path }}">
 </head>

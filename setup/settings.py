@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # added apps
+    'modeltranslation',
     'app',
 ]
 
@@ -36,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # added middlewares
     'django.middleware.locale.LocaleMiddleware',
     'setup.middleware.DefaultSessionMiddleware',
 ]
@@ -115,9 +118,7 @@ LANGUAGES = (
     ('en', gettext('English')),
     ('ar', gettext('Arabic')),
 )
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
+MODELTRANSLATION_LANGUAGES = ('fr','en', 'ar')
 import os
 
 STATIC_URL = '/static/'

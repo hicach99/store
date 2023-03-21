@@ -8391,3 +8391,10 @@ del,del:after{
     color: red;
     font-size: small;
 }
+
+.ellipsis-text {
+    height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

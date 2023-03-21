@@ -108,6 +108,8 @@ def products(request):
             'products':products,
         }
     )
+def add_reviews(request):
+    pass
 def cart(request):
     cart = Cart(request)
     categories=Category.get_all()

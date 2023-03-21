@@ -95,7 +95,7 @@ msgid "Shop"
 msgstr "المتجر"
 
 msgid "search"
-msgstr "يبحث"
+msgstr "بحث"
 
 msgid "Menu"
 msgstr "قائمة طعام"

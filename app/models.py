@@ -25,8 +25,8 @@ class Configuration(models.Model):
     logo_white = models.ImageField(blank=True,upload_to='website_images/')
     favicon = models.FileField(blank=True,upload_to='website_images/')
     # SEO configurations
-    description = models.TextField(blank=True)
-    keywords = models.TextField(blank=True)
+    description = models.TextField()
+    keywords = models.TextField()
     author = models.CharField(max_length=255,blank=True)
     # Contact configurations
     support_phone = models.CharField(max_length=255,blank=True)
