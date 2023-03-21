@@ -27,7 +27,7 @@ def capitalize(string:str):
 def filterby(l,filter:str):
     new=[]
     for i in l:
-        if i.type.name==filter: new.append(i)
+        if i.type.name_en.lower()==filter.lower(): new.append(i)
     return new
 
 @register.filter
