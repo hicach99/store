@@ -58,48 +58,49 @@ def login_check(request):
         pass
     return customer
 def google_callback(request):
-    try:
-        state = request.session.pop("google_auth_state", None)
-        if state is None or state != request.GET.get("state"):
-            return redirect('main')
-        redirect_uri='https://'+request.get_host()+reverse('google_callback')
-        flow = Flow.from_client_config(
-            {
-                'web': {
-                    'client_id': config.google_client_id,
-                    'client_secret': config.google_client_secret,
-                    'redirect_uris': [redirect_uri],
-                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                    "token_uri": "https://accounts.google.com/o/oauth2/token",
-                    "userinfo_uri": "https://www.googleapis.com/oauth2/v1/userinfo",
-                    "scope": scopes,
-                }
-            },
-            scopes=scopes,
-            redirect_uri = redirect_uri,
-        )
-        flow.fetch_token(
-            authorization_response=request.build_absolute_uri(),
-        )
-        credentials = flow.credentials
-        email = credentials.id_token['email']
-        if email:
-            customer=None
-            try:
-                customer=Customer.objects.get(email=email)
-            except:
-                customer=Customer.objects.create(email=email)
-                customer.save()
-            request.session["google_auth_credentials"] = {
-                "token": credentials.token,
-                "email":email,
-                "refresh_token": credentials.refresh_token,
-                "token_uri": credentials.token_uri,
-                "client_id": credentials.client_id,
-                "client_secret": credentials.client_secret,
-                "scopes": credentials.scopes,
+    state = request.session.pop("google_auth_state", None)
+    if state is None or state != request.GET.get("state"):
+        return redirect('main')
+    redirect_uri='https://'+request.get_host()+reverse('google_callback')
+    flow = Flow.from_client_config(
+        {
+            'web': {
+                'client_id': config.google_client_id,
+                'client_secret': config.google_client_secret,
+                'redirect_uris': [redirect_uri],
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://accounts.google.com/o/oauth2/token",
+                "userinfo_uri": "https://www.googleapis.com/oauth2/v1/userinfo",
+                "scope": scopes,
             }
-            return JsonResponse(request.session["google_auth_credentials"])
+        },
+        scopes=scopes,
+        redirect_uri = redirect_uri,
+    )
+    flow.fetch_token(
+        authorization_response=request.build_absolute_uri(),
+    )
+    credentials = flow.credentials
+    email = credentials.id_token['email']
+    if email:
+        customer=None
+        try:
+            customer=Customer.objects.get(email=email)
+        except:
+            customer=Customer.objects.create(email=email)
+            customer.save()
+        request.session["google_auth_credentials"] = {
+            "token": credentials.token,
+            "email":email,
+            "refresh_token": credentials.refresh_token,
+            "token_uri": credentials.token_uri,
+            "client_id": credentials.client_id,
+            "client_secret": credentials.client_secret,
+            "scopes": credentials.scopes,
+        }
+        return JsonResponse(request.session["google_auth_credentials"])
+    try:
+        pass
     except Exception as e:
         message=e
     return HttpResponse(message)
