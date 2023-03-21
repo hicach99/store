@@ -24,7 +24,7 @@ except:
 
 # google authentification
 def google_login(request):
-    redirect_uri='http://'+request.get_host()+reverse('google_callback')
+    redirect_uri='https://'+request.get_host()+reverse('google_callback')
     flow = Flow.from_client_config(
         {
             'web': {
@@ -62,7 +62,7 @@ def google_callback(request):
         state = request.session.pop("google_auth_state", None)
         if state is None or state != request.GET.get("state"):
             return redirect('main')
-        redirect_uri='http://'+request.get_host()+reverse('google_callback')
+        redirect_uri='https://'+request.get_host()+reverse('google_callback')
         flow = Flow.from_client_config(
             {
                 'web': {
