@@ -23,7 +23,7 @@ except:
     config=None
 
 # google authentification
-scopes=['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+scopes=['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile','openid']
 def google_login(request):
     redirect_uri='https://'+request.get_host()+reverse('google_callback')
     flow = Flow.from_client_config(
