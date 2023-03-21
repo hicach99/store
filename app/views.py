@@ -89,10 +89,10 @@ def google_callback(request):
         return JsonResponse({id_token:userinfo_response.json()})
     if email:
         try:
-            customer=Customer.objects.get(email=email)
-        except:
             customer=Customer.objects.create(email=email)
             customer.save()
+        except:
+            pass
         request.session["google_auth_credentials"] = {
             "token": credentials.token,
             "refresh_token": credentials.refresh_token,
