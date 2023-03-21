@@ -109,7 +109,7 @@ def google_callback(request):
             authorization_response=request.build_absolute_uri(),
         )
         credentials = flow.credentials
-        email = flow.credentials.id_token['email']
+        email = credentials.id_token['email']
         if email:
             customer=None
             try:
@@ -119,6 +119,7 @@ def google_callback(request):
                 customer.save()
             request.session["google_auth_credentials"] = {
                 "token": credentials.token,
+                "email":email,
                 "refresh_token": credentials.refresh_token,
                 "token_uri": credentials.token_uri,
                 "client_id": credentials.client_id,
