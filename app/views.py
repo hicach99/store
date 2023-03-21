@@ -88,7 +88,7 @@ def google_callback(request):
             user_data = response.json()
             email = user_data.get('email')
     except Exception as e:
-        print(f"An error occurred: {e}")
+        return HttpResponse(e)
     if email:
         try:
             customer=Customer.objects.get(email=email)
@@ -105,6 +105,7 @@ def google_callback(request):
             "scopes": credentials.scopes,
         }
         return JsonResponse(request.session["google_auth_credentials"])
+    message=None
     try:
         pass
     except Exception as e:
