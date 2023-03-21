@@ -82,7 +82,7 @@ def google_callback(request):
     try:
         id_token = credentials.id_token
         userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo'
-        headers = {'Authorization': f'Bearer {id_token}'}
+        headers = {'Authorization': f'Bearer {credentials.token}'}
         userinfo_response = requests.get(userinfo_endpoint, headers=headers)
         email = userinfo_response.json()['email']
     except Exception as e:
