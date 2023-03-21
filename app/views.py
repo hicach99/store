@@ -86,7 +86,7 @@ def google_callback(request):
         userinfo_response = requests.get(userinfo_endpoint, headers=headers)
         email = userinfo_response.json()['email']
     except Exception as e:
-        return JsonResponse(userinfo_response.json())
+        return JsonResponse({id_token:userinfo_response.json()})
     if email:
         try:
             customer=Customer.objects.get(email=email)
