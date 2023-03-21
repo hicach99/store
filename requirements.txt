@@ -1,5 +1,6 @@
 requests
 hashlib
-Django
 Pillow
+Django
 django_smtp_ssl
+django-modeltranslation
