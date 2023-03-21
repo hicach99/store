@@ -49,41 +49,14 @@ def google_login(request):
     request.session['google_auth_state'] = state
     return redirect(authorization_url)
 def login_check(request):
+    customer = None
     try:
-        state = request.session.pop('google_auth_state', None)
-        if state:
-            state = request.session.pop('google_auth_state', None)
-            redirect_uri='http://'+request.get_host()+reverse('google_callback')
-            flow = Flow.from_client_config(
-                {
-                    'web': {
-                        'client_id': config.google_client_id,
-                        'client_secret': config.google_client_secret,
-                        'redirect_uris': [redirect_uri],
-                        'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
-                        'token_uri': 'https://accounts.google.com/o/oauth2/token',
-                        'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
-                        'scope': ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
-                    }
-                },
-            scopes=['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
-            redirect_uri = redirect_uri,
-            state=state,
-            )
-            authorization_response = request.build_absolute_uri()
-            flow.fetch_token(authorization_response=authorization_response)
-            email = flow.credentials.id_token['email']
-            if email:
-                customer=None
-                try:
-                    customer=Customer.objects.get(email=email)
-                except:
-                    customer=Customer.objects.create(email=email)
-                    customer.save()
-                return customer
+        credentials = request.session.pop('google_auth_credentials', None)
+        if credentials:
+            customer=Customer.objects.get(email=credentials['email'])
     except:
         pass
-    return None
+    return customer
 def google_callback(request):
     try:
         state = request.session.pop("google_auth_state", None)
