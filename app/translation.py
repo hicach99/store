@@ -1,6 +1,12 @@
 from modeltranslation.translator import TranslationOptions,register
 from app.models import *
 
+@register(Banner)
+class BannerTranslationOptions(TranslationOptions):
+    fields = (
+        'title',
+        'description',
+    )
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
     fields = (

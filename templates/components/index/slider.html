@@ -1,31 +1,91 @@
 {% load i18n %}
 {% load static %}
-<section class="dealProductSection" >
-    <div class="container" style="margin-top: 100px;">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="dealProductContent">
-                    <h5>Featured Product</h5>
-                    <h2>Ulima Fashionable Jeans</h2>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa uis aute irure dolor </p>
-                    <div class="dpcPriceWrap">
-                        <div class="pi01Price">
-                            <ins>$199</ins>
-                            <del>$399</del>
-                        </div>
-                        <a href="shop_details1.html" class="ulinaBTN"><span>Buy Now</span></a>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<div class="acv b">
+    <swiper-container class="cnt" navigation="true" pagination="true">
+    {% for banner in banners %}
+        <swiper-slide style="{% if banner.background_image %}background-image: url({{banner.background_image.url}});background-size: cover; background-repeat:  no-repeat; background-position: center center;{% elif banner.background_color %}background-color: {{banner.background_color}};{% else %}background-color: #333;{% endif %}">
+            <strong>
+                <center><h1 class="pt-4" style="color: {{banner.title_color}};">{{banner.title}}</h1></center>
+            </strong>
+            <strong>
+                <center><h3 class="p-1" style="color: {{banner.description_color}};">{{banner.description}}</h3></center>
+            </strong>
+            <div class="row">
+                {% for image in banner.images.all %}
+                {% if image.image %}
+                    <div class="col">
+                        <center class="">
+                            <a href="{% url 'shop' %}?tag={{banner.tag.slug}}">
+                                <img class="a-img" style="height:300px;" src="{{image.image.url}}" alt="{{image.image.name}}">
+                            </a>
+                        </center>
                     </div>
-                    <div class="countDownWrap">
-                        <h6>Ends in</h6>
-                        <div class="ulinaCountDown is-countdown" data-day="26" data-month="07" data-year="2022"><span class="countdown-row countdown-show4"><span class="countdown-section"><span class="countdown-amount">1</span><span class="countdown-period">Day</span></span><span class="countdown-section"><span class="countdown-amount">23</span><span class="countdown-period">Hrs</span></span><span class="countdown-section"><span class="countdown-amount">59</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">29</span><span class="countdown-period">Secs</span></span></span></div>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
-            <div class="col-lg-6">
-                <div class="dealProductImage">
-                    <img src="{% static 'media/7.png' %}" alt="Ulima Fashionable Jeans">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            <center class="p-3 a-img" {% if not banner.images.all %}style="margin-top:200px;"{% endif %}><a href="{% url 'shop' %}?tag={{banner.tag.slug}}" class="ulinaBTN"><span>{% trans "Buy Now" %}</span></a></center>
+        </swiper-slide>
+    {% endfor %}
+    </swiper-container>
+</div>
+<style>
+    .swiper{
+    }
+    .acv{
+        margin-top: 120px;
+    }
+    .cnt{
+        height: fit-content;
+        border-radius: 5px;
+        animation: leaves;
+    }
+    .a-img:hover {
+        /* Start the shake animation and make the animation last for 0.5 seconds */
+        animation: shake 1s;
+      
+        /* When the animation is finished, start again */
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes leaves {
+        0% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+        100% {
+            transform: scale(2.0);
+            -webkit-transform: scale(2.0);
+        }
+    }
+
+    #treeLeaves {
+        animation: leaves 5s ease-in-out infinite alternate;
+        -webkit-animation: leaves 5s ease-in-out infinite alternate;
+    }
+      @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        5% { transform: translate(-1px, -2px) rotate(-1deg); }
+        10% { transform: translate(-1px, -2px) rotate(-2deg); }
+        15% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(3px, 2px) rotate(0deg); }
+        25% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(-3px, 0px) rotate(2deg); }
+        35% { transform: translate(-3px, 0px) rotate(1deg); }
+        40% { transform: translate(1px, 1px) rotate(0deg); }
+        45% { transform: translate(-1px, -2px) rotate(-1deg); }
+        50% { transform: translate(-1px, -2px) rotate(-2deg); }
+        55% { transform: translate(-1px, -2px) rotate(-1deg); }
+        60% { transform: translate(3px, 2px) rotate(0deg); }
+        65% { transform: translate(-3px, 0px) rotate(1deg); }
+        70% { transform: translate(-3px, 0px) rotate(2deg); }
+        75% { transform: translate(-3px, 0px) rotate(1deg); }
+        80% { transform: translate(1px, 1px) rotate(0deg); }
+        85% { transform: translate(1px, 1px) rotate(0deg); }
+        90% { transform: translate(-1px, -2px) rotate(-1deg); }
+        95% { transform: translate(-1px, -2px) rotate(-2deg); }
+        100% { transform: translate(-1px, -2px) rotate(-1deg); }
+      }
+</style>
+

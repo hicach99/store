@@ -37,13 +37,13 @@
             <div class="pcvContainer">
                 {% for property in product.properties.all|filterby:"color" %}
                   <style>
-                    .pi01VCItem label.{{property.name_en}}::after{
+                    .pi01VCItem label.{{property.name_en}}{{property.id}}::after{
                       background:{{property.value}};
                     }
                   </style>
                   <div class="pi01VCItem">
                     <input {% if forloop.counter0 == 0 %}checked{% endif %} type="radio" name="color" value="{{property.id}}" id="color_{{property.name_en}}" />
-                    <label class="{{property.name_en}}" for="color_{{property.name_en}}"></label>
+                    <label class="{{property.name_en}}{{property.id}}" for="color_{{property.name_en}}"></label>
                   </div>
                 {% endfor %}
             </div>

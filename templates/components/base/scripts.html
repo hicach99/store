@@ -30,3 +30,13 @@
 <script src='{% static 'js/revolution.extension.video.min.js' %}'></script>
 <script src='{% static 'js/theme.js' %}'></script>
 <script src='{% static 'js/cart.js' %}'></script>
+<script>
+    $('.banners').owlCarousel({
+        items:1,
+        loop:true,
+        margin:0,
+        autoplay:true,
+        autoplayTimeout:15000,
+        autoplayHoverPause:true
+    });
+</script>

@@ -7,6 +7,9 @@ from .models import *
 class ImageInline(admin.TabularInline):
     model = Image
     extra = 3
+class BannerImageInline(admin.TabularInline):
+    model = BannerImage
+    extra = 3
 class InfoInline(admin.TabularInline):
     model = ProductInformation
     extra = 1
@@ -42,7 +45,9 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
 class CustomerAdmin(admin.ModelAdmin):
     list_display=('id','name','email','phone')
-
+class BannerAdmin(admin.ModelAdmin):
+    list_display=('id','title','description','tag')
+    inlines = [BannerImageInline,]
 admin.site.register(Configuration,ConfigurationAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Property,PropertyAdmin)
@@ -53,3 +58,4 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(Currency,CurrencyAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Customer,CustomerAdmin)
+admin.site.register(Banner,BannerAdmin)

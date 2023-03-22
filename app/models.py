@@ -1,10 +1,20 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.text import slugify
 from django.db.models import Q
 from django.utils.html import mark_safe
 
 
+
+class Customer(models.Model):
+    name = models.CharField(max_length=254)
+    phone = models.CharField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
+    city = models.CharField(max_length=254)
+    address = models.TextField(blank=True)
+    def __str__(self) -> str:
+        return self.name
+    def get_orders(self):
+        return Order.objects.filter(email=self.email)
 class Currency(models.Model):
     code = models.CharField(max_length=255)
     symbol = models.CharField(max_length=255,blank=True)
@@ -111,6 +121,17 @@ class Tag(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super(Tag, self).save(*args, **kwargs)
+class Banner(models.Model):
+    background_color = models.CharField(max_length=254,blank=True)
+    background_image = models.ImageField(upload_to='banner_images/',blank=True)
+    title = models.CharField(max_length=254,blank=True)
+    title_color = models.CharField(max_length=254,blank=True)
+    description = models.CharField(max_length=254,blank=True)
+    description_color = models.CharField(max_length=254,blank=True)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE,null=True)
+class BannerImage(models.Model):
+    image = models.ImageField(upload_to='banner_images/',blank=True)
+    banner = models.ForeignKey(Banner, on_delete=models.CASCADE,null=True,related_name='images')
 class Product(models.Model):
     product_status = [
         ('Hot', 'Hot'),
@@ -236,16 +257,7 @@ class ProductReview(models.Model):
     def __str__(self):
         return self.name
 
-class Customer(models.Model):
-    name = models.EmailField(max_length=254)
-    phone = models.EmailField(max_length=254)
-    email = models.EmailField(max_length=254, unique=True)
-    city = models.CharField(max_length=254)
-    address = models.TextField(blank=True)
-    def __str__(self) -> str:
-        return self.name
-    def get_orders(self):
-        return Order.objects.get(email=self.email)
+
 class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     token = models.CharField(blank=True,max_length=255)

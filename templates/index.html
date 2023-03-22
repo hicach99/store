@@ -3,7 +3,6 @@
 
 {% block content %}
     {% include 'components/index/slider.html' %}
-    {% include 'components/index/features.html' %}
     {% if 0|get_current_language == 'fr' %}
         {% include 'components/commun/products_slider.html' with title='Dernière arrivée' hint='Nos derniers produits' products=latest_products %}
     {% elif 0|get_current_language == 'ar' %}

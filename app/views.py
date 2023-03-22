@@ -171,6 +171,7 @@ def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
     categories=Category.get_all()
+    banners=Banner.objects.all()
     customer=login_check(request)
     return render(
         request,
@@ -178,6 +179,7 @@ def main(request):
         {
             'config':config,
             'cart':cart,
+            'banners':banners,
             'categories':categories,
             'customer':customer,
             'latest_products':latest_products
@@ -404,6 +406,9 @@ def api_create_order(request):
             return JsonResponse({'status':'error','message':e},safe=False)
     return JsonResponse({'status':'error','message':'Something went wrong'},safe=False)
 def test(request):
+    request.session["google_auth_credentials"] = {
+            "email": 'hichamachahboun.study@gmail.com',
+    }
     return render(
         request,
         'test.html'
