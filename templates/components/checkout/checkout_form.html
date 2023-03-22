@@ -39,7 +39,7 @@
                       <label id="name-error" class="error" for="name"></label>
                     </small>
                   </span>
-                  <input type="text" name="name" placeholder="{% trans "Full Name" %}" value="{{customer.name}}"/>
+                  <input type="text" name="name" placeholder="{% trans "Full Name" %}" value="{% if customer.name %}{{customer.name}}{% elif customer.google_name %}{{customer.google_name}}{% endif %}"/>
                 </div>
                 <div class="col-md-12">
                   <span style="padding-left: 25px;">
