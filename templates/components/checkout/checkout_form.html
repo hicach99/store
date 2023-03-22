@@ -135,10 +135,10 @@
                     <input type="radio" checked="" value="1" name="payment_method" id="paymentMethod01" />
                     <label for="paymentMethod01">{% trans "Cash On Delivery" %}</label>
                   </li>
-                  <li class="active">
+                  {% comment %} <li class="active">
                     <input type="radio" value="2" name="payment_method" id="paymentMethod02" />
                     <label for="paymentMethod02">{% trans "Credit Card (CMI)" %}</label>
-                  </li>
+                  </li> {% endcomment %}
                   <li class="">
                     <input type="radio" value="3" name="payment_method" id="paymentMethod03" />
                     <label for="paymentMethod03"><span>Paypal </span><i class="fa-brands fa-paypal" style="font-size: large;"></i></label>
