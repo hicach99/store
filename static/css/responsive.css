@@ -1470,7 +1470,6 @@
 /  12. max-width: 575px
 /----------------========----------------*/
 @media (max-width: 575px){
-    /* 404 */
     .fofContent::after{
         left: 0;
         right: 0;
