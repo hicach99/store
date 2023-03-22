@@ -25,7 +25,7 @@
                 {% endif %}
                 {% endfor %}
             </div>
-            <center class="p-3 a-img" {% if not banner.images.all %}style="margin-top:200px;"{% endif %}><a href="{% url 'shop' %}?tag={{banner.tag.slug}}" class="ulinaBTN"><span>{% trans "Buy Now" %}</span></a></center>
+            <center class="p-4 a-img" {% if not banner.images.all %}style="margin-top:200px;"{% endif %}><a href="{% url 'shop' %}?tag={{banner.tag.slug}}" class="ulinaBTN"><span>{% trans "Buy Now" %}</span></a></center>
         </swiper-slide>
     {% endfor %}
     </swiper-container>
