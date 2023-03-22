@@ -29,7 +29,7 @@
           </thead>
           <tbody>
             {% for order in customer.get_orders %}
-                <tr data-order="{{order.id}}" class="orderTr">
+              <tr data-order="{{order.id}}" class="orderTr">
                   <td class="column1">{{order.date_ordered}}</td>
                   <td class="column2">{{order.id}}</td>
                   <td class="column3">{{order.payment_method}}</td>
@@ -38,6 +38,37 @@
                 {% for item in order.items.all %}
                 {% endfor %}
               </tr>
+              <div class="modal fade" id="order{{order.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">First</th>
+                              <th scope="col">Last</th>
+                              <th scope="col">Handle</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Samso</td>
+                              <td>Natto</td>
+                              <td>@samso</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {% endfor %}
           </tbody>
         </table>
