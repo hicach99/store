@@ -1,0 +1,44 @@
+{% load functions %}
+{% load i18n %}
+<div class="modal-dialog" style="width: 80%;">
+  <div class="modal-content ">
+    <div class="wrap-table100" style="width: auto;">
+      <div class="table100">
+        <table>
+          <thead>
+            <tr class="table100-head" >
+              <th class="column1" >{% trans "Item" %}</th>
+              <th class="column2" >{% trans "Properties" %}</th>
+              <th class="column3" >{% trans "Price" %}</th>
+              <th class="column4" >{% trans "Quantity" %}</th>
+              <th class="column5" > </th>
+              <th class="column6" >{% trans "Total" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order.items.all %}
+                
+                  <tr class="">
+                    <td class="column1" >{{item.product.name|slice:'0:30'}}...<a href="{% url 'product_details' item.product.slug %}" target="_blank" class="float-center" rel="noopener noreferrer"><i class="fa fa-eye"></i></a></td>
+                    <td class="column2" >{% for property in item.properties.all %}{{property.name}},{% endfor %}</td>
+                    <td class="column3" >{{item.product.price|convert:request}}</td>
+                    <td class="column4" >{{item.quantity}}</td>
+                    <td class="column5" > </td>
+                    <td class="column6" >{{item.total_price|convert:request}}</td>
+                  </tr>
+                
+                {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .modal-dialog {
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    --bs-modal-border-radius:15px;
+  }
+</style>

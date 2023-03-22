@@ -86,6 +86,7 @@ def google_callback(request):
         email = userinfo_response.json()['email']
     except Exception as e:
         return JsonResponse(e)
+    return HttpResponse(userinfo_response.json())
     if email:
         try:
             customer=Customer.objects.create(email=email)
@@ -166,7 +167,6 @@ def set_language(request, language):
     else:
         response = HttpResponseRedirect("/")
     return response
-
 def main(request):
     latest_products=Product.objects.all()
     cart = Cart(request)
@@ -336,12 +336,26 @@ def echec(request):
             'cart':cart,
         }
     )
-
 # api calls
 def api_product_details(request,id):
     try:
         product=Product.objects.get(id=id)
         html=render_to_string('components/commun/product_modal_content.html',{'product':product},request=request)
+        data={
+            'status' : 'ok',
+            'html': html
+        }
+    except Exception as e:
+        data={
+            'status':'error',
+            'message':e
+        }
+    return JsonResponse(data,safe=False,json_dumps_params={"ensure_ascii": False})
+def api_order_details(request,id):
+    try:
+        order = Order.objects.get(id=id)
+        html=render_to_string('customer/order_modal_content.html',{'order':order},request=request)
+        print(order.name)
         data={
             'status' : 'ok',
             'html': html

@@ -1066,7 +1066,26 @@
     })
 
     $('.orderTr').click(()=>{
-        alert('aa')
+        var id=$('.orderTr').attr('data-order');
+        fetch(orderGetApi+id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if(result.status =='ok'){
+                $('#order-modal').html(result.html);
+                $('#order-modal').modal('show');
+            }else{
+                $.simplyToast(warningError,'danger',toast_options);
+            }
+        })
+        .catch(error => {
+            $.simplyToast(error,'danger',toast_options);
+        });
     })
     
 })(jQuery)
