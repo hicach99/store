@@ -221,7 +221,7 @@ msgid "Reviews"
 msgstr "Commentaires"
 
 msgid "Review"
-msgstr "Examen"
+msgstr "Avis"
 
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
@@ -242,7 +242,7 @@ msgid "Showing our popular products"
 msgstr "Affichage de nos produits populaires"
 
 msgid "Buy Now"
-msgstr "Acheter maintenant"
+msgstr "Acheter"
 
 msgid "Color"
 msgstr "Couleur"
@@ -263,7 +263,7 @@ msgid "Additional Information"
 msgstr "Informations Complémentaires"
 
 msgid "Item Review"
-msgstr "Examen de l'article"
+msgstr "Avis de l'item"
 
 msgid "Product Details"
 msgstr "détails du produit"

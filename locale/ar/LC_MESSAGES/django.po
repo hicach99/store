@@ -349,7 +349,7 @@ msgid "Order ID"
 msgstr "رقم الطلب"
 
 msgid "Payment Method"
-msgstr "طريقة الدفع او السداد"
+msgstr "طريقة الدفع"
 
 msgid "Status"
 msgstr "الحالة"
