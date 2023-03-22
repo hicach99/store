@@ -87,8 +87,25 @@
               <div class="anSearch">
                 <a href="javascript:void(0);"><i class="fa-solid fa-search"></i></a>
               </div>
-              <div class="anUser">
-                <a href="{% url 'google_login' %}"><i class="fa-solid fa-user"></i></a>
+              <div class="anUser hover-text">
+                <a href=""><i class="fa-solid fa-user"></i></a>
+                <span id="bottom" class="tooltip-text shadow-sm p-3 mb-5 bg-white rounded">
+                  {% if customer %}
+                    <div class="mt-2">
+                      <div class="col" > <a href="{% url 'dashboard' %}" class="ulinaBTN"><span>{% trans "Dashboard" %}</span></a></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="col" > <a href="{% url 'google_logout' %}" class="ulinaBTN"><span>{% trans "Log out" %}</span></a></div>
+                    </div>
+                  {% else %}
+                    <span>
+                      {% trans "Sign up with google <br> fast & secure" %}
+                    </span>
+                    <div>
+                      <div class="col" > <a href="{% url 'google_login' %}" class="ulinaBTN"><span><i class="fa-brands fa-google"></i> {% trans "Login" %}</span></a></div>
+                    </div>
+                  {% endif %}
+                </span>
               </div>
               <div class="anCart">
                 {% include 'components/base/cart.html' %}

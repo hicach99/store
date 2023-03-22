@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-21 00:04+0000\n"
+"POT-Creation-Date: 2023-03-22 18:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\setup\settings.py:118
 msgid "French"
 msgstr "Français"
 
@@ -72,6 +73,9 @@ msgstr "Remplissez le champ pour recevoir le reçu"
 msgid "Email"
 msgstr "E-mail"
 
+msgid "Fill it if you want to recieve reciept in your inbox"
+msgstr "Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
+
 msgid "Email (Not Required)"
 msgstr "E-mail (non requis)"
 
@@ -95,6 +99,18 @@ msgstr "recherche"
 
 msgid "Menu"
 msgstr "Menu"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Log out"
+msgstr "Se déconnecter"
+
+msgid "Sign up with google <br> fast & secure"
+msgstr "Inscrivez-vous avec google <br> rapidement et en toute sécurité"
+
+msgid "Login"
+msgstr "Connexion"
 
 msgid "Helpline"
 msgstr "Assistance téléphonique"
@@ -155,6 +171,9 @@ msgstr "Vous avez un code promo ?"
 
 msgid "Your Billing Address"
 msgstr "Votre adresse de facturation"
+
+msgid "(optional) Fill it if you want to recieve reciept in your inbox"
+msgstr "(facultatif) Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
 
 msgid "Full Name"
 msgstr "Nom et prénom"
@@ -221,6 +240,9 @@ msgstr "Produits populaires"
 
 msgid "Showing our popular products"
 msgstr "Affichage de nos produits populaires"
+
+msgid "Buy Now"
+msgstr "Acheter maintenant"
 
 msgid "Color"
 msgstr "Couleur"
@@ -312,6 +334,33 @@ msgstr "Aucun produit trouvé"
 msgid "Load More"
 msgstr "Charger plus"
 
+msgid "No orders found, chekout our products"
+msgstr "Aucune commande trouvée, consultez nos produits"
+
+msgid "Our Store"
+msgstr "Notre magasin"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Order ID"
+msgstr "numéro de commande"
+
+msgid "Payment Method"
+msgstr "Mode de paiement"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Delivered"
+msgstr "Livré"
+
+msgid "Paid"
+msgstr "Payé"
+
+msgid "Properties"
+msgstr "Propriétés"
+
 msgid "Email Receipt"
 msgstr "Reçu par e-mail"
 
@@ -324,8 +373,3 @@ msgstr "Facture #"
 msgid "Questions? Email"
 msgstr "Des questions? E-mail"
 
-msgid "Fill it if you want to recieve reciept in your inbox"
-msgstr "Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
-
-msgid "(optional) Fill it if you want to recieve reciept in your inbox"
-msgstr "(facultatif) Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"

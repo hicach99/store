@@ -3,6 +3,7 @@ from django.urls import path
 from app.views import *
 urlpatterns = [
     path('', main,name='main'),
+    path('auth/google/logout/', google_logout, name='google_logout'),
     path('auth/google/login/', google_login, name='google_login'),
     path('auth/google/callback/', google_callback, name='google_callback'),
     path('customer/dashboard/', dashboard, name='dashboard'),

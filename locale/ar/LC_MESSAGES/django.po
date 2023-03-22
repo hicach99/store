@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-21 00:03+0000\n"
+"POT-Creation-Date: 2023-03-22 18:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\setup\settings.py:118
 
 msgid "French"
 msgstr "فرنسي"
@@ -99,6 +101,18 @@ msgstr "بحث"
 
 msgid "Menu"
 msgstr "قائمة طعام"
+
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+msgid "Log out"
+msgstr "تسجيل خروج"
+
+msgid "Sign up with google <br> fast & secure"
+msgstr "الاشتراك بواسطة جوجل <br> سريع وآمن"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
 
 msgid "Helpline"
 msgstr "خط المساعدة"
@@ -229,6 +243,9 @@ msgstr "المنتجات الشعبية"
 msgid "Showing our popular products"
 msgstr "منتجاتنا الشعبية"
 
+msgid "Buy Now"
+msgstr "اشتري الآن"
+
 msgid "Color"
 msgstr "لون"
 
@@ -318,6 +335,33 @@ msgstr "منتجات غير موجودة"
 
 msgid "Load More"
 msgstr "المزيد"
+
+msgid "No orders found, chekout our products"
+msgstr "لم يتم العثور على طلبات ، اعرض منتجاتنا"
+
+msgid "Our Store"
+msgstr "متجرنا"
+
+msgid "Date"
+msgstr "تاريخ"
+
+msgid "Order ID"
+msgstr "رقم الطلب"
+
+msgid "Payment Method"
+msgstr "طريقة الدفع او السداد"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Delivered"
+msgstr "تم التوصيل"
+
+msgid "Paid"
+msgstr "مدفوع"
+
+msgid "Properties"
+msgstr "ملكيات"
 
 msgid "Email Receipt"
 msgstr "إيصال البريد الإلكتروني"

@@ -11,20 +11,20 @@
       <div class="table100">
         {% if not customer.get_orders or request.mobile %}
           <div class="divo">
-            <div class="bg-white text-secondary  p-3" style="border-radius: 10px;">No orders found, chekout our products <a href="{% url 'shop' %}" class="ulinaBTN">Our Store</a></div>
+            <div class="bg-white text-secondary  p-3" style="border-radius: 10px;">{% trans "No orders found, chekout our products" %} <a href="{% url 'shop' %}" class="ulinaBTN">{% trans "Our Store" %}</a></div>
           </div>
         {% endif %}
         <table>
           <thead>
             <tr class="table100-head">
               {% if customer.get_orders %}
-              <th class="column1">Date</th>
-              <th class="column2">Order ID</th>
-              <th class="column3">Payment Method</th>
-              <th class="column4">Status</th>
-              <th class="column6">Total</th>
+              <th class="column1">{% trans "Date" %}</th>
+              <th class="column2">{% trans "Order ID" %}</th>
+              <th class="column3">{% trans "Payment Method" %}</th>
+              <th class="column4">{% trans "Status" %}</th>
+              <th class="column6">{% trans "Total" %}</th>
               {% else %}
-              <th class="column1 bg-white text-secondary">No orders found, chekout our products <a href="{% url 'shop' %}" class="ulinaBTN">Our Store</a></th>
+              <th class="column1 bg-white text-secondary">{% trans "No orders found, chekout our products" %} <a href="{% url 'shop' %}" class="ulinaBTN">{% trans "Our Store" %}</a></th>
               {% endif %}
             </tr>
           </thead>
@@ -34,7 +34,7 @@
                   <td class="column1">{{order.date_ordered}}</td>
                   <td class="column2">{{order.id}}</td>
                   <td class="column3">{{order.payment_method}}</td>
-                  <td class="column4">{% if order.delivered %} <span class="color-success">Delivered</span> {% else %}{% if order.complete %}<span class="color-success">Paid</span>{% else %}<span>Shipping</span>{% endif %}{% endif %}</td>
+                  <td class="column4">{% if order.delivered %} <span class="color-success">{% trans "Delivered" %}</span> {% else %}{% if order.complete %}<span class="color-success">{% trans "Paid" %}</span>{% else %}<span>{% trans "Shipping" %}</span>{% endif %}{% endif %}</td>
                   <td class="column6">{{order.total_price|convert:request}}</td>
                 {% for item in order.items.all %}
                 {% endfor %}

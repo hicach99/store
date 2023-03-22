@@ -25,7 +25,50 @@
   <link rel='stylesheet' href='{% static 'css/theme.css' %}'>
   <link rel='stylesheet' href='{% static 'css/responsive.css' %}'>
   <link rel='stylesheet' href='{% static 'css/simply-toast.css' %}'>
- 
+  <style>
+    .tooltip-text {
+      background-color: #fff;
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+      font-size: 12px;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    .hover-text:hover .tooltip-text {
+      visibility: visible;
+    }
+    
+    #top {
+      top: -40px;
+      left: -50%;
+    }
+    
+    #bottom {
+      top: 25px;
+      left: -100%;
+    }
+    
+    #left {
+      top: -8px;
+      right: 120%;
+    }
+    
+    #right {
+      top: -8px;
+      left: 120%;
+    }
+    
+    .hover-text {
+      position: relative;
+      background-color: #fff;
+      display: inline-block;
+      font-family: Arial;
+      background-color: #fff;
+      text-align: center;
+    }
+  </style>
   <!-- END: CSS -->
 
   <!-- BEGIN: Favicon -->

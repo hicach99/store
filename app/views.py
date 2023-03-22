@@ -24,27 +24,44 @@ except:
 
 # google authentification
 scopes=['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile','openid']
+def google_logout(request):
+    if login_check(request):
+        del request.session['google_auth_credentials']
+    try:
+        view = resolve(urlparse(request.META.get("HTTP_REFERER")).path)
+    except Resolver404:
+        view = None
+    if view:
+        args=view.args
+        kwargs=json.loads(unquote(str(view.kwargs).replace("'",'"')))
+        next_url = reverse(view.url_name, args=args, kwargs=kwargs)
+        response = HttpResponseRedirect(next_url)
+    else:
+        response = redirect("main")
+    return response
 def google_login(request):
-    redirect_uri='https://'+request.get_host()+reverse('google_callback')
-    flow = Flow.from_client_config(
-        {
-            'web': {
-                'client_id': config.google_client_id,
-                'client_secret': config.google_client_secret,
-                'redirect_uris': [redirect_uri],
-                'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
-                'token_uri': 'https://accounts.google.com/o/oauth2/token',
-                'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
-                'scope': scopes,
-            }
-        },
-        redirect_uri = redirect_uri,
-        scopes=scopes
-    )
+    if not login_check(request):
+        redirect_uri='https://'+request.get_host()+reverse('google_callback')
+        flow = Flow.from_client_config(
+            {
+                'web': {
+                    'client_id': config.google_client_id,
+                    'client_secret': config.google_client_secret,
+                    'redirect_uris': [redirect_uri],
+                    'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+                    'token_uri': 'https://accounts.google.com/o/oauth2/token',
+                    'userinfo_uri': 'https://www.googleapis.com/oauth2/v1/userinfo',
+                    'scope': scopes,
+                }
+            },
+            redirect_uri = redirect_uri,
+            scopes=scopes
+        )
 
-    authorization_url, state = flow.authorization_url(access_type='offline', include_granted_scopes='true')
-    request.session['google_auth_state'] = state
-    return redirect(authorization_url)
+        authorization_url, state = flow.authorization_url(access_type='offline', include_granted_scopes='true')
+        request.session['google_auth_state'] = state
+        return redirect(authorization_url)
+    return redirect('dashboard')
 def login_check(request):
     customer = None
     try:
