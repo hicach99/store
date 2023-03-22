@@ -78,20 +78,23 @@ def google_callback(request):
         authorization_response=request.build_absolute_uri(),
     )
     credentials = flow.credentials
-    email = None
+    email, name = None, None
     try:
         userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo'
         headers = {'Authorization': f'Bearer {credentials.token}'}
         userinfo_response = requests.get(userinfo_endpoint, headers=headers)
         email = userinfo_response.json()['email']
+        name = userinfo_response.json()['name']
     except Exception as e:
         return JsonResponse(e)
-    return JsonResponse(userinfo_response.json())
     if email:
         try:
-            customer=Customer.objects.create(email=email)
+            customer=Customer.objects.create(email=email,name=name)
             customer.save()
         except:
+            customer=Customer.objects.get(email=email)
+            customer.name=name
+            customer.save()
             pass
         request.session["google_auth_credentials"] = {
             "token": credentials.token,

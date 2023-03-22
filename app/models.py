@@ -305,12 +305,9 @@ class Order(models.Model):
                         customer=Customer.objects.get(email=order.email)
                         if not customer.name:
                             customer.name=order.name
-                        if not customer.phone:
-                            customer.phone=order.phone
-                        if not customer.address:
-                            customer.address=order.address
-                        if not customer.city:
-                            customer.city=order.city
+                        customer.phone=order.phone
+                        customer.address=order.address
+                        customer.city=order.city
                         customer.save()
                     except:
                         pass
