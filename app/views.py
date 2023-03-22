@@ -106,11 +106,11 @@ def google_callback(request):
         return JsonResponse(e)
     if email:
         try:
-            customer=Customer.objects.create(email=email,name=name)
+            customer=Customer.objects.create(email=email,google_name=name)
             customer.save()
         except:
             customer=Customer.objects.get(email=email)
-            customer.name=name
+            customer.google_name=name
             customer.save()
             pass
         request.session["google_auth_credentials"] = {

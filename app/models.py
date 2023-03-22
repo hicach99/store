@@ -6,6 +6,7 @@ from django.utils.html import mark_safe
 
 
 class Customer(models.Model):
+    google_name = models.CharField(max_length=254)
     name = models.CharField(max_length=254)
     phone = models.CharField(max_length=254)
     email = models.EmailField(max_length=254, unique=True)
