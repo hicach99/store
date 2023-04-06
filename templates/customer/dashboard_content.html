@@ -22,6 +22,7 @@
               <th class="column2">{% trans "Order ID" %}</th>
               <th class="column3">{% trans "Payment Method" %}</th>
               <th class="column4">{% trans "Status" %}</th>
+              <th class="column5"> </th>
               <th class="column6">{% trans "Total" %}</th>
               {% else %}
               <th class="column1 bg-white text-secondary">{% trans "No orders found, chekout our products" %} <a href="{% url 'shop' %}" class="ulinaBTN">{% trans "Our Store" %}</a></th>
@@ -35,6 +36,7 @@
                   <td class="column2">{{order.id}}</td>
                   <td class="column3">{{order.payment_method}}</td>
                   <td class="column4">{% if order.delivered %} <span class="color-success">{% trans "Delivered" %}</span> {% else %}{% if order.complete %}<span class="color-success">{% trans "Paid" %}</span>{% else %}<span>{% trans "Shipping" %}</span>{% endif %}{% endif %}</td>
+                  <td class="column5"></td>
                   <td class="column6">{{order.total_price|convert:request}}</td>
                 {% for item in order.items.all %}
                 {% endfor %}

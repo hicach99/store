@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load static %}
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<script src="{% static 'js/swiper-element-bundle.min.js' %}"></script>
 <div class="acv b">
     <swiper-container class="cnt" navigation="true" pagination="true">
     {% for banner in banners %}
