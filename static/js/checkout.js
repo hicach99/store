@@ -3,15 +3,15 @@ $().ready(function() {
         rules: {
             name: {
                 required:true,
-                minlength:5,
+                minlength:6,
             },
             phone:{
                 required:true,
-                minlength:5,
+                phone_check:true,
             },
             address: {
                 required:true,
-                minlength:5,
+                minlength:10,
             },
             city: {
                 required:true,
@@ -32,47 +32,50 @@ $().ready(function() {
         },
         messages: {
             name: {
-                required:"please enter your name",
+                required:nameReq,
             },
             phone: {
-                required:"please enter your phone number",
+                required:phoneReq,
             },
             address: {
-                required:"please enter your address",
+                required:addressReq,
             },
             city: {
-                required:"please enter your city",
+                required:cityReq,
             },
             email: {
-                required:"please enter your email address",
+                required:emailReq,
             },
             payment_method:{
-                required:"please select your payment method"
+                required:paymentReq,
             },
         },
     });
+
     jQuery.validator.addMethod("filter", function(value, element) {
         return (value=='1')||(value=='2')||(value=='3');
-    }, "invalid payment method");
+    }, filterError);
     jQuery.validator.addMethod("email_check", function(value, element) {
         return value.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    }, "invalid email");
-
+    }, emailCheckError);
+    jQuery.validator.addMethod("phone_check", function(value, element) {
+        return value.toLowerCase().match(/^\+?\d{1,3}[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/);
+    }, phoneCheckError);
     $("input[name=payment_method]").click(function(){
         var value=$(this).val();
         switch (value) {
             case '1':
-                $('.placeOrderBTN').html('<span>Place Order</span>');
+                $('.placeOrderBTN').html('<span>'+PlaceOrder+'</span>');
                 $('.email_container_op').html(op)
                 $('.email_container').html('')
                 break;
             case '2':
-                $('.placeOrderBTN').html('<span>Continue</span>');
+                $('.placeOrderBTN').html('<span>'+Continue+'</span>');
                 $('.email_container_op').html('')
                 $('.email_container').html(req)
                 break;
             case '3':
-                $('.placeOrderBTN').html('<span>Continue</span>');
+                $('.placeOrderBTN').html('<span>'+Continue+'</span>');
                 $('.email_container_op').html('')
                 $('.email_container').html(req)
                 break;
@@ -116,7 +119,7 @@ $().ready(function() {
             }
         }
         else{
-            $.simplyToast('please check your info','danger',toast_options);
+            $.simplyToast(checkInfo,'danger',toast_options);
         }
     });
 });

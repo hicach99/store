@@ -101,8 +101,8 @@
     }
     const lang='{{ 0|get_current_language }}';
     const lang_url=(lang=='fr')?'':(lang=='ar')?'/ar':'/en';
-    const req='<span style="padding-left: 25px;"> <small>(Required) {% trans "Fill the blank to recieve reciept" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="{% trans "Email" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %}/>';
-    const op='<span style="padding-left: 25px;"> <small>(optional) {% trans "Fill it if you want to recieve reciept in your inbox" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %}/>';
+    const req='<span style="padding-left: 25px;"> <small>({% trans "Required" %}) {% trans "Fill the blank to recieve reciept" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email-error" class="error" for="email"></label> </small> </span> <input type="email" name="email"  placeholder="{% trans "Email" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %}/>';
+    const op='<span style="padding-left: 25px;"> <small>({% trans "optional" %}) {% trans "Fill it if you want to recieve reciept in your inbox" %}</small> </span> <span style="padding-left: 25px;"> <small> <label id="email_optional-error" class="error" for="email_optional"></label> </small> </span> <input type="email" name="email_optional"  placeholder="{% trans "Email (Not Required)" %}" value="{{customer.email}}" {% if customer.email %}readonly{% endif %}/>';
     const cartApi=lang_url+'/api/cart';
     const cartRemoveApi=lang_url+'/api/cart/remove/';
     const cartCreateApi=lang_url+'/api/cart/add';
@@ -112,6 +112,18 @@
     const productApi=lang_url+'/api/product/';
     const productMessage="{% trans "Product added successfully to the cart" %}";
     const productMessageError="{% trans "Product was not added" %}";
+    const Continue="{% trans "Continue" %}";
+    const PlaceOrder="{% trans "PlaceOrder" %}";
+    const checkInfo="{% trans "please check your info" %}";
+    const filterError="{% trans "invalid payment method" %}";
+    const emailCheckError="{% trans "invalid email address" %}";
+    const phoneCheckError="{% trans "invalid phone number" %}";
+    const nameReq="{% trans "please enter your name" %}";
+    const phoneReq="{% trans "please enter your phone number" %}";
+    const addressReq="{% trans "please enter your address" %}";
+    const cityReq="{% trans "please enter your city" %}";
+    const emailReq="{% trans "please enter your email address" %}";
+    const paymentReq="{% trans "please select your payment method" %}";
     const warningError="{% trans "Something went wrong!" %}";
   </script>
   <input type="hidden" name="current_path"  id="current_path" value="{{ request.get_full_path }}">

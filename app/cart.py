@@ -68,5 +68,5 @@ class Cart:
     def get_total_price(self):
         return sum(sum([item['total_price'] for item in item_id]) for item_id in self.cart.values())
     def clear(self):
-        self.session['cart'] = {}
+        self.session.pop('cart', None)
         self.session.modified = True

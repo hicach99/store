@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-22 18:47+0000\n"
+"POT-Creation-Date: 2023-04-06 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\setup\settings.py:118
 msgid "French"
 msgstr "Français"
 
@@ -28,6 +27,39 @@ msgstr "Anglais"
 msgid "Arabic"
 msgstr "arabe"
 
+msgid "Fill it if you want to recieve reciept in your inbox"
+msgstr ""
+
+msgid "please check your info"
+msgstr ""
+
+msgid "invalid email address"
+msgstr ""
+
+msgid "invalid phone number"
+msgstr ""
+
+msgid "please enter your name"
+msgstr ""
+
+msgid "please enter your phone number"
+msgstr ""
+
+msgid "please enter your address"
+msgstr ""
+
+msgid "please enter your city"
+msgstr ""
+
+msgid "please enter your email address"
+msgstr ""
+
+msgid "please select your payment method"
+msgstr ""
+
+msgid "(optional) Fill it if you want to recieve reciept in your inbox"
+msgstr ""
+
 msgid "Subtotal"
 msgstr "Total"
 
@@ -35,7 +67,7 @@ msgid "View Cart"
 msgstr "Voir le panier"
 
 msgid "Checkout"
-msgstr "Vérifier"
+msgstr "Paiement"
 
 msgid "No products in the cart."
 msgstr "Aucun produit dans le chariot."
@@ -73,9 +105,6 @@ msgstr "Remplissez le champ pour recevoir le reçu"
 msgid "Email"
 msgstr "E-mail"
 
-msgid "Fill it if you want to recieve reciept in your inbox"
-msgstr "Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
-
 msgid "Email (Not Required)"
 msgstr "E-mail (non requis)"
 
@@ -84,6 +113,15 @@ msgstr "Produit ajouté avec succès au panier"
 
 msgid "Product was not added"
 msgstr "Le produit n'a pas été ajouté"
+
+msgid "Continue"
+msgstr "Continuer vos achats"
+
+msgid "PlaceOrder"
+msgstr "Passer la commande"
+
+msgid "invalid payment method"
+msgstr "Mode de paiement"
 
 msgid "Something went wrong!"
 msgstr "Quelque chose s'est mal passé !"
@@ -172,9 +210,6 @@ msgstr "Vous avez un code promo ?"
 msgid "Your Billing Address"
 msgstr "Votre adresse de facturation"
 
-msgid "(optional) Fill it if you want to recieve reciept in your inbox"
-msgstr "(facultatif) Remplissez-le si vous souhaitez recevoir un accusé de réception dans votre boîte de réception"
-
 msgid "Full Name"
 msgstr "Nom et prénom"
 
@@ -196,8 +231,8 @@ msgstr "Total"
 msgid "Cash On Delivery"
 msgstr "Paiement à la livraison"
 
-msgid "Credit Card (CMI)"
-msgstr "Carte de crédit (CMI)"
+msgid "Paypal"
+msgstr "Paypal"
 
 msgid "Place Order"
 msgstr "Passer la commande"
@@ -334,12 +369,6 @@ msgstr "Aucun produit trouvé"
 msgid "Load More"
 msgstr "Charger plus"
 
-msgid "No orders found, chekout our products"
-msgstr "Aucune commande trouvée, consultez nos produits"
-
-msgid "Our Store"
-msgstr "Notre magasin"
-
 msgid "Date"
 msgstr "Date"
 
@@ -352,14 +381,17 @@ msgstr "Mode de paiement"
 msgid "Status"
 msgstr "Statut"
 
+msgid "Properties"
+msgstr "Propriétés"
+
+msgid "No orders found, chekout our products"
+msgstr "Aucune commande trouvée, consultez nos produits"
+
 msgid "Delivered"
 msgstr "Livré"
 
 msgid "Paid"
 msgstr "Payé"
-
-msgid "Properties"
-msgstr "Propriétés"
 
 msgid "Email Receipt"
 msgstr "Reçu par e-mail"

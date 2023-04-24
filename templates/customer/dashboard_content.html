@@ -4,6 +4,78 @@
 
 <head>
   <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <style>
+    @media screen and (max-width:992px) {
+
+      {% if 0|get_current_language == 'ar' %}
+      table tbody tr td{
+        padding-left: 10px!important;
+        text-align: left!important;
+      }
+      .column6 {
+        padding-right: 0;
+      }
+      {% endif %}
+      .limiter table tbody tr td:nth-child(1):before {
+        {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Date" %}"
+            }
+
+            .limiter table tbody tr td:nth-child(2):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Order ID" %}"
+            }
+
+            .limiter table tbody tr td:nth-child(3):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Payment Method" %}"
+            }
+
+            .limiter table tbody tr td:nth-child(4):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Status" %}"
+            }
+
+            .limiter table tbody tr td:nth-child(5):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: ""
+            }
+
+            .limiter table tbody tr td:nth-child(6):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Total" %}"
+            }
+            .modal-content table tbody tr td:nth-child(1):before {
+              {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Item" %}"
+            }
+
+            .modal-content table tbody tr td:nth-child(2):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Properties" %}"
+            }
+
+            .modal-content table tbody tr td:nth-child(3):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Price" %}"
+            }
+
+            .modal-content table tbody tr td:nth-child(4):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Quantity" %}"
+            }
+
+            .modal-content table tbody tr td:nth-child(5):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: ""
+            }
+
+            .modal-content table tbody tr td:nth-child(6):before {
+                {% if 0|get_current_language == 'ar' %}float:right!important;position: relative;
+      margin-right: 10px;{% endif %}content: "{% trans "Total" %}"
+            }
+          }
+  </style>
 </head>
 <div class="limiter">
   <div class="container-table100">
@@ -11,7 +83,13 @@
       <div class="table100">
         {% if not customer.get_orders or request.mobile %}
           <div class="divo">
-            <div class="bg-white text-secondary  p-3" style="border-radius: 10px;">{% trans "No orders found, chekout our products" %} <a href="{% url 'shop' %}" class="ulinaBTN">{% trans "Our Store" %}</a></div>
+            <div class="bg-white text-secondary  p-3" style="border-radius: 10px;">
+              <div class="row text-center m-2 d-block">
+                {% trans "No orders found, chekout our products" %}
+              </div>
+              <div class="row text-center d-block">
+              </div>
+            </div>
           </div>
         {% endif %}
         <table>
@@ -25,7 +103,11 @@
               <th class="column5"> </th>
               <th class="column6">{% trans "Total" %}</th>
               {% else %}
-              <th class="column1 bg-white text-secondary">{% trans "No orders found, chekout our products" %} <a href="{% url 'shop' %}" class="ulinaBTN">{% trans "Our Store" %}</a></th>
+              <th class="column1 bg-white text-secondary">
+                <div class="row text-center m-2 d-block">
+                  {% trans "No orders found, chekout our products" %}
+                </div>
+              </th>
               {% endif %}
             </tr>
           </thead>
@@ -34,7 +116,9 @@
               <tr data-order="{{order.id}}" class="orderTr">
                   <td class="column1">{{order.date_ordered}}</td>
                   <td class="column2">{{order.id}}</td>
-                  <td class="column3">{{order.payment_method}}</td>
+                  {% with order.payment_method|title as payment_method %}
+                    <td class="column3">{% trans payment_method %}</td>
+                  {% endwith %}
                   <td class="column4">{% if order.delivered %} <span class="color-success">{% trans "Delivered" %}</span> {% else %}{% if order.complete %}<span class="color-success">{% trans "Paid" %}</span>{% else %}<span>{% trans "Shipping" %}</span>{% endif %}{% endif %}</td>
                   <td class="column5"></td>
                   <td class="column6">{{order.total_price|convert:request}}</td>

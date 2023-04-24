@@ -1066,7 +1066,8 @@
     })
 
     $('.orderTr').click(()=>{
-        var id=$('.orderTr').attr('data-order');
+        var id=$(this).attr('data-order');
+        alert($(this).data('order'));
         fetch(orderGetApi+id, {
             method: 'POST',
             headers: {

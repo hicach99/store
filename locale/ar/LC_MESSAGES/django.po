@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-22 18:47+0000\n"
+"POT-Creation-Date: 2023-04-06 09:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-
-#: .\setup\settings.py:118
 
 msgid "French"
 msgstr "فرنسي"
@@ -86,6 +84,42 @@ msgstr "تمت إضافة المنتج بنجاح إلى سلة التسوق"
 
 msgid "Product was not added"
 msgstr "لم يتم إضافة المنتج"
+
+msgid "Continue"
+msgstr "مواصلة التسوق"
+
+msgid "PlaceOrder"
+msgstr "مكان الامر"
+
+msgid "please check your info"
+msgstr "يرجى التحقق من المعلومات الخاصة بك"
+
+msgid "invalid payment method"
+msgstr "طريقة الدفع"
+
+msgid "invalid email address"
+msgstr "عنوان البريد الإلكتروني غير صالح"
+
+msgid "invalid phone number"
+msgstr "رقم الهاتف غير صحيح"
+
+msgid "please enter your name"
+msgstr "من فضلك أدخل إسمك"
+
+msgid "please enter your phone number"
+msgstr "يرجى إدخال رقم الهاتف الخاص بك"
+
+msgid "please enter your address"
+msgstr "الرجاء إدخال عنوانك"
+
+msgid "please enter your city"
+msgstr "الرجاء إدخال مدينتك"
+
+msgid "please enter your email address"
+msgstr "الرجاء إدخال عنوان البريد الإلكتروني الخاص بك"
+
+msgid "please select your payment method"
+msgstr "الرجاء تحديد طريقة الدفع الخاصة بك"
 
 msgid "Something went wrong!"
 msgstr "هناك خطأ ما!"
@@ -198,8 +232,8 @@ msgstr "المجموع"
 msgid "Cash On Delivery"
 msgstr "الدفع عند الاستلام"
 
-msgid "Credit Card (CMI)"
-msgstr "بطاقة الائتمان (CMI)"
+msgid "Paypal"
+msgstr "بايبال"
 
 msgid "Place Order"
 msgstr "مكان الامر"
@@ -336,12 +370,6 @@ msgstr "منتجات غير موجودة"
 msgid "Load More"
 msgstr "المزيد"
 
-msgid "No orders found, chekout our products"
-msgstr "لم يتم العثور على طلبات ، اعرض منتجاتنا"
-
-msgid "Our Store"
-msgstr "متجرنا"
-
 msgid "Date"
 msgstr "تاريخ"
 
@@ -354,14 +382,17 @@ msgstr "طريقة الدفع"
 msgid "Status"
 msgstr "الحالة"
 
+msgid "Properties"
+msgstr "خصائص"
+
+msgid "No orders found, chekout our products"
+msgstr "لم يتم العثور على طلبات ، اعرض منتجاتنا"
+
 msgid "Delivered"
 msgstr "تم التوصيل"
 
 msgid "Paid"
 msgstr "مدفوع"
-
-msgid "Properties"
-msgstr "ملكيات"
 
 msgid "Email Receipt"
 msgstr "إيصال البريد الإلكتروني"

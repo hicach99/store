@@ -9,8 +9,8 @@
             <tr class="table100-head" >
               <th class="column1" >{% trans "Item" %}</th>
               <th class="column2" >{% trans "Properties" %}</th>
-              <th class="column4" >{% trans "Quantity" %}</th>
               <th class="column3" >{% trans "Price" %}</th>
+              <th class="column4" >{% trans "Quantity" %}</th>
               <th class="column5" > </th>
               <th class="column6" >{% trans "Total" %}</th>
             </tr>
@@ -27,7 +27,7 @@
                     <td class="column6" >{{item.total_price|convert:request}}</td>
                   </tr>
                 
-                {% endfor %}
+            {% endfor %}
           </tbody>
         </table>
       </div>

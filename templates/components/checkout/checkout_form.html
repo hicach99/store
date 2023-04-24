@@ -139,9 +139,10 @@
                     <input type="radio" value="2" name="payment_method" id="paymentMethod02" />
                     <label for="paymentMethod02">{% trans "Credit Card (CMI)" %}</label>
                   </li> {% endcomment %}
+                  
                   <li class="">
                     <input type="radio" value="3" name="payment_method" id="paymentMethod03" />
-                    <label for="paymentMethod03"><span>Paypal </span><i class="fa-brands fa-paypal" style="font-size: large;"></i></label>
+                    <label for="paymentMethod03"><span>{% trans "Paypal" %} </span><i class="fa-brands fa-paypal" style="font-size: large;"></i></label>
                   </li>
                   <small style="padding-left: 25px;"><label id="payment_method-error" class="error" for="payment_method"></label></small>
                 </ul>

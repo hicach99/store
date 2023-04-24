@@ -300,7 +300,7 @@ class Order(models.Model):
                         address=order.address,
                         name=order.name,
                         city=order.city,
-                    )
+                    ) 
                 except:
                     try:
                         customer=Customer.objects.get(email=order.email)
