@@ -333,11 +333,13 @@ def success(request):
     cart = Cart(request)
     products=Product.objects.all()
     categories=Category.get_all()
+    customer=login_check(request)
     return render(
         request,
         'success.html',
         {
             'config':config,
+            'customer':customer,
             'categories':categories,
             'cart':cart,
             'products':products,
@@ -347,11 +349,13 @@ def echec(request):
     categories=Category.get_all()
     cart = Cart(request)
     categories=Category.get_all()
+    customer=login_check(request)
     return render(
         request,
         'echec.html',
         {
             'config':config,
+            'customer':customer,
             'categories':categories,
             'cart':cart,
         }
