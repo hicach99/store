@@ -1064,11 +1064,13 @@
             $('.ErrorCart').text('invalid quantity')
         }
     })
-
-    $('.orderTr').click(()=>{
-        var id=$(this).attr('data-order');
-        alert($(this).data('order'));
-        fetch(orderGetApi+id, {
+    
+})(jQuery)
+$(document).ready(function() {
+    $(".orderTr").click(function() {
+      var order_id = $(this).data("order");
+      if (order_id !== undefined) {
+        fetch(orderGetApi+order_id, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1087,6 +1089,6 @@
         .catch(error => {
             $.simplyToast(error,'danger',toast_options);
         });
-    })
-    
-})(jQuery)
+      }
+    });
+});
