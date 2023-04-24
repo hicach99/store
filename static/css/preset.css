@@ -128,7 +128,7 @@ input:focus, select:focus, textarea:focus, button:focus{
     min-width: 155px;
     background: transparent;
     border-radius: 48px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 50px;
     color: #FFF;
     font-weight: 500;
